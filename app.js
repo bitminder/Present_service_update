@@ -1,9 +1,27 @@
+/* Present-Service v2: accessible navigation, segmentation brief, opt-in delivery. */
 (() => {
   "use strict";
+  const config = Object.freeze(Object.assign({
+    leadEndpoint: "", turnstileSiteKey: "", analyticsWebsiteId: ""
+  }, window.PRESENT_SERVICE_CONFIG || {}));
+  const $ = (selector, parent=document) => parent.querySelector(selector);
 
-  const menuButton = document.querySelector(".menu-toggle");
-  const menu = document.querySelector("#primary-nav");
+  function track(eventName) {
+    // Analytics is optional, disabled until explicitly configured and legally reviewed.
+    if (config.analyticsWebsiteId && window.umami && typeof window.umami.track === "function") {
+      window.umami.track(eventName);
+    }
+  }
+  if (config.analyticsWebsiteId && /^[a-f0-9-]{30,40}$/i.test(config.analyticsWebsiteId)) {
+    const script = document.createElement("script");
+    script.defer = true;
+    script.src = "https://cloud.umami.is/script.js";
+    script.dataset.websiteId = config.analyticsWebsiteId;
+    document.head.appendChild(script);
+  }
 
+  const menuButton = $(".menu-toggle");
+  const menu = $("#primary-nav");
   if (menuButton && menu) {
     const closeMenu = () => {
       menu.classList.remove("is-open");
@@ -11,97 +29,166 @@
       menuButton.setAttribute("aria-label", "Otwórz menu");
     };
     menuButton.addEventListener("click", () => {
-      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
-      menu.classList.toggle("is-open", !isOpen);
-      menuButton.setAttribute("aria-expanded", String(!isOpen));
-      menuButton.setAttribute("aria-label", isOpen ? "Otwórz menu" : "Zamknij menu");
+      const open = menuButton.getAttribute("aria-expanded") !== "true";
+      menu.classList.toggle("is-open", open);
+      menuButton.setAttribute("aria-expanded", String(open));
+      menuButton.setAttribute("aria-label", open ? "Zamknij menu" : "Otwórz menu");
     });
-    menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") {
+    menu.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && menu.classList.contains("is-open")) {
         closeMenu();
         menuButton.focus();
       }
     });
-    document.addEventListener("click", e => {
-      if (!menu.contains(e.target) && !menuButton.contains(e.target)) closeMenu();
+    document.addEventListener("click", event => {
+      if (!menu.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
     });
   }
 
-  const year = document.querySelector("#year");
+  const year = $("#year");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  const form = document.querySelector("#campaign-form");
+  const form = $("#campaign-form");
   if (!form) return;
+  const channelField = $("#channel");
+  const locationField = $("#location");
+  const regionField = $("#regions-field");
+  const cityField = $("#city-field");
+  const cities = $("#cities");
+  const regionInputs = [...form.querySelectorAll('input[name="voivodeship"]')];
+  const result = $("#brief-result");
+  const preview = $("#brief-preview");
+  const emailLink = $("#send-email");
+  const copyButton = $("#copy-brief");
+  const editButton = $("#edit-brief");
+  const sendDirectButton = $("#send-direct");
+  const sendDirectStatus = $("#send-direct-status");
+  const onlineContact = $("#online-contact");
+  const contactEmail = $("#contact-email");
+  const consent = $("#privacy-confirm");
+  const turnstileContainer = $("#turnstile-widget");
 
-  const channelField = form.querySelector("#channel");
-  // Preselect the appropriate service when arriving from a service detail page.
+  let currentBrief = "";
+  let currentPayload = null;
+  let turnstileToken = "";
+  let turnstileWidgetId = null;
+  let isSending = false;
+  let completed = false;
+
   const requestedChannel = new URLSearchParams(window.location.search).get("kanal");
-  if (requestedChannel && channelField && [...channelField.options].some(option => option.value === requestedChannel)) {
+  if (requestedChannel && [...channelField.options].some(opt => opt.value === requestedChannel)) {
     channelField.value = requestedChannel;
   }
-  const result = document.querySelector("#brief-result");
-  const preview = document.querySelector("#brief-preview");
-  const sendEmailLink = document.querySelector("#send-email");
-  const copyButton = document.querySelector("#copy-brief");
-  const editButton = document.querySelector("#edit-brief");
 
   document.querySelectorAll("[data-channel]").forEach(link => {
     link.addEventListener("click", () => {
       const channel = link.getAttribute("data-channel");
-      if (channel && channelField) channelField.value = channel;
+      if (channel && [...channelField.options].some(opt => opt.value === channel)) channelField.value = channel;
     });
   });
 
-  let currentBrief = "";
+  function refreshRegions() {
+    const selectRegions = locationField.value === "Wybrane województwa";
+    const selectCities = locationField.value === "Wybrane miasta / regiony";
+    regionField.hidden = !selectRegions;
+    cityField.hidden = !selectCities;
+    if (!selectRegions) regionInputs.forEach(input => { input.checked = false; });
+    if (!selectCities) cities.value = "";
+  }
+  locationField.addEventListener("change", refreshRegions);
+  refreshRegions();
 
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    if (!form.reportValidity()) return;
-
-    const data = new FormData(form);
-    const brand = String(data.get("brand") || "").trim();
-    const channel = String(data.get("channel") || "").trim();
-    const stage = String(data.get("stage") || "").trim();
-    const location = String(data.get("location") || "").trim();
-    const goal = String(data.get("goal") || "").trim();
-
-    if (!channel) {
-      channelField.focus();
-      return;
+  form.addEventListener("focusin", () => {
+    if (!form.dataset.started) {
+      form.dataset.started = "true";
+      track("brief_started");
     }
+  });
 
-    const lines = [
+  function line(label, value) {
+    return label + ": " + (value || "do ustalenia");
+  }
+
+  function prepareBrief(data, territory) {
+    return [
       "Dzień dobry,",
       "",
-      "Proszę o kontakt w sprawie możliwości przygotowania kampanii marketingowej dla rodzin z dziećmi.",
+      "Proszę o przygotowanie informacji o możliwościach kampanii do rodzin z dziećmi w Polsce.",
       "",
-      "Wstępny brief:",
-      "Firma / marka: " + (brand || "do ustalenia"),
-      "Preferowany kanał: " + channel,
-      "Grupa docelowa: " + stage,
-      "Zasięg geograficzny: " + location,
-      "Cel kampanii / dodatkowe informacje: " + (goal || "do ustalenia"),
+      "WSTĘPNY BRIEF KAMPANII",
+      line("Firma / marka", data.brand),
+      line("Osoba kontaktowa", data.contactName),
+      line("Adres do odpowiedzi", data.contactEmail),
+      line("Kanał", data.channel),
+      line("Etap życia / wiek dziecka", data.stage),
+      line("Liczba dzieci", data.childCount),
+      line("Wiek matki (opcjonalny)", data.parentAge),
+      line("Geografia", territory),
+      line("Planowany termin", data.campaignDate),
+      line("Budżet orientacyjny", data.budget),
+      line("Cel / dodatkowe informacje", data.goal),
       "",
-      "Proszę o informację o dostępnych rozwiązaniach i dalszych krokach.",
+      "Proszę o weryfikację dostępności grupy, zgodności kanału kontaktu z obowiązującymi przepisami i o przygotowanie indywidualnej oferty.",
       "",
-      "Z poważaniem"
-    ];
+      "Z poważaniem",
+      data.contactName || ""
+    ].join("\n");
+  }
 
-    currentBrief = lines.join("\n");
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    let territory = locationField.value;
+    if (territory === "Wybrane województwa") {
+      const values = regionInputs.filter(input => input.checked).map(input => input.value);
+      if (!values.length) {
+        regionField.querySelector(".v2-field-hint").textContent = "Wybierz przynajmniej jedno województwo.";
+        regionField.querySelector(".v2-field-hint").classList.add("v2-error");
+        regionInputs[0].focus();
+        return;
+      }
+      territory = values.join(", ");
+    } else if (territory === "Wybrane miasta / regiony") {
+      if (!cities.value.trim()) {
+        cities.setCustomValidity("Wpisz przynajmniej jedno miasto lub region.");
+        cities.reportValidity();
+        cities.setCustomValidity("");
+        return;
+      }
+      territory = cities.value.trim();
+    }
+    const data = Object.fromEntries(new FormData(form).entries());
+    const normalized = {
+      brand: String(data.brand || "").trim(),
+      channel: String(data.channel || "").trim(),
+      stage: String(data.stage || "").trim(),
+      childCount: String(data.childCount || "").trim(),
+      parentAge: String(data.parentAge || "").trim(),
+      territory,
+      campaignDate: String(data.campaignDate || "").trim(),
+      budget: String(data.budget || "").trim(),
+      goal: String(data.goal || "").trim(),
+      contactName: String(data.contactName || "").trim(),
+      contactEmail: String(data.contactEmail || "").trim()
+    };
+    if (!normalized.channel) return channelField.focus();
+    currentPayload = normalized;
+    currentBrief = prepareBrief(normalized, territory);
     preview.value = currentBrief;
-
-    const subject = "Zapytanie o kampanię marketingową" + (brand ? " – " + brand : "");
-    const mailto = "mailto:marketing@present-service.pl?subject="
-      + encodeURIComponent(subject) + "&body=" + encodeURIComponent(currentBrief);
-
-    sendEmailLink.setAttribute("href", mailto);
+    const subject = "Zapytanie o kampanię" + (normalized.brand ? " – " + normalized.brand : "");
+    emailLink.href = "mailto:marketing@present-service.pl?subject=" + encodeURIComponent(subject)
+      + "&body=" + encodeURIComponent(currentBrief);
     form.hidden = true;
     result.hidden = false;
     result.querySelector("h3").setAttribute("tabindex", "-1");
     result.querySelector("h3").focus();
     copyButton.textContent = "Kopiuj treść zapytania";
+    track("brief_completed");
+    configureOnlineContact();
   });
+
+  emailLink.addEventListener("click", () => track("email_draft_opened"));
 
   copyButton.addEventListener("click", async () => {
     if (!currentBrief) return;
@@ -115,16 +202,95 @@
         preview.setSelectionRange(0, 0);
       }
       copyButton.textContent = "Skopiowano ✓";
-    } catch (_) {
-      copyButton.textContent = "Zaznacz tekst powyżej i skopiuj";
+      track("brief_copied");
+    } catch {
       preview.focus();
       preview.select();
+      copyButton.textContent = "Zaznacz tekst i skopiuj";
     }
   });
 
   editButton.addEventListener("click", () => {
     result.hidden = true;
     form.hidden = false;
+    locationField.dispatchEvent(new Event("change", { bubbles: false }));
     channelField.focus();
+  });
+
+  // No direct delivery without a configured API endpoint AND anti-bot site key.
+  const onlineEnabled = /^https:\/\//.test(config.leadEndpoint)
+    && typeof config.turnstileSiteKey === "string" && config.turnstileSiteKey.length > 10;
+
+  function configureOnlineContact() {
+    onlineContact.hidden = !onlineEnabled || completed;
+    if (!onlineEnabled || completed) return;
+    const emailIsValid = contactEmail.checkValidity() && !!contactEmail.value.trim();
+    if (!emailIsValid || !consent.checked) {
+      sendDirectButton.disabled = true;
+      sendDirectStatus.textContent = "Wysyłka bezpośrednia wymaga poprawnego e-maila i potwierdzenia zapoznania się z informacją o danych. Wróć do edycji, aby je uzupełnić.";
+      return;
+    }
+    sendDirectStatus.textContent = "Potwierdź weryfikację antyspamową, aby wysłać zapytanie bezpośrednio.";
+    if (!turnstileWidgetId && !turnstileContainer.dataset.initialized) {
+      turnstileContainer.dataset.initialized = "true";
+      const script = document.createElement("script");
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      script.async = true;
+      script.onload = () => {
+        if (!window.turnstile) return;
+        turnstileWidgetId = window.turnstile.render(turnstileContainer, {
+          sitekey: config.turnstileSiteKey,
+          callback: token => { turnstileToken = token; sendDirectButton.disabled = false; sendDirectStatus.textContent = ""; },
+          "expired-callback": () => { turnstileToken = ""; sendDirectButton.disabled = true; },
+          "error-callback": () => { turnstileToken = ""; sendDirectButton.disabled = true; sendDirectStatus.textContent = "Nie udało się zweryfikować antyspamu. Możesz wysłać zapytanie e-mailem."; }
+        });
+      };
+      script.onerror = () => { sendDirectStatus.textContent = "Weryfikacja antyspamowa niedostępna. Skorzystaj z przycisku e-mail."; };
+      document.head.appendChild(script);
+    }
+  }
+
+  sendDirectButton.addEventListener("click", async () => {
+    if (!onlineEnabled || !currentPayload || !turnstileToken || isSending || completed) return;
+    if (!contactEmail.checkValidity() || !contactEmail.value.trim() || !consent.checked) {
+      sendDirectStatus.textContent = "Uzupełnij adres e-mail i potwierdź informację o danych.";
+      return;
+    }
+    isSending = true;
+    sendDirectButton.disabled = true;
+    sendDirectStatus.textContent = "Wysyłanie zapytania…";
+    try {
+      const abortController = new AbortController();
+      const timeout = setTimeout(() => abortController.abort(), 12000);
+      let response;
+      try {
+        response = await fetch(config.leadEndpoint, {
+          method: "POST",
+          mode: "cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(Object.assign({}, currentPayload, {
+            privacyConfirmed: true, challengeToken: turnstileToken,
+            website: ""
+          })),
+          signal: abortController.signal
+        });
+      } finally {
+        clearTimeout(timeout);
+      }
+      const body = await response.json().catch(() => ({}));
+      if (!response.ok || body.ok !== true) throw new Error("delivery-not-confirmed");
+      completed = true;
+      sendDirectStatus.textContent = "Dziękujemy! Serwer potwierdził przyjęcie wiadomości.";
+      sendDirectButton.textContent = "Zapytanie przyjęte ✓";
+      track("lead_received_by_server");
+    } catch {
+      sendDirectStatus.textContent = "Nie mamy potwierdzenia dostarczenia. Sprawdź skrzynkę przed ponowną próbą lub użyj opcji e-mail poniżej.";
+      track("lead_delivery_error");
+      if (window.turnstile && turnstileWidgetId !== null) window.turnstile.reset(turnstileWidgetId);
+      turnstileToken = "";
+      sendDirectButton.disabled = true;
+    } finally {
+      isSending = false;
+    }
   });
 })();
