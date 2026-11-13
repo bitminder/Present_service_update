@@ -1,0 +1,11 @@
+# Minimal deployment example for the *optional* lead API.
+# Do NOT put secrets into this file or the public site's site-config.js.
+name = "present-service-leads"
+main = "lead-worker.js"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGIN = "https://bitminder.github.io"
+TURNSTILE_EXPECTED_HOSTNAME = "bitminder.github.io"
+# Set RESEND_FROM_EMAIL and RESEND_TO_EMAIL after verifying mail identities.
