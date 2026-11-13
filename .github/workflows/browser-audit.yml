@@ -1,9 +1,10 @@
-name: Audit v2 in real browsers
+name: Browser audit: premium design 2.1
 
 on:
   push:
     branches:
       - audit-v2-browser
+      - premium-design-2-1
   workflow_dispatch:
 
 permissions:
