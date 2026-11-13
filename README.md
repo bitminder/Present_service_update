@@ -43,6 +43,14 @@ node scripts/check-site.mjs
 
 Te kontrole obejmują składnię, lokalne linki, metadane, polski język stron, logo i blokadę indeksowania **podglądu**. Nie są zamiennikiem testu przeglądarki, Lighthouse, WCAG 2.2 AA ani audytu bezpieczeństwa.
 
+## Testy przeglądarkowe po audycie (13.11.2026)
+
+Po przeglądzie wersji 2.0 poprawiono poziomy kontrastu drobnych opisów i układ na urządzeniach o szerokości 320 px. Izolowany audyt Playwright + axe-core przeszedł pomyślnie: **10/10 scenariuszy**. Zweryfikowano m.in. szerokości 320/390/768/1440 px, menu mobilne, walidację regionów, generowanie briefu, wszystkie podstrony i automatyczne reguły WCAG 2.2 AA na stronie głównej, stronie bazy danych rodzin oraz stronie informacji o danych.
+
+Raport testów: https://github.com/bitminder/Present_service_update/actions/runs/43503975879
+
+Te testy nie potwierdzają pełnej zgodności z WCAG 2.2 AA, nie zastępują audytu Lighthouse ani testu end-to-end dostarczenia e-maila. Bezpośrednie wysyłanie zapytań i analityka pozostają wyłączone do czasu konfiguracji i zatwierdzeń.
+
 ## SEO i przejście na domenę firmy
 
 Podgląd pozostaje `noindex,nofollow`, a `robots.txt` zawiera `Disallow: /`. **To jest celowe.** Nie indeksuj wersji testowej obok oryginalnej strony.
