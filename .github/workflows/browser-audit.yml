@@ -1,0 +1,35 @@
+name: Audit v2 in real browsers
+
+on:
+  push:
+    branches:
+      - audit-v2-browser
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Run browser smoke tests on deployed website
+        run: |
+          mkdir -p artifacts
+          node scripts/audit-browser.mjs
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: present-service-v2-browser-audit
+          path: artifacts/
+          retention-days: 3
