@@ -1,0 +1,29 @@
+name: Website quality checks
+
+on:
+  push:
+    branches:
+      - main
+      - version-2-0
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check syntax
+        run: |
+          node --check app.js
+          node --check --input-type=module < backend/lead-worker.js
+      - name: Check pages, links and metadata
+        run: node scripts/check-site.mjs
