@@ -1,4 +1,5 @@
 import { chromium } from "playwright";
+import axe from "axe-core";
 
 const base = "https://bitminder.github.io/Present_service_update/";
 const browser = await chromium.launch({ headless: true });
@@ -43,6 +44,17 @@ for(const width of widths){
       clientWidth:document.documentElement.clientWidth,
       bodyWidth:document.body.scrollWidth
     }));
+    if(dimensions.scrollWidth>width+2){
+      const offenders=await page.evaluate(()=>[...document.querySelectorAll("body *")].map(el=>{
+        const r=el.getBoundingClientRect();
+        const styles=getComputedStyle(el);
+        return {tag:el.tagName,id:el.id,classes:String(el.className||"").slice(0,100),
+          right:Math.round(r.right),left:Math.round(r.left),width:Math.round(r.width),
+          scrollWidth:el.scrollWidth,clientWidth:el.clientWidth,overflowX:styles.overflowX};
+      }).filter(o=>o.right>window.innerWidth+1||o.left< -1)
+        .sort((a,b)=>a.right-b.right).slice(0,30));
+      console.error("OVERFLOW_DIAGNOSTIC",width,JSON.stringify(offenders));
+    }
     assert(dimensions.scrollWidth<=width+2,"horizontal page overflow: "+JSON.stringify(dimensions));
     assert(errors.length===0,"console or network errors: "+errors.join("; "));
     await page.screenshot({path:"artifacts/home-"+width+".png",fullPage:true});
@@ -129,6 +141,25 @@ await run("All service landing pages load with branding",async()=>{
     const width=await page.evaluate(()=>document.documentElement.scrollWidth);
     assert(width<=392,p+" horizontal overflow "+width);
     assert(errors.length===0,p+" console/network errors "+errors.join("; "));
+    await page.close();
+  }
+  await context.close();
+});
+
+await run("WCAG 2.2 AA automated accessibility smoke test",async()=>{
+  const context=await browser.newContext({viewport:{width:1440,height:900}});
+  for(const url of [base,base+"baza-danych-rodzin.html"]){
+    const {page}=await testPage(context,url);
+    await page.addScriptTag({content:axe.source});
+    const audit=await page.evaluate(async()=>await window.axe.run(document,{
+      runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21a","wcag21aa","wcag22aa"]}
+    }));
+    const summary=audit.violations.map(v=>({
+      id:v.id,impact:v.impact,description:v.description,
+      nodes:v.nodes.slice(0,4).map(n=>({html:n.html.slice(0,220),failureSummary:n.failureSummary}))
+    }));
+    console.log("AXE_RESULTS",url,JSON.stringify(summary));
+    assert(audit.violations.length===0,"Accessibility issues detected: "+JSON.stringify(summary));
     await page.close();
   }
   await context.close();
