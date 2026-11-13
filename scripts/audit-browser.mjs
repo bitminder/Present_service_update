@@ -1,7 +1,7 @@
 import { chromium } from "playwright";
 import axe from "axe-core";
 
-const base = "https://bitminder.github.io/Present_service_update/";
+const base = process.env.BASE_URL || "https://bitminder.github.io/Present_service_update/";
 const browser = await chromium.launch({ headless: true });
 let passed = 0;
 const failures = [];
