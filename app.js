@@ -99,6 +99,117 @@
   locationField.addEventListener("change", refreshRegions);
   refreshRegions();
 
+  // Progressive enhancement: without JavaScript all fields and the ordinary mailto
+  // brief remain available in one continuous form. With JS use three clear steps.
+  const wizardPanels = [...form.querySelectorAll("[data-wizard-step]")];
+  const wizardIndicators = [...form.querySelectorAll("[data-step-indicator]")];
+  const wizardSummary = $("#wizard-summary");
+  let currentStep = 1;
+
+  function campaignTerritory() {
+    if (locationField.value === "Wybrane województwa") {
+      const selected = regionInputs.filter(input => input.checked).map(input => input.value);
+      return selected.length ? selected.join(", ") : "Nie wybrano województw";
+    }
+    if (locationField.value === "Wybrane miasta / regiony") {
+      return cities.value.trim() || "Nie wybrano lokalizacji";
+    }
+    return locationField.value;
+  }
+
+  function updateWizardSummary() {
+    if (!wizardSummary) return;
+    const fields = [
+      ["Kanał", channelField.value || "Do ustalenia"],
+      ["Wiek dziecka", $("#family-stage").value],
+      ["Liczba dzieci", $("#child-count").value],
+      ["Region", campaignTerritory()],
+      ["Firma", $("#brand-name").value.trim() || "Do ustalenia"],
+      ["Termin", $("#campaign-date").value || "Do ustalenia"],
+      ["Budżet", $("#campaign-budget").value]
+    ];
+    wizardSummary.replaceChildren();
+    for (const [label, value] of fields) {
+      const row = document.createElement("div");
+      row.className = "premium-summary-row";
+      const title = document.createElement("small");
+      title.textContent = label;
+      const answer = document.createElement("strong");
+      answer.textContent = value;
+      row.append(title, answer);
+      wizardSummary.append(row);
+    }
+  }
+
+  function goToStep(nextStep, focus = true) {
+    currentStep = Math.min(3, Math.max(1, nextStep));
+    wizardPanels.forEach(panel => {
+      panel.hidden = Number(panel.dataset.wizardStep) !== currentStep;
+    });
+    wizardIndicators.forEach(indicator => {
+      const n = Number(indicator.dataset.stepIndicator);
+      if (n === currentStep) indicator.setAttribute("aria-current", "step");
+      else indicator.removeAttribute("aria-current");
+      indicator.dataset.complete = String(n < currentStep);
+    });
+    if (currentStep === 3) updateWizardSummary();
+    if (focus) {
+      const heading = wizardPanels[currentStep - 1]?.querySelector("h4");
+      heading?.focus({ preventScroll: true });
+      form.scrollIntoView({ block: "start", behavior: "instant" });
+    }
+    track("brief_step_" + currentStep);
+  }
+
+  function validateAudience() {
+    if (!channelField.value) {
+      channelField.reportValidity();
+      channelField.focus();
+      return false;
+    }
+    if (locationField.value === "Wybrane województwa" && !regionInputs.some(input => input.checked)) {
+      const hint = regionField.querySelector(".v2-field-hint");
+      if (hint) {
+        hint.textContent = "Wybierz przynajmniej jedno województwo.";
+        hint.classList.add("v2-error");
+      }
+      regionInputs[0]?.focus();
+      return false;
+    }
+    if (locationField.value === "Wybrane miasta / regiony" && !cities.value.trim()) {
+      cities.setCustomValidity("Wpisz przynajmniej jedno miasto lub region.");
+      cities.reportValidity();
+      cities.setCustomValidity("");
+      return false;
+    }
+    return true;
+  }
+
+  if (wizardPanels.length === 3 && wizardIndicators.length === 3) {
+    form.classList.add("wizard-enhanced");
+    goToStep(1, false);
+    form.querySelectorAll("[data-wizard-next]").forEach(button => {
+      button.addEventListener("click", () => {
+        if (currentStep === 1 && !validateAudience()) return;
+        goToStep(currentStep + 1);
+      });
+    });
+    form.querySelectorAll("[data-wizard-back]").forEach(button => {
+      button.addEventListener("click", () => goToStep(currentStep - 1));
+    });
+    regionInputs.forEach(input => input.addEventListener("change", () => {
+      const hint = regionField.querySelector(".v2-field-hint");
+      if (hint && regionInputs.some(checkbox => checkbox.checked)) {
+        hint.classList.remove("v2-error");
+        hint.textContent = "Możesz zaznaczyć kilka województw. Dostępność segmentów zostanie potwierdzona indywidualnie.";
+      }
+    }));
+    locationField.addEventListener("change", () => {
+      const hint = regionField.querySelector(".v2-field-hint");
+      if (hint) hint.classList.remove("v2-error");
+    });
+  }
+
   form.addEventListener("focusin", () => {
     if (!form.dataset.started) {
       form.dataset.started = "true";
@@ -138,6 +249,11 @@
 
   form.addEventListener("submit", event => {
     event.preventDefault();
+    if (!validateAudience()) {
+      goToStep(1);
+      validateAudience();
+      return;
+    }
     if (!form.reportValidity()) return;
     let territory = locationField.value;
     if (territory === "Wybrane województwa") {
@@ -213,8 +329,7 @@
   editButton.addEventListener("click", () => {
     result.hidden = true;
     form.hidden = false;
-    locationField.dispatchEvent(new Event("change", { bubbles: false }));
-    channelField.focus();
+    goToStep(3);
   });
 
   // No direct delivery without a configured API endpoint AND anti-bot site key.
