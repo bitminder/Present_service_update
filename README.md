@@ -1,67 +1,43 @@
-# Present-Service — website relaunch (wersja demonstracyjna)
+# Present-Service – Website-Relaunch
 
-Nowa responsywna strona marketingowa na podstawie publicznie dostępnej oferty [present-service.pl](https://www.present-service.pl/). To **nowy, niezależny projekt**, nie zmienia działającej strony firmowej ani innych repozytoriów.
+Nowa, responsywna strona marketingowa B2B dla firmy [Present-Service](https://www.present-service.pl/). Projekt stanowi **niezależny podgląd nowej witryny**, bez ingerencji w obecny serwis firmowy.
 
-## Co działa
+## Zawartość
 
-- Strona główna w języku polskim (mobile, tablet i desktop).
-- Czytelna oferta: direct mail, e-mailing, mobile marketing, rozwiązania dedykowane.
-- Portfolio projektów: Mamaklub, 9 Miesięcy, Dzidziuś, Szkrab, Paka Przedszkolaka, poradnik „Już jestem”, warsztaty.
-- Segmentacja ofertowa i przykłady odbiorców.
-- Interaktywny **konfigurator zapytania B2B**: wybór kanału, etapu życia rodziny, regionu i celu; tworzenie briefu; otwarcie wiadomości w programie e-mail; możliwość skopiowania treści.
-- Bezpośrednie linki do prawdziwych firmowych adresów e-mail i numerów telefonu z opublikowanej strony.
-- Sekcja FAQ, opisy usług, wyraźne CTA, semantyczne nagłówki, meta description, Open Graph.
-- Menu na telefon, responsywne karty, obsługa klawiatury i preferencji ograniczonych animacji.
+- `index.html`: strona główna, oferta, programy, segmentacja i generator zapytania.
+- `baza-danych-rodzin.html`: specjalistyczna strona o segmentacji rodzin.
+- `direct-mail.html`, `emailing.html`, `mobile-marketing.html`: osobne strony ofertowe.
+- `mamaklub-sampling.html`: prezentacja programów Mamaklub i samplingu.
+- `informacje-o-danych.html`: demonstracyjna informacja o zapytaniach i kontakcie ws. danych.
+- `styles.css`, `offer.css`: projekt graficzny i układ responsywny.
+- `app.js`: nawigacja mobilna i generator briefu.
+- `favicon.svg`, `robots.txt`, `.nojekyll`: elementy techniczne.
 
-## Podgląd lokalny
+## Podgląd / hosting
 
-Wystarczy otworzyć \`index.html\` w przeglądarce. Dla prawidłowego serwowania plików można uruchomić:
-
-\`\`\`bash
-python3 -m http.server 8000
-\`\`\`
-
-i wejść na http://localhost:8000.
-
-## Podgląd przez GitHub Pages
-
-W repozytorium: **Settings → Pages → Build and deployment → Deploy from a branch → main → /(root) → Save**.
-
-Po włączeniu usługi adres podglądu powinien mieć postać:
+W GitHub otwórz **Settings → Pages**, wybierz w **Build and deployment** opcję **Deploy from a branch**, następnie `main` i `/(root)`, po czym kliknij **Save**. Adres, po poprawnym włączeniu GitHub Pages, powinien mieć postać:
 
 https://bitminder.github.io/Present_service_update/
 
-Przed potwierdzeniem wdrożenia GitHub Pages może wymagać kilku minut na publikację. **Samo dodanie plików do repozytorium nie uruchamia automatycznie GitHub Pages.**
+Do czasu włączenia Pages adres może nie działać. Możesz również otworzyć `index.html` w przeglądarce lub użyć lokalnego serwera, np. `python3 -m http.server 8000`.
 
-## Ważne — przed wdrożeniem produkcyjnym
+## Jak działa formularz
 
-1. **Weryfikacja danych oferty.** Liczby 3 mln+, ~500 tys. i 900 tys. pochodzą z obecnie opublikowanej witryny Present-Service, a nie z nowego audytu bazy. Przed publikacją na domenie należy je potwierdzić; na stronie pokazujemy zastrzeżenie aktualności. W szczególności nie powtarzamy deklaracji o stałym napływie nowych kontaktów.
-2. **Weryfikacja programów.** Ustal, czy 9 Miesięcy, Dzidziuś, Szkrab, Paka Przedszkolaka i Mamaklub są nadal prowadzone; na stronie opisane jako portfolio.
-3. **RODO / prawo komunikacji marketingowej w Polsce.** Potwierdź podstawy prawne, cele, zakres zgód, dopuszczalne kanały i ewentualne udostępnianie danych. Nie ma tu dostępu do danych osobowych ani do segmentów o małej liczebności. Nowa witryna nie dowodzi istnienia zgód marketingowych.
-4. **Mechanizm kontaktu.** Formularz nie wysyła automatycznie — generuje e-mail \`mailto:\`. Użytkownik musi zatwierdzić wysyłkę w swoim programie pocztowym. Przy rozbudowie o formularz serwerowy potrzebne będą: backend, ochrona antyspamowa, pouczenie RODO, obsługa dostarczalności i zabezpieczenia.
-5. **Kontakt i identyfikacja.** Potwierdź \`marketing@present-service.pl\`, \`biuro@present-service.pl\`, \`mojedane@present-service.pl\`, KRS, NIP i numery telefonów.
-6. **Polityka prywatności.** Strona \`informacje-o-danych.html\` jest uczciwym opisem demonstracyjnego formularza, a nie pełną polityką prywatności firmy. Wymaga uzgodnienia z prawnikiem / IOD.
-7. **Branding.** Logo i favicon są nową propozycją stylistyczną, nie wiernym odwzorowaniem oficjalnych materiałów. W razie potrzeby zastąp oryginalną identyfikacją marki.
-8. **SEO i publikacja.** Projekt ma celowo \`noindex, nofollow\`, aby testowa kopia nie konkurowała z witryną \`present-service.pl\`. Dopiero po uruchomieniu na domenie firmowej: usuń noindex, dodaj właściwe canonical URL, sitemap.xml, sitemapę do Search Console, przekierowania 301 ze starych ścieżek i analitykę zgodną z prawem. Nie publikuj kanonicznych linków na domenę, której nie obsługuje ten kod.
-9. **Fonty.** Wersja demonstracyjna pobiera Google Fonts. Przed wdrożeniem przeanalizuj zgodność z zasadami ochrony danych; dobrym rozwiązaniem jest self-hosting fontów lub system font stack.
+Konfigurator kampanii **nie jest połączony z żadną bazą danych** i nie oblicza realnych wielkości segmentów. Nie przesyła danych formularza na serwer. Przygotowuje brief i udostępnia go do skopiowania lub wysłania przez własny program pocztowy użytkownika (`mailto:`). Linki ze stron ofertowych ustawiają odpowiedni kanał w konfiguratorze.
 
-## Gdzie szukać plików
+**Uwaga:** nie należy opisywać tego mechanizmu jako automatycznego formularza kontaktowego, dopóki nie zostanie skonfigurowany bezpieczny backend wysyłki z ochroną przed spamem i prawidłową informacją o przetwarzaniu danych.
 
-| Plik | Co zawiera |
-| --- | --- |
-| \`index.html\` | Landing page z sekcjami ofertowymi i formularzem |
-| \`styles.css\` | Layout, typografia i style responsywne |
-| \`app.js\` | Menu, wstępne ustawianie kanału, generator briefu |
-| \`informacje-o-danych.html\` | Wyjaśnienie sposobu obsługi danych w wersji demonstracyjnej |
-| \`favicon.svg\` | Koncepcyjna ikona marki |
-| \`.nojekyll\` | Obsługa statycznego serwisu przez GitHub Pages |
+## Wymagane przed uruchomieniem na domenie produkcyjnej
 
-## Źródła podstawowych informacji ofertowych
+1. **Akceptacja danych i usług:** potwierdzić bieżące liczby kontaktów, zakres oferty, programy Mamaklub, numery telefonów i adresy e-mail. Liczby w makiecie zostały zaczerpnięte z obecnej strony Present-Service i nie są potwierdzeniem aktualnej dostępności konkretnych segmentów. Wersja projektowa nie powtarza deklaracji o comiesięcznym dopływie nowych rekordów.
+2. **Prawo i RODO:** potwierdzić podstawy przetwarzania, legalność każdej wysyłki i ewentualnego udostępniania danych, zgody/uprawnienia dla poszczególnych kanałów i informacje prawne. Szczególną ostrożność zachować przy segmentach powiązanych z dziećmi. Nie publikować formularza zbierającego dane osobowe bez kompletnych obowiązków informacyjnych.
+3. **Polityka prywatności:** zastąpić demonstracyjną stronę `informacje-o-danych.html` zatwierdzoną polityką, zgodną z rzeczywistymi procesami firmy; uwzględnić zewnętrzne Google Fonts lub hostować fonty lokalnie.
+4. **SEO przy migracji:** po zatwierdzeniu produkcji usunąć meta `noindex,nofollow` ze wszystkich stron; zmienić `robots.txt` (obecnie `Disallow: /`); skonfigurować prawidłowe adresy kanoniczne (`canonical`), `sitemap.xml`, przekierowania 301 z istniejących adresów, Search Console, cele konwersji i analitykę zgodnie z przepisami. **Nie wprowadzać tych zmian na środowisku podglądu**, bo mogłoby to spowodować konkurencję SEO z działającą witryną.
+5. **Materiały wizualne:** zatwierdzić znak graficzny, typografię, prawa do grafik i ostateczny tekst. Aktualnie użyto własnego symbolu/typografii zamiast oficjalnego logo.
+6. **Testy produkcyjne:** sprawdzić aplikację w aktualnych przeglądarkach mobilnych, dostępność, szybkość ładowania, działanie skrzynki e-mail oraz ewentualny system obsługi zapytań.
 
-- https://www.present-service.pl/oferta-baza-danych.html
-- https://www.present-service.pl/oferta-mamaklub.html
-- https://www.present-service.pl/oferta-rozwiazania-dedykowane.html
-- https://www.present-service.pl/o-nas.html
-- https://www.present-service.pl/kontakt.html
+## Zakres i bezpieczeństwo
 
-**Wersja:** demonstracyjna, 13 listopada 2026. Do przeglądu i akceptacji przed wdrożeniem produkcyjnym.
+W repozytorium nie ma danych klientów ani dostępu do baz osobowych. Publiczny podgląd nie oferuje pobierania rekordów i nie jest połączony z systemem sprzedażowym. Projekt nie zmienia działającej strony `present-service.pl`.
+
+© 2026 — wersja demonstracyjna wymagająca akceptacji firmy.
