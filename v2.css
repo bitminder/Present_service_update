@@ -91,3 +91,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .section-side-note{color:#68505e!important;font-size:12px!important}
 .service-band>div>span:not(.service-band-icon){color:#554351!important;font-size:14px!important}
 .section .subtle-note{color:#594753!important;font-size:13px!important}
+
+/* Final typography contrast cases discovered on home & subpages */
+.life-stage small{color:#594753!important;font-size:13px!important}
+.footer-bottom,.footer-bottom span{color:#594753!important;font-size:12px!important}
