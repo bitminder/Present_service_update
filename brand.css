@@ -1,0 +1,153 @@
+/* Present-Service visual identity – derived from the official logo supplied by the company.
+   Source logo colors: magenta #C21875 and graphite #6C6867.
+   New page layout is intentionally modern; it is not a pixel-for-pixel copy of the legacy website. */
+:root{
+  --ink:#342b35;
+  --dark:#392338;
+  --muted:#6c6867;
+  --cream:#fff;
+  --mint:#fbf2f7;
+  --coral:#c21875;
+  --coral-dark:#941154;
+  --line:#eadce5;
+  --white:#fff;
+  --radius:18px;
+  --shadow:0 20px 60px rgba(103,33,76,.10);
+}
+body{background:#fff;color:var(--ink)}
+p{color:#645f64}
+h1 em,h2 em,.intro-layout h2 em{color:#c21875!important}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #c21875;outline-offset:4px}
+.site-header{background:rgba(255,255,255,.98);border-top:4px solid #c21875;border-bottom:1px solid #eadce5;backdrop-filter:blur(15px)}
+.header-inner{height:84px}
+.brand-official-logo{display:block;width:212px;max-width:100%;height:auto;object-fit:contain}
+.brand{gap:0;line-height:1}
+.primary-nav a{color:#51464f}
+.primary-nav a:hover{color:#c21875}
+.primary-nav a:focus-visible{color:#941154}
+.primary-nav.is-open{background:#fff}
+.menu-toggle{border-color:#eddaE5}
+.menu-toggle span{background:#8f1a5b}
+.btn{border-radius:10px}
+.btn-coral{background:#c21875;color:#fff}
+.btn-coral:hover{background:#97145d;color:#fff}
+.btn-dark{background:#342b35;color:#fff}
+.btn-dark:hover{background:#5b3651}
+.btn-light{background:#fbedf5;color:#7b164b}
+.btn-outline{border-color:#c21875;color:#a91563;background:#fff}
+.btn-outline:hover{color:#fff;background:#c21875;border-color:#c21875}
+.text-link:hover,.card-link:hover{color:#a91563}
+.section-kicker,.section-side-note{color:#9d3a70}
+.section-side-note{color:#8a747f}
+.section-topline .fine-line{background:#e9d9e2}
+.eyebrow{color:#9d2969}
+.eyebrow-dot{background:#c21875}
+.hero{background:linear-gradient(125deg,#fff 0%,#fff9fc 36%,#fbeaf3 100%)}
+.hero-texture{background-image:radial-gradient(rgba(194,24,117,.21) 1px,transparent 1px);opacity:.5}
+.hero-lead{color:#645b63}
+.hero-proof{color:#6f6470}
+.hero-proof .proof-icon{color:#c21875}
+.hero-glow{background:radial-gradient(circle,#f9dce9 6%,#f4e2ed 53%,transparent 73%)}
+.visual-ring{border-color:#e9b3cf}
+.central-mark{background:#fff;box-shadow:0 20px 65px rgba(141,25,93,.12)}
+.floating-pill{border-color:#ead3e1;box-shadow:0 18px 48px rgba(120,32,90,.1)}
+.mini-icon.mint,.mini-icon.sky,.mini-icon.amber{background:#fae3ef;color:#af1a66}
+.tiny-spark{color:#c21875}
+.metrics-panel{background:#fff;border-color:#edd9e4;box-shadow:0 14px 40px rgba(126,43,97,.07)}
+.metric strong{color:#c21875}
+.metric:not(:first-child){border-color:#ebdee6}
+.metrics-note{color:#85747e}
+.section-intro{background:#fff}
+.solution-card{background:#fffafb;border-color:#eddae6}
+.solution-card:hover{box-shadow:0 22px 45px rgba(155,27,92,.09)}
+.solution-card .card-number{color:#bb2876}
+.card-icon{background:#f8dfec!important;color:#c21875!important}
+.card-icon svg *{stroke:#c21875}
+.card-tags span{border-color:#eadbe5;color:#814a69;background:#fff}
+.card-link{border-color:#eadbe5}
+.service-band{background:#f9eaf2;border-color:#ebcedd}
+.service-band-icon{color:#c21875}
+.audience-section{background:#f9f1f5}
+.check-list span{background:#f0d6e4;color:#b2166c}
+.subtle-note{color:#85737e!important}
+.audience-art{filter:hue-rotate(110deg) saturate(.85)}
+.mamaklub-section{background:#fff}
+.program-card{border-color:#ecdce6}
+.program-peach .program-graphic{background:#f8e2ed}
+.program-lilac .program-graphic{background:#f1e4f0}
+.program-yellow .program-graphic{background:#fff0f6}
+.program-blue .program-graphic{background:#f5ddea}
+.program-graphic:before{background-color:rgba(194,24,117,.12)}
+.program-label{color:#aa4b80}
+.extra-programs{border-color:#ead8e4}
+.extra-programs>div{border-color:#ead8e4}
+.extra-icon{color:#bd2575}
+.industries-section{background:#42243c}
+.industry-cloud span{border-color:#826079;color:#fff6fc}
+.industry-cloud b{color:#eda8cb}
+.how-section{background:#fff}
+.step .step-number{color:#bc2575}
+.brief-section{background:linear-gradient(135deg,#fff4fa,#f8e4ef)}
+.brief-promise{background:#f3d8e8}
+.brief-promise>span:first-child{color:#b5166c}
+.brief-card{border-color:#e8cadb;box-shadow:0 22px 65px rgba(113,35,85,.12)}
+.form-progress{color:#a31962}
+.progress-lines i{background:#ead4e1}
+.progress-lines i:first-child{background:#c21875}
+.field label{color:#423442}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#c21875}
+.form-actions p a{color:#a91563}
+.result-icon{background:#f0d5e4;color:#b01868}
+.faq-section{background:#fff}
+.faq-list details,.faq-list details:first-child{border-color:#ecdce6}
+.faq-list summary span{color:#b91b71}
+.final-cta{background:#512342}
+.final-cta h2 em{color:#ffb4d5!important}
+.light-kicker{color:#ffb4d5}
+.final-cta-side p{color:#f2dfe9}
+.cta-decoration{color:#b44987;opacity:.27}
+.footer{background:#fff;color:#3e3040;border-top:5px solid #c21875}
+.footer-brand-group p{color:#71636b}
+.footer-column h3{color:#ad266f}
+.footer-column a,.footer-column span,.footer-column p{color:#68626a}
+.footer-column a:hover{color:#c21875}
+.footer-bottom{color:#88747f;border-top:1px solid #eadce5}
+.footer-bottom a{color:#a31962}
+.detail-hero{background:linear-gradient(125deg,#3b253a,#65284f)}
+.detail-hero h1 em,.detail-final h2 em{color:#ffb1d4!important}
+.detail-hero p{color:#f6e6ef}
+.detail-back{color:#f5c4de}
+.detail-back:hover,.detail-link:hover{color:#fff}
+.detail-eyebrow,.detail-final .detail-label{color:#f0accf}
+.detail-hero-orb{color:#b43b7a}
+.detail-stat{background:#f9eff5;border-color:#ead6e3}
+.detail-stat-tag{background:#f1dbe8;border-color:#eac5dc;color:#931555}
+.detail-stat strong{color:#a31962}
+.detail-stat-inner>div>span:last-child,.detail-stat-inner>p{color:#755e6e}
+.detail-section{background:#fff}
+.detail-section-alt{background:#faf0f6}
+.detail-label{color:#9d2969}
+.detail-feature{background:#fffafb;border-color:#ecd9e5;box-shadow:0 8px 33px rgba(126,43,97,.035)}
+.detail-feature .feature-index,.detail-steps li>span{color:#b71970}
+.detail-process>div>p,.detail-feature p,.detail-steps p,.detail-faq-list p{color:#695d66}
+.detail-steps li,.detail-faq-list details,.detail-faq-list details:first-child{border-color:#e4cfdd}
+.detail-faq-list summary::after{color:#bd2375}
+.detail-final{background:#512342}
+.detail-final p{color:#f4dbe9}
+.detail-final-actions>a:last-child{color:#ffd0e7}
+.legal-page{background:#fff}
+.notice{background:#fbedf4;border-color:#e6c6d9}
+@media(max-width:940px){
+ .primary-nav{top:80px;border-top-color:#f0d8e5;box-shadow:0 18px 28px rgba(83,23,60,.12)}
+ .primary-nav a{border-bottom-color:#f1e4ec}
+}
+@media(max-width:700px){
+ .brand-official-logo{width:190px}
+ .site-header .header-inner{height:74px}
+ .primary-nav{top:78px}
+}
+@media(max-width:430px){
+ .brand-official-logo{width:176px}
+ .header-inner{gap:12px}
+ .hero-visual{filter:saturate(.85)}
+}
