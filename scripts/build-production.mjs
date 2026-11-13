@@ -20,6 +20,11 @@ try{
   console.error("SITE_URL must be a production HTTPS domain, e.g. https://www.present-service.pl/");
   process.exit(1);
 }
+const privacyPage=fs.readFileSync("informacje-o-danych.html","utf8");
+if(/nie stanowi pełnej polityki prywatności|Wersja demonstracyjna|Treść jest informacją projektową/i.test(privacyPage)){
+  console.error("Production export blocked: replace the demonstrational legal notice with the company's approved privacy policy.");
+  process.exit(1);
+}
 const target=path.join(process.cwd(),"dist");
 fs.rmSync(target,{recursive:true,force:true});
 fs.mkdirSync(target,{recursive:true});
