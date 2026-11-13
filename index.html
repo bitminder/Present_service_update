@@ -12,11 +12,10 @@
   <meta property="og:description" content="Kampanie marketingowe dla marek, które chcą dotrzeć do rodzin z dziećmi w Polsce.">
   <title>Present-Service | Marketing do rodzin z dziećmi w Polsce</title>
   <link rel="icon" type="image/png" href="./favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./brand.css">
+  <link rel="stylesheet" href="./v2.css">
+  <script src="./site-config.js" defer></script>
   <script src="./app.js" defer></script>
 </head>
 <body>
@@ -31,7 +30,7 @@
         <a href="#rozwiazania">Rozwiązania</a>
         <a href="#mamaklub">Mamaklub</a>
         <a href="#dla-kogo">Dla kogo</a>
-        <a href="#o-nas">O nas</a>
+        <a href="#dlaczego">Dlaczego my</a>
         <a href="#kontakt" class="nav-mobile-contact">Kontakt</a>
       </nav>
       <a class="btn btn-small btn-dark header-cta" href="#brief">Zapytaj o kampanię <span aria-hidden="true">↗</span></a>
@@ -45,7 +44,7 @@
         <div class="hero-copy">
           <div class="eyebrow"><span class="eyebrow-dot"></span> PIONIERZY MARKETINGU DO RODZIN Z DZIEĆMI</div>
           <h1 id="hero-heading">Twoja marka.<br><em>Bliżej rodzin.</em><br>We właściwym<br>momencie.</h1>
-          <p class="hero-lead">Pomagamy markom docierać do rodzin z dziećmi w Polsce. Łączymy wiedzę o grupie docelowej z precyzyjną komunikacją — od direct mailingu po kampanie wielokanałowe.</p>
+          <p class="hero-lead">Precyzyjne kampanie marketingowe do rodzin z dziećmi w całej Polsce. Direct mail, e-mailing, mobile marketing i sampling — dobierz odbiorców i poproś o indywidualną ofertę.</p>
           <div class="hero-actions">
             <a href="#brief" class="btn btn-coral">Zaplanuj kampanię <span aria-hidden="true">↗</span></a>
             <a href="#rozwiazania" class="text-link">Poznaj nasze rozwiązania <span aria-hidden="true">→</span></a>
@@ -174,48 +173,82 @@
       </div>
     </section>
 
+        <section class="section v2-trust-section" id="dlaczego" aria-labelledby="trust-heading">
+      <div class="container">
+        <div class="section-topline"><span class="section-kicker">06 / ZAUFANIE I WSPÓŁPRACA</span><span class="fine-line"></span><span class="section-side-note">POTWIERDZAMY PARAMETRY PRZED STARTEM</span></div>
+        <div class="v2-trust-heading"><div><h2 id="trust-heading">Precyzja to nie tylko dane.<br><em>To odpowiedzialna współpraca.</em></h2></div><p>Najpierw poznajemy cel kampanii, potem weryfikujemy dostępność grupy i zasady komunikacji. Nie udostępniamy rekordów osób w publicznym serwisie.</p></div>
+        <div class="v2-trust-grid">
+          <article><span aria-hidden="true">01</span><h3>Konkretny dobór grupy</h3><p>Opisujesz etap życia rodziny, zasięg i cel. Zespół potwierdza, jakie segmenty są dostępne w wybranym kanale.</p></article>
+          <article><span aria-hidden="true">02</span><h3>Jasny proces</h3><p>Zapytanie, weryfikacja możliwości, oferta, ustalenie warunków i realizacja po akceptacji. Bez automatycznej sprzedaży danych przez stronę.</p></article>
+          <article><span aria-hidden="true">03</span><h3>Ochrona odbiorców</h3><p>Każde wykorzystanie danych i kanału kontaktu wymaga sprawdzenia właściwych podstaw prawnych i uprawnień marketingowych.</p></article>
+        </div>
+        <div class="v2-company-proof"><div><strong>Present-Service Sp. z o.o. Sp. k.</strong><span>ul. Armii Poznań 2 · 62-030 Luboń · KRS 0000406574</span></div><a href="mailto:marketing@present-service.pl?subject=Zapytanie%20o%20referencje%20i%20mo%C5%BCliwo%C5%9Bci%20kampanii">Zapytaj o możliwości i referencje <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </section>
     <section class="section brief-section" id="brief" aria-labelledby="brief-heading">
       <div class="container brief-grid">
         <div class="brief-copy">
-          <span class="section-kicker">06 / POROZMAWIAJMY</span>
+          <span class="section-kicker">07 / POROZMAWIAJMY</span>
           <h2 id="brief-heading">Dobra kampania<br>zaczyna się od <em>dobrego pytania.</em></h2>
           <p>Opisz grupę, do której chcesz dotrzeć. Przygotujemy punkt wyjścia do rozmowy o rozwiązaniu dla Twojej marki.</p>
           <div class="brief-promise"><span aria-hidden="true">✳</span><span><strong>Bez dostępu do bazy danych</strong><small>Ten konfigurator nie pokazuje rekordów ani nie oblicza liczby osób. Tworzy jedynie treść zapytania.</small></span></div>
           <div class="brief-side-details"><span>Wolisz kontakt bezpośredni?</span><a href="mailto:marketing@present-service.pl">marketing@present-service.pl <span aria-hidden="true">↗</span></a><a href="tel:+48664787953">+48 664 787 953 <span aria-hidden="true">↗</span></a></div>
         </div>
         <div class="brief-card">
-          <form id="campaign-form" novalidate>
-            <div class="form-progress"><span>KROK 1 / BRIEF KAMPANII</span><span class="progress-lines" aria-hidden="true"><i></i><i></i><i></i></span></div>
-            <h3>Sprawdźmy, czego potrzebuje Twoja marka.</h3>
+          <form id="campaign-form" novalidate aria-describedby="brief-privacy">
+            <div class="form-progress"><span>KROK 1 / KONFIGURATOR KAMPANII</span><span class="progress-lines" aria-hidden="true"><i></i><i></i><i></i></span></div>
+            <h3>Dobierz odbiorców i przygotuj brief.</h3>
+            <p class="v2-form-intro">Wybierz kryteria kampanii. Nie pokazujemy danych konkretnych osób ani nie szacujemy liczebności bez weryfikacji.</p>
             <div class="field"><label for="brand-name">Firma / marka <span class="optional">(opcjonalnie)</span></label><input type="text" name="brand" id="brand-name" placeholder="Nazwa Twojej firmy" maxlength="120" autocomplete="organization"></div>
             <div class="field"><label for="channel">Preferowany kanał <span aria-hidden="true">*</span></label><select id="channel" name="channel" required><option value="">Wybierz rozwiązanie</option><option>Direct mail</option><option>E-mailing</option><option>Mobile marketing</option><option>Sampling / Mamaklub</option><option>Kampania wielokanałowa</option><option>Potrzebuję doradztwa</option></select></div>
             <div class="field-row">
-              <div class="field"><label for="family-stage">Etap życia rodziny</label><select id="family-stage" name="stage"><option>Dowolny / do ustalenia</option><option>Ciąża i oczekiwanie na dziecko</option><option>Rodzice niemowląt (0–12 mies.)</option><option>Rodziny z dziećmi (1–3 lata)</option><option>Rodziny z dziećmi (4–6 lat)</option><option>Rodziny z dziećmi (7+ lat)</option></select></div>
-              <div class="field"><label for="location">Zasięg kampanii</label><select id="location" name="location"><option>Cała Polska</option><option>Wybrane województwa</option><option>Wybrane miasta / regiony</option><option>Do ustalenia</option></select></div>
+              <div class="field"><label for="family-stage">Wiek dziecka / etap rodziny</label><select id="family-stage" name="stage"><option>Dowolny / do ustalenia</option><option>Ciąża i oczekiwanie na dziecko</option><option>0–6 miesięcy</option><option>7–12 miesięcy</option><option>1–3 lata</option><option>4–6 lat</option><option>7–12 lat</option><option>13+ lat</option></select></div>
+              <div class="field"><label for="child-count">Liczba dzieci w rodzinie</label><select id="child-count" name="childCount"><option>Dowolna / do ustalenia</option><option>1 dziecko</option><option>2 dzieci</option><option>3 lub więcej dzieci</option></select></div>
             </div>
-            <div class="field"><label for="campaign-goal">Jaki jest cel kampanii?</label><textarea id="campaign-goal" name="goal" rows="3" maxlength="1200" placeholder="Np. promocja nowego produktu dla rodziców małych dzieci, termin kampanii..."></textarea></div>
-            <div class="form-actions"><button type="submit" class="btn btn-coral btn-full">Przygotuj zapytanie <span aria-hidden="true">↗</span></button><p>Nie zapisujemy tych informacji na stronie. Zapytanie wyślesz ze swojego programu pocztowego. <a href="./informacje-o-danych.html">Informacje o danych</a>.</p></div>
+            <div class="field-row">
+              <div class="field"><label for="parent-age">Wiek matki <span class="optional">(jeśli istotny)</span></label><select id="parent-age" name="parentAge"><option>Bez preferencji</option><option>18–24 lata</option><option>25–34 lata</option><option>35–44 lata</option><option>45+ lat</option></select></div>
+              <div class="field"><label for="location">Zasięg geograficzny</label><select id="location" name="location"><option>Cała Polska</option><option>Wybrane województwa</option><option>Wybrane miasta / regiony</option><option>Do ustalenia</option></select></div>
+            </div>
+            <fieldset class="region-fieldset" id="regions-field" hidden><legend>Wybierz województwa</legend><div class="region-list"><label class="region-choice"><input type="checkbox" name="voivodeship" value="Dolnośląskie"><span>Dolnośląskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Kujawsko-pomorskie"><span>Kujawsko-pomorskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Lubelskie"><span>Lubelskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Lubuskie"><span>Lubuskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Łódzkie"><span>Łódzkie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Małopolskie"><span>Małopolskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Mazowieckie"><span>Mazowieckie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Opolskie"><span>Opolskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Podkarpackie"><span>Podkarpackie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Podlaskie"><span>Podlaskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Pomorskie"><span>Pomorskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Śląskie"><span>Śląskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Świętokrzyskie"><span>Świętokrzyskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Warmińsko-mazurskie"><span>Warmińsko-mazurskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Wielkopolskie"><span>Wielkopolskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Zachodniopomorskie"><span>Zachodniopomorskie</span></label></div><p class="v2-field-hint">Możesz zaznaczyć kilka województw. Dostępność segmentów zostanie potwierdzona indywidualnie.</p></fieldset>
+            <div class="field" id="city-field" hidden><label for="cities">Miasta / regiony</label><input id="cities" name="cities" maxlength="220" placeholder="Np. Poznań, Warszawa, okolice Krakowa"></div>
+            <div class="field-row">
+              <div class="field"><label for="campaign-date">Planowany termin</label><input id="campaign-date" type="month" name="campaignDate"></div>
+              <div class="field"><label for="campaign-budget">Orientacyjny budżet</label><select id="campaign-budget" name="budget"><option>Do ustalenia</option><option>Do 5 000 PLN</option><option>5 000–15 000 PLN</option><option>15 000–50 000 PLN</option><option>Powyżej 50 000 PLN</option></select></div>
+            </div>
+            <div class="field"><label for="campaign-goal">Cel kampanii i szczegóły</label><textarea id="campaign-goal" name="goal" rows="3" maxlength="1200" placeholder="Jaki produkt promujesz? Jakie są oczekiwania dotyczące kampanii?"></textarea></div>
+            <div class="v2-form-separator"><span>Opcjonalne dane do odpowiedzi</span></div>
+            <div class="field-row">
+              <div class="field"><label for="contact-name">Imię i nazwisko</label><input id="contact-name" name="contactName" autocomplete="name" maxlength="120" placeholder="Osoba kontaktowa"></div>
+              <div class="field"><label for="contact-email">Adres e-mail</label><input id="contact-email" name="contactEmail" type="email" autocomplete="email" maxlength="254" placeholder="kontakt@firma.pl"></div>
+            </div>
+            <label class="v2-privacy-label"><input id="privacy-confirm" type="checkbox" name="privacyConfirmed"><span>Zapoznałem(-am) się z <a href="./informacje-o-danych.html" target="_blank" rel="noopener">informacją o zapytaniach</a>. Dane kontaktowe zostaną użyte do obsługi mojego zapytania, jeśli je wyślę.</span></label>
+            <div class="form-actions"><button type="submit" class="btn btn-coral btn-full">Przygotuj zapytanie <span aria-hidden="true">↗</span></button><p id="brief-privacy">Ten etap działa w przeglądarce i nie wysyła ani nie zapisuje briefu na serwerze. Wysłanie zapytania wymaga osobnego działania.</p></div>
           </form>
           <div class="brief-result" id="brief-result" hidden aria-live="polite">
             <span class="result-icon" aria-hidden="true">✓</span>
-            <h3>Twój brief jest gotowy.</h3>
-            <p>Sprawdź treść zapytania, a następnie otwórz je w swoim programie pocztowym lub skopiuj.</p>
-            <textarea id="brief-preview" readonly aria-label="Treść zapytania"></textarea>
-            <a class="btn btn-coral btn-full" id="send-email" href="mailto:marketing@present-service.pl">Otwórz e-mail <span aria-hidden="true">↗</span></a>
+            <h3>Brief gotowy do wysłania.</h3>
+            <p id="result-explanation">Sprawdź szczegóły, wybierz sposób wysłania lub skopiuj wiadomość.</p>
+            <textarea id="brief-preview" readonly aria-label="Treść przygotowanego zapytania" rows="12"></textarea>
+            <div id="online-contact" hidden>
+              <div id="turnstile-widget" aria-label="Weryfikacja antyspamowa"></div>
+              <button type="button" class="btn btn-coral btn-full" id="send-direct" disabled>Wyślij zapytanie bezpośrednio <span aria-hidden="true">↗</span></button>
+              <p id="send-direct-status" role="status" aria-live="polite"></p>
+            </div>
+            <a class="btn btn-light btn-full" id="send-email" href="mailto:marketing@present-service.pl">Otwórz we własnej poczcie <span aria-hidden="true">↗</span></a>
             <button type="button" class="btn btn-light btn-full" id="copy-brief">Kopiuj treść zapytania</button>
             <button type="button" class="result-reset" id="edit-brief">← Wróć do edycji</button>
-            <p class="result-help">Wysłanie wiadomości następuje dopiero po zatwierdzeniu jej w Twojej aplikacji pocztowej.</p>
+            <p class="result-help">Otworzenie aplikacji pocztowej nie oznacza wysłania e-maila. Przy wysyłce bezpośredniej wyświetlimy potwierdzenie dopiero po odpowiedzi serwera.</p>
           </div>
         </div>
       </div>
     </section>
 
     <section class="section faq-section" aria-labelledby="faq-heading">
-      <div class="container faq-grid"><div><span class="section-kicker">07 / NAJCZĘSTSZE PYTANIA</span><h2 id="faq-heading">Warto wiedzieć<br><em>przed startem.</em></h2></div><div class="faq-list">
+      <div class="container faq-grid"><div><span class="section-kicker">08 / NAJCZĘSTSZE PYTANIA</span><h2 id="faq-heading">Warto wiedzieć<br><em>przed startem.</em></h2></div><div class="faq-list">
         <details><summary>Czy mogę wybrać konkretną grupę rodzin?<span aria-hidden="true">+</span></summary><p>Tak, kampanię można zaplanować z uwzględnieniem wybranych kryteriów segmentacji, takich jak region czy etap życia rodziny. Dostępność poszczególnych kryteriów potwierdzamy w odpowiedzi na zapytanie.</p></details>
         <details><summary>Czy mogę połączyć różne kanały komunikacji?<span aria-hidden="true">+</span></summary><p>Tak, w dotychczasowej ofercie Present-Service znajdują się rozwiązania dedykowane łączące działania online i offline. Konkretny zakres ustalamy indywidualnie.</p></details>
         <details><summary>Czy na stronie udostępniacie dane osobowe rodzin?<span aria-hidden="true">+</span></summary><p>Nie. Ta strona służy wyłącznie do prezentacji usług i przygotowania zapytania. Nie zapewnia dostępu do bazy osób. Model współpracy, uprawnienia i zasady ochrony danych wymagają osobnej weryfikacji.</p></details>
-        <details><summary>Jak otrzymam ofertę i wycenę?<span aria-hidden="true">+</span></summary><p>Wyślij brief e-mailem na marketing@present-service.pl. Zespół może przedstawić możliwości i zaproponować dalsze kroki po sprawdzeniu dostępności usługi.</p></details>
+        <details><summary>Jak otrzymam ofertę i wycenę?<span aria-hidden="true">+</span></summary><p>Przygotuj brief w konfiguratorze i wyślij go w swoim programie pocztowym. Bezpośrednia wysyłka na stronie zostanie udostępniona po skonfigurowaniu bezpiecznej usługi obsługi zapytań.</p></details>
       </div></div>
     </section>
 
@@ -227,7 +260,7 @@
   <footer class="footer">
     <div class="container footer-main">
       <div class="footer-brand-group"><a class="brand brand-footer" href="#top" aria-label="Present-Service — wróć na górę"><img class="brand-official-logo" src="./assets/present-service-logo.png" alt="PRESENT SERVICE – Marketing Communication" width="212" height="33"></a><p>Budujemy siłę marek wśród rodzin z dziećmi.</p></div>
-      <div class="footer-column"><h3>Odkryj</h3><a href="#rozwiazania">Nasze rozwiązania</a><a href="./baza-danych-rodzin.html">Baza danych rodzin</a><a href="./direct-mail.html">Direct mail</a><a href="./emailing.html">E-mailing</a><a href="./mobile-marketing.html">Mobile marketing</a><a href="./mamaklub-sampling.html">Mamaklub i sampling</a><a href="#dla-kogo">Grupy docelowe</a><a href="#o-nas">Jak pracujemy</a></div>
+      <div class="footer-column"><h3>Odkryj</h3><a href="#rozwiazania">Nasze rozwiązania</a><a href="./baza-danych-rodzin.html">Baza danych rodzin</a><a href="./direct-mail.html">Direct mail</a><a href="./emailing.html">E-mailing</a><a href="./mobile-marketing.html">Mobile marketing</a><a href="./mamaklub-sampling.html">Mamaklub i sampling</a><a href="#dla-kogo">Grupy docelowe</a><a href="#dlaczego">Zaufanie i współpraca</a></div>
       <div class="footer-column"><h3>Kontakt</h3><a href="mailto:marketing@present-service.pl">marketing@present-service.pl</a><a href="mailto:biuro@present-service.pl">biuro@present-service.pl</a><a href="tel:+48618131514">+48 61 813 15 14</a><span>ul. Armii Poznań 2<br>62-030 Luboń, Polska</span></div>
       <div class="footer-column"><h3>Dane osobowe</h3><p>Chcesz uzyskać informacje o danych przechowywanych w bazie „Dzidziuś”?</p><a href="mailto:mojedane@present-service.pl">mojedane@present-service.pl <span aria-hidden="true">↗</span></a><a href="./informacje-o-danych.html">Informacje o zapytaniach</a></div>
     </div>
