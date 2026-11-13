@@ -9,9 +9,9 @@ Nowa, responsywna strona marketingowa B2B dla firmy [Present-Service](https://ww
 - `direct-mail.html`, `emailing.html`, `mobile-marketing.html`: osobne strony ofertowe.
 - `mamaklub-sampling.html`: prezentacja programów Mamaklub i samplingu.
 - `informacje-o-danych.html`: demonstracyjna informacja o zapytaniach i kontakcie ws. danych.
-- `styles.css`, `offer.css`: projekt graficzny i układ responsywny.
+- `styles.css`, `offer.css`, `brand.css`: projekt graficzny, układ responsywny oraz identyfikacja kolorystyczna Present-Service.
 - `app.js`: nawigacja mobilna i generator briefu.
-- `favicon.svg`, `robots.txt`, `.nojekyll`: elementy techniczne.
+- `assets/present-service-logo.png`, `favicon.png`: oficjalne logo i znak firmowy przekazane do projektu przez właściciela.\n- `robots.txt`, `.nojekyll`: elementy techniczne.
 
 ## Podgląd / hosting
 
@@ -35,7 +35,7 @@ Konfigurator kampanii **nie jest połączony z żadną bazą danych** i nie obli
 2. **Prawo i RODO:** potwierdzić podstawy przetwarzania, legalność każdej wysyłki i ewentualnego udostępniania danych, zgody/uprawnienia dla poszczególnych kanałów i informacje prawne. Szczególną ostrożność zachować przy segmentach powiązanych z dziećmi. Nie publikować formularza zbierającego dane osobowe bez kompletnych obowiązków informacyjnych.
 3. **Polityka prywatności:** zastąpić demonstracyjną stronę `informacje-o-danych.html` zatwierdzoną polityką, zgodną z rzeczywistymi procesami firmy; uwzględnić zewnętrzne Google Fonts lub hostować fonty lokalnie.
 4. **SEO przy migracji:** po zatwierdzeniu produkcji usunąć meta `noindex,nofollow` ze wszystkich stron; zmienić `robots.txt` (obecnie `Disallow: /`); skonfigurować prawidłowe adresy kanoniczne (`canonical`), `sitemap.xml`, przekierowania 301 z istniejących adresów, Search Console, cele konwersji i analitykę zgodnie z przepisami. **Nie wprowadzać tych zmian na środowisku podglądu**, bo mogłoby to spowodować konkurencję SEO z działającą witryną.
-5. **Materiały wizualne:** zatwierdzić znak graficzny, typografię, prawa do grafik i ostateczny tekst. Aktualnie użyto własnego symbolu/typografii zamiast oficjalnego logo.
+5. **Materiały wizualne:** użyto firmowego znaku graficznego udostępnionego do projektu; przed publikacją zatwierdzić także typografię, zgodność nowej szaty graficznej z identyfikacją firmy, prawa do grafik i ostateczny tekst. Paleta magenta `#C21875` oraz grafit `#6C6867` pochodzi z oryginalnego logo. Nie jest to kopia starego układu 1:1.
 6. **Testy produkcyjne:** sprawdzić aplikację w aktualnych przeglądarkach mobilnych, dostępność, szybkość ładowania, działanie skrzynki e-mail oraz ewentualny system obsługi zapytań.
 
 ## Zakres i bezpieczeństwo
