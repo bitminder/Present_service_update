@@ -99,3 +99,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 /* Mamaklub supporting text + dark section heading contrast */
 .extra-programs small{color:#594753!important;font-size:13px!important}
 .industries-section h2 em{color:#ffc5e2!important}
+
+/* Consolidated readability fixes for light surfaces. Shades are chosen to retain
+   Present-Service magenta/graphite and target minimum 4.5:1 for normal text. */
+.step-num,.step-num span{color:#98145c!important}
+.hero-proof,.card-number,.card-tags span,.program-label,
+.brief-promise small,.brief-side-details>span,.form-progress,
+.optional,.form-actions>p,.result-help,.field label,
+.result-reset,.faq-list summary span{color:#594753!important}
+.industries-section .section-kicker,.industry-cloud b{color:#ffe2f2!important}
+.industries-section h2 em{color:#ffc5e2!important}
