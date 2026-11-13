@@ -74,3 +74,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
  .brief-card .field-row{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* WCAG AA contrast corrections identified by real Chromium + axe-core audit */
+.floating-pill small{color:#594b57!important;font-size:12px!important}
+.metric span{color:#594b57!important;font-size:12px!important}
+/* 320px screens: prevent intrinsic grid/button widths from enlarging the viewport */
+@media(max-width:400px){
+  .audience-layout{grid-template-columns:minmax(0,1fr)!important}
+  .audience-copy,.audience-art{min-width:0;max-width:100%}
+  .service-band,.service-band>div{min-width:0}
+  .service-band .btn-outline{max-width:100%;width:auto;white-space:normal;overflow-wrap:anywhere}
+}
