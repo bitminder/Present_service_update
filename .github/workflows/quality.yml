@@ -24,6 +24,7 @@ jobs:
       - name: Check syntax
         run: |
           node --check app.js
+          node --check scripts/build-production.mjs
           node --check --input-type=module < backend/lead-worker.js
       - name: Check pages, links and metadata
         run: node scripts/check-site.mjs
