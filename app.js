@@ -35,6 +35,11 @@
   if (!form) return;
 
   const channelField = form.querySelector("#channel");
+  // Preselect the appropriate service when arriving from a service detail page.
+  const requestedChannel = new URLSearchParams(window.location.search).get("kanal");
+  if (requestedChannel && channelField && [...channelField.options].some(option => option.value === requestedChannel)) {
+    channelField.value = requestedChannel;
+  }
   const result = document.querySelector("#brief-result");
   const preview = document.querySelector("#brief-preview");
   const sendEmailLink = document.querySelector("#send-email");
