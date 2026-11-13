@@ -181,3 +181,8 @@ a:hover{text-underline-offset:3px}
  .premium-wizard-actions .btn{padding:12px 14px;font-size:12px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.pv-studio{transform:none}}
+
+/* Contrast refinement after real Chromium/axe review */
+.premium-stepper li>span{color:#67485b}
+.premium-stepper li[aria-current="step"]>span{color:#fff}
+.premium-wizard-hint{color:#604051}
