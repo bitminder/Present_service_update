@@ -84,7 +84,8 @@ await run("Campaign filter prevents missing region",async()=>{
   await page.locator("#channel").selectOption({label:"E-mailing"});
   await page.locator("#location").selectOption({label:"Wybrane województwa"});
   assert(await page.locator("#regions-field").isVisible(),"region field should be visible");
-  await page.locator('#campaign-form button[type="submit"]').click();
+  await page.locator('[data-wizard-step="1"] [data-wizard-next]').click();
+  assert(await page.locator('[data-wizard-step="1"]').isVisible(),"wizard should remain on audience step");
   assert(await page.locator("#campaign-form").isVisible(),"form should not submit without a region");
   assert(!(await page.locator("#brief-result").isVisible()),"result should be hidden when region is missing");
   await context.close();
@@ -93,7 +94,7 @@ await run("Campaign filter prevents missing region",async()=>{
 await run("Advanced campaign plan creates correct brief",async()=>{
   const context=await browser.newContext({viewport:{width:1440,height:900}});
   const {page,errors}=await testPage(context,base);
-  await page.locator("#brand-name").fill("Firma testowa XYZ");
+  assert(await page.locator('[data-wizard-step="1"]').isVisible(),"first wizard step should be visible");
   await page.locator("#channel").selectOption({label:"Direct mail"});
   await page.locator("#family-stage").selectOption({label:"0–6 miesięcy"});
   await page.locator("#child-count").selectOption({label:"2 dzieci"});
@@ -101,9 +102,15 @@ await run("Advanced campaign plan creates correct brief",async()=>{
   await page.locator("#location").selectOption({label:"Wybrane województwa"});
   await page.locator('input[name="voivodeship"][value="Mazowieckie"]').check();
   await page.locator('input[name="voivodeship"][value="Wielkopolskie"]').check();
+  await page.locator('[data-wizard-step="1"] [data-wizard-next]').click();
+  assert(await page.locator('[data-wizard-step="2"]').isVisible(),"second wizard step should be visible");
+  await page.locator("#brand-name").fill("Firma testowa XYZ");
   await page.locator("#campaign-date").fill("2027-01");
   await page.locator("#campaign-budget").selectOption({label:"5 000–15 000 PLN"});
   await page.locator("#campaign-goal").fill("Testowa kampania dla rodziców.");
+  await page.locator('[data-wizard-step="2"] [data-wizard-next]').click();
+  assert(await page.locator('[data-wizard-step="3"]').isVisible(),"third wizard step should be visible");
+  assert((await page.locator("#wizard-summary").innerText()).includes("Mazowieckie"),"wizard summary is missing selected region");
   await page.locator("#contact-name").fill("Jan Testowy");
   await page.locator("#contact-email").fill("jan@example.org");
   await page.locator("#privacy-confirm").check();
@@ -120,6 +127,7 @@ await run("Advanced campaign plan creates correct brief",async()=>{
   assert(errors.length===0,"runtime errors "+errors.join("; "));
   await page.locator("#edit-brief").click();
   assert(await page.locator("#campaign-form").isVisible(),"edit should restore form");
+  assert(await page.locator('[data-wizard-step="3"]').isVisible(),"edit should restore contact wizard step");
   await context.close();
 });
 
