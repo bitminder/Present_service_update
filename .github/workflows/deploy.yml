@@ -34,6 +34,7 @@ jobs:
       - name: Run website quality checks
         run: |
           node --check app.js
+          node --check scripts/build-production.mjs
           node --check --input-type=module < backend/lead-worker.js
           node scripts/check-site.mjs
 
