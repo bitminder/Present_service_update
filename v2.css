@@ -95,3 +95,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 /* Final typography contrast cases discovered on home & subpages */
 .life-stage small{color:#594753!important;font-size:13px!important}
 .footer-bottom,.footer-bottom span{color:#594753!important;font-size:12px!important}
+
+/* Mamaklub supporting text + dark section heading contrast */
+.extra-programs small{color:#594753!important;font-size:13px!important}
+.industries-section h2 em{color:#ffc5e2!important}
