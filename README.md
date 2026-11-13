@@ -1,45 +1,71 @@
-# Present-Service – Website-Relaunch
+# Present-Service 2.0 – strona B2B i generator briefu
 
-Nowa, responsywna strona marketingowa B2B dla firmy [Present-Service](https://www.present-service.pl/). Projekt stanowi **niezależny podgląd nowej witryny**, bez ingerencji w obecny serwis firmowy.
+**Status:** gotowy podgląd GitHub Pages; **nie jest jeszcze systemem produkcyjnym**. Oryginalna witryna https://present-service.pl/ pozostaje niezmieniona.
 
-## Zawartość
+Projekt działa bez frameworka i bez bazy danych konsumentów. Zachowuje oficjalne logo, kolory firmowe oraz ofertę Present-Service. Wersja 2.0 została przygotowana przede wszystkim pod pozyskiwanie zapytań od klientów biznesowych.
 
-- `index.html`: strona główna, oferta, programy, segmentacja i generator zapytania.
-- `baza-danych-rodzin.html`: specjalistyczna strona o segmentacji rodzin.
-- `direct-mail.html`, `emailing.html`, `mobile-marketing.html`: osobne strony ofertowe.
-- `mamaklub-sampling.html`: prezentacja programów Mamaklub i samplingu.
-- `informacje-o-danych.html`: demonstracyjna informacja o zapytaniach i kontakcie ws. danych.
-- `styles.css`, `offer.css`, `brand.css`: projekt graficzny, układ responsywny oraz identyfikacja kolorystyczna Present-Service.
-- `app.js`: nawigacja mobilna i generator briefu.
-- `assets/present-service-logo.png`, `favicon.png`: oficjalne logo i znak firmowy przekazane do projektu przez właściciela.\n- `robots.txt`, `.nojekyll`: elementy techniczne.
+## Co nowego w 2.0
 
-## Podgląd / hosting
+- Rozbudowany konfigurator: kanał komunikacji, etap życia i wiek dziecka, liczba dzieci, przedział wieku matki, jedno lub kilka województw, miasta/regiony, termin, budżet i cel kampanii.
+- Zapytanie tworzone lokalnie: podgląd, kopiowanie i otwarcie w aplikacji pocztowej. **Nie ma udawanej wysyłki:** przejście do poczty to nie jest potwierdzenie dostarczenia.
+- Przygotowany, **domyślnie wyłączony** kanał bezpośredniego wysyłania leadów: szablon Cloudflare Worker z walidacją, ochroną Turnstile i integracją z Resend, tylko po konfiguracji i prawnej akceptacji.
+- Nowa sekcja budowania zaufania: jasno opisany sposób współpracy, dane rejestrowe spółki, rzetelne ograniczenia dotyczące udostępniania danych.
+- Ujednolicone elementy graficzne i większe etykiety formularza na urządzeniach mobilnych; brak zewnętrznych fontów Google.
+- Przygotowana integracja z Umami do anonimowych zdarzeń konwersji, **wyłączona domyślnie**.
+- Osobne podstrony produktowe, metadane SEO, kontrole poprawności i opcjonalny skrypt przygotowania wersji produkcyjnej.
 
-W GitHub otwórz **Settings → Pages** i wybierz w **Build and deployment** opcję **GitHub Actions**. Workflow `.github/workflows/deploy.yml` automatycznie wdraża stronę po każdym pushu do gałęzi `main`; można go także uruchomić ręcznie przez **Actions → Deploy Present-Service preview → Run workflow**.
+## Podgląd GitHub Pages
 
-Po zakończeniu workflow statusem **Success**, podgląd powinien być dostępny pod adresem:
-
+Po udanym workflow `Deploy Present-Service preview`:
 https://bitminder.github.io/Present_service_update/
 
-Do czasu włączenia Pages adres może nie działać. Możesz również otworzyć `index.html` w przeglądarce lub użyć lokalnego serwera, np. `python3 -m http.server 8000`.
+Źródło: `main`, GitHub Actions. Workflow `.github/workflows/deploy.yml` uruchamia sprawdzanie stron przed publikacją.
 
-## Jak działa formularz
+## Ważne ograniczenia
 
-Konfigurator kampanii **nie jest połączony z żadną bazą danych** i nie oblicza realnych wielkości segmentów. Nie przesyła danych formularza na serwer. Przygotowuje brief i udostępnia go do skopiowania lub wysłania przez własny program pocztowy użytkownika (`mailto:`). Linki ze stron ofertowych ustawiają odpowiedni kanał w konfiguratorze.
+**Bezpośrednia wysyłka formularza nie działa jeszcze na GitHub Pages.** W `site-config.js` `leadEndpoint` i `turnstileSiteKey` są puste. Formularz przygotowuje wiadomość w przeglądarce, a użytkownik musi ją wysłać ze swojego programu pocztowego. Pełne wdrożenie serwera jest opisane w [backend/README.md](backend/README.md). Nie umieszczaj tam kluczy API ani danych osób z bazy.
 
-**Uwaga:** nie należy opisywać tego mechanizmu jako automatycznego formularza kontaktowego, dopóki nie zostanie skonfigurowany bezpieczny backend wysyłki z ochroną przed spamem i prawidłową informacją o przetwarzaniu danych.
+**Nie ma prawdziwej dostępności segmentów.** Brak integracji z bazą rodzin oraz obliczeń potencjalnej liczebności. Pokazanie realnej liczby odbiorców wymaga odrębnej, bezpiecznej warstwy agregacji z ochroną małych grup, kontrolą uprawnień i audytem RODO.
 
-## Wymagane przed uruchomieniem na domenie produkcyjnej
+**Brak opublikowanych referencji klientów.** Nie dodano fikcyjnych logo, wyników kampanii ani opinii. Warto je dodać po otrzymaniu materiałów i pisemnej zgody na publikację.
 
-1. **Akceptacja danych i usług:** potwierdzić bieżące liczby kontaktów, zakres oferty, programy Mamaklub, numery telefonów i adresy e-mail. Liczby w makiecie zostały zaczerpnięte z obecnej strony Present-Service i nie są potwierdzeniem aktualnej dostępności konkretnych segmentów. Wersja projektowa nie powtarza deklaracji o comiesięcznym dopływie nowych rekordów.
-2. **Prawo i RODO:** potwierdzić podstawy przetwarzania, legalność każdej wysyłki i ewentualnego udostępniania danych, zgody/uprawnienia dla poszczególnych kanałów i informacje prawne. Szczególną ostrożność zachować przy segmentach powiązanych z dziećmi. Nie publikować formularza zbierającego dane osobowe bez kompletnych obowiązków informacyjnych.
-3. **Polityka prywatności:** zastąpić demonstracyjną stronę `informacje-o-danych.html` zatwierdzoną polityką, zgodną z rzeczywistymi procesami firmy; uwzględnić zewnętrzne Google Fonts lub hostować fonty lokalnie.
-4. **SEO przy migracji:** po zatwierdzeniu produkcji usunąć meta `noindex,nofollow` ze wszystkich stron; zmienić `robots.txt` (obecnie `Disallow: /`); skonfigurować prawidłowe adresy kanoniczne (`canonical`), `sitemap.xml`, przekierowania 301 z istniejących adresów, Search Console, cele konwersji i analitykę zgodnie z przepisami. **Nie wprowadzać tych zmian na środowisku podglądu**, bo mogłoby to spowodować konkurencję SEO z działającą witryną.
-5. **Materiały wizualne:** użyto firmowego znaku graficznego udostępnionego do projektu; przed publikacją zatwierdzić także typografię, zgodność nowej szaty graficznej z identyfikacją firmy, prawa do grafik i ostateczny tekst. Paleta magenta `#C21875` oraz grafit `#6C6867` pochodzi z oryginalnego logo. Nie jest to kopia starego układu 1:1.
-6. **Testy produkcyjne:** sprawdzić aplikację w aktualnych przeglądarkach mobilnych, dostępność, szybkość ładowania, działanie skrzynki e-mail oraz ewentualny system obsługi zapytań.
+**RODO:** `informacje-o-danych.html` jest na razie informacją demonstracyjną, a nie zatwierdzoną polityką prywatności. Przed uruchomieniem formularza lub strony produkcyjnej konieczna jest weryfikacja podstaw przetwarzania i reguł kontaktu marketingowego, odbiorców danych, retencji, zgód/uprawnień oraz dostawców usług. Dane dotyczące rodzin i dzieci wymagają szczególnej ostrożności.
 
-## Zakres i bezpieczeństwo
+## Kontrola jakości
 
-W repozytorium nie ma danych klientów ani dostępu do baz osobowych. Publiczny podgląd nie oferuje pobierania rekordów i nie jest połączony z systemem sprzedażowym. Projekt nie zmienia działającej strony `present-service.pl`.
+Wymagany Node.js 22 lub nowszy. Uruchom lokalnie:
 
-© 2026 — wersja demonstracyjna wymagająca akceptacji firmy.
+```sh
+node --check app.js
+node --check --input-type=module < backend/lead-worker.js
+node scripts/check-site.mjs
+```
+
+Te kontrole obejmują składnię, lokalne linki, metadane, polski język stron, logo i blokadę indeksowania **podglądu**. Nie są zamiennikiem testu przeglądarki, Lighthouse, WCAG 2.2 AA ani audytu bezpieczeństwa.
+
+## SEO i przejście na domenę firmy
+
+Podgląd pozostaje `noindex,nofollow`, a `robots.txt` zawiera `Disallow: /`. **To jest celowe.** Nie indeksuj wersji testowej obok oryginalnej strony.
+
+`scripts/build-production.mjs` tworzy osobny eksport z canonical URL, danymi Organization w JSON-LD, sitemapą i produkcyjnym robots.txt. Uruchamia się **wyłącznie po** potwierdzeniu dopuszczenia treści, danych firmowych i gotowej polityki prywatności. Skrypt dodatkowo blokuje eksport, jeśli na stronie prywatności pozostał tekst demonstracyjny.
+
+Po zatwierdzeniu i zastąpieniu polityki:
+
+```sh
+CONFIRM_PUBLICATION=YES APPROVED_PRIVACY_POLICY=YES APPROVED_DATA_CLAIMS=YES SITE_URL=https://www.present-service.pl/ node scripts/build-production.mjs
+```
+
+Wynik: folder `dist/` (nie wdraża się sam na domenie). Przed migracją sprawdź przekierowania 301 z poprzednich adresów, hosting, monitoring, Search Console, formularz, adresy e-mail i consent dla analityki.
+
+## Następne kroki po akceptacji firmy
+
+1. Potwierdzić aktualną liczbę rekordów, czynne programy samplingowe, prawa do materiałów i dane kontaktowe.
+2. Uzyskać prawdziwe case studies, logotypy klientów i pisemne zgody na ich publikację.
+3. Przygotować końcową politykę prywatności i zatwierdzony proces obsługi leadów.
+4. Uruchomić Workers/Resend/Turnstile i wykonać testy wysyłki end-to-end.
+5. Jeśli przetwarzanie danych jest zatwierdzone, włączyć analitykę konwersji i ustawić cele.
+6. Po audycie wydajności, dostępności i SEO zdecydować o migracji na domenę firmy.
+
+---
+
+Witryna jest statycznym projektem B2B i nie sprzedaje automatycznie danych osobowych. Żadne dane rodziców lub dzieci nie są przesyłane przez podgląd.
