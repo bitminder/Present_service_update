@@ -26,6 +26,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run website quality checks
+        run: |
+          node --check app.js
+          node --check --input-type=module < backend/lead-worker.js
+          node scripts/check-site.mjs
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
