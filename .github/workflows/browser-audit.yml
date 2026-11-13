@@ -22,7 +22,13 @@ jobs:
         run: |
           npm install --no-save playwright@1.57.0 axe-core@4.11.0
           npx playwright install --with-deps chromium
-      - name: Run browser smoke tests on deployed website
+      - name: Start local preview (audit branch)
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/present-service-browser-audit-server.log 2>&1 &
+          sleep 2
+      - name: Run browser smoke tests on audit branch
+        env:
+          BASE_URL: http://127.0.0.1:8765/
         run: |
           mkdir -p artifacts
           node scripts/audit-browser.mjs
