@@ -20,7 +20,7 @@ jobs:
           node-version: '22'
       - name: Install Playwright Chromium
         run: |
-          npm install --no-save playwright@1.57.0
+          npm install --no-save playwright@1.57.0 axe-core@4.11.0
           npx playwright install --with-deps chromium
       - name: Run browser smoke tests on deployed website
         run: |
