@@ -148,7 +148,8 @@ await run("All service landing pages load with branding",async()=>{
 
 await run("WCAG 2.2 AA automated accessibility smoke test",async()=>{
   const context=await browser.newContext({viewport:{width:1440,height:900}});
-  for(const url of [base,base+"baza-danych-rodzin.html"]){
+  const allViolations=[];
+  for(const url of [base,base+"baza-danych-rodzin.html",base+"informacje-o-danych.html"]){
     const {page}=await testPage(context,url);
     await page.addScriptTag({content:axe.source});
     const audit=await page.evaluate(async()=>await window.axe.run(document,{
@@ -159,9 +160,10 @@ await run("WCAG 2.2 AA automated accessibility smoke test",async()=>{
       nodes:v.nodes.slice(0,4).map(n=>({html:n.html.slice(0,220),failureSummary:n.failureSummary}))
     }));
     console.log("AXE_RESULTS",url,JSON.stringify(summary));
-    assert(audit.violations.length===0,"Accessibility issues detected: "+JSON.stringify(summary));
+    if(audit.violations.length)allViolations.push({url,summary});
     await page.close();
   }
+  assert(allViolations.length===0,"Accessibility issues detected: "+JSON.stringify(allViolations));
   await context.close();
 });
 await browser.close();
