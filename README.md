@@ -15,7 +15,9 @@ Nowa, responsywna strona marketingowa B2B dla firmy [Present-Service](https://ww
 
 ## Podgląd / hosting
 
-W GitHub otwórz **Settings → Pages**, wybierz w **Build and deployment** opcję **Deploy from a branch**, następnie `main` i `/(root)`, po czym kliknij **Save**. Adres, po poprawnym włączeniu GitHub Pages, powinien mieć postać:
+W GitHub otwórz **Settings → Pages** i wybierz w **Build and deployment** opcję **GitHub Actions**. Workflow `.github/workflows/deploy.yml` automatycznie wdraża stronę po każdym pushu do gałęzi `main`; można go także uruchomić ręcznie przez **Actions → Deploy Present-Service preview → Run workflow**.
+
+Po zakończeniu workflow statusem **Success**, podgląd powinien być dostępny pod adresem:
 
 https://bitminder.github.io/Present_service_update/
 
