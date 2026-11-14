@@ -104,3 +104,16 @@
  .family-editorial-copy h2{font-size:clamp(30px,7.5vw,43px)}
 }
 @media(max-width:400px){.family-editorial-photo{height:230px}.family-editorial-photo figcaption{font-size:9px}}
+
+/* Final mobile photo-framing adjustment after screenshot review. */
+@media(max-width:700px){
+ .family-hero-info{max-width:min(222px,62%);padding:12px 14px}
+ .family-hero-info>strong{font-size:19px}
+ .family-hero-info-kicker{font-size:8px;letter-spacing:.065em}
+ .family-hero-tags{gap:4px}
+ .family-hero-tags>span{font-size:8px;padding:4px 6px}
+}
+@media(max-width:390px){
+ .family-hero-info{max-width:195px;padding:10px 11px}
+ .family-hero-info>strong{font-size:17px}
+}
