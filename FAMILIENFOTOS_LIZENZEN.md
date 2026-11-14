@@ -26,7 +26,7 @@ Die Bilder werden hier nur zur allgemeinen Illustration von Zielgruppen / famili
 
 Die Bilder wurden in einem **isolierten GitHub-Actions-Workflow** aus den oben genannten, namentlich ausgewählten Pexels-Fotoseiten bezogenen Bilddateien erstellt. Sie wurden auf maximal 920–1250 Pixel Breite skaliert und ins moderne WebP-Format umgewandelt, um unnötig große Downloads zu vermeiden.
 
-Die Dateien werden auf derselben Domain wie die Website ausgeliefert (`assets/families`). Es werden keine externen Bild-CDN-Requests aus dem Browser ausgelöst. Im HTML sind Bildgrößen, `loading="lazy"` für untere Bereiche, `decoding="async"` und aussagekräftige Alternativtexte gesetzt.
+Die Dateien werden auf derselben Domain wie die Website ausgeliefert (`assets/families`). Es werden keine externen Bild-CDN-Requests aus dem Browser ausgelöst. Im HTML sind Bildgrößen, `decoding="async"` und aussagekräftige Alternativtexte gesetzt. Die drei kompakten Beispielbilder werden mit niedriger Priorität früh geladen, damit sie beim Scrollen sofort verfügbar sind; weiter unten platzierte Bilder verwenden `loading="lazy"`.
 
 ## Bildaustausch
 
