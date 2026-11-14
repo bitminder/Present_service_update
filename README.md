@@ -1,3 +1,19 @@
+# Present-Service 3.1 – Editorial Family Photography
+
+**Gezielt integrierte, professionell fotografierte Familienmotive**: auf der Startseite im Hero, in drei fiktiven Segmentkarten und im Mamaklub-Teaser; zusätzlich kontextbezogen auf den Unterseiten `baza-danych-rodzin.html` und `mamaklub-sampling.html`.
+
+- Fünf komprimierte **lokale WebP-Dateien**, zusammen rund 320 KB, ohne externe Bild-CDN-Anfragen aus dem Browser
+- Echte Fotografien von **Yana Prokopenok, Anna Shvets, olia danilevich, Tran Nhu Tuan und Dasha Halepova**, auf Pexels publiziert
+- Fotos dienen **ausschließlich der Illustration**; keine Suggestion von Kundenbeziehungen oder realen Datensätzen, kein erfundenes Projekt
+- Quelle, Fotografen, Lizenz und zu prüfende Rechte an erkennbaren Personen dokumentiert in [FAMILIENFOTOS_LIZENZEN.md](FAMILIENFOTOS_LIZENZEN.md)
+- Responsives Layout, eindeutige Alternativtexte, Bildgrößen und optimierte Ladeprioritäten; Browser- und Accessibility-Checks als Freigabekriterium
+
+**Rechtlicher Hinweis:** Pexels erlaubt kommerzielle Nutzung, aber die Verwendung von Aufnahmen mit erkennbaren Personen muss insbesondere hinsichtlich Persönlichkeits- und Werberechten für die konkrete Unternehmenskommunikation geprüft werden. Hier wird ausdrücklich **keine Unterstützung oder Beteiligung** der dargestellten Familien an Present-Service behauptet.
+
+Der Fokus bleibt unverändert: Daten und Zielgruppensegmentierung für Unternehmen, die ihre eigenen Marketingkampagnen durchführen. **Staging** bleibt `noindex`, der automatische Direktversand bleibt deaktiviert, und die Produktivdomain `present-service.pl` wird nicht angetastet.
+
+---
+
 # Present-Service 3.0 – Premium Data Experience (GitHub-Vorschau)
 
 **Primärer Geschäftszweck:** Unternehmen wählen Zielgruppendaten und Segmente zu Familien mit Kindern für ihre **eigenen Kampagnen**. Die Website verkauft keine direkt herunterladbaren personenbezogenen Datensätze und behauptet nicht, dass eine Datenausleitung ohne rechtliche Prüfung zulässig ist.
