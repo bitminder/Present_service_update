@@ -81,3 +81,26 @@
  .family-hero-credit{right:5px;bottom:22px;max-width:200px;font-size:8px}
  .showcase-card .family-card-photo{aspect-ratio:1.68}
 }
+
+/* Selective editorial photography on two relevant service landing pages. */
+.family-editorial-section{background:linear-gradient(135deg,#fff,#fff7fa);padding:64px 0 76px}
+.family-editorial-sampling{background:#fdf4f9}
+.family-editorial-grid{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1fr);align-items:center;gap:clamp(35px,5vw,78px)}
+.family-editorial-photo{margin:0;position:relative;width:100%;height:330px;min-width:0;overflow:hidden;border-radius:20px;background:#efdae5;box-shadow:0 22px 60px rgba(86,26,67,.1)}
+.family-editorial-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.family-editorial-sampling .family-editorial-photo img{object-position:center 36%}
+.family-editorial-photo:after{content:"";position:absolute;bottom:0;left:0;right:0;height:37%;background:linear-gradient(0deg,rgba(38,19,30,.55),transparent);pointer-events:none}
+.family-editorial-photo figcaption{position:absolute;left:15px;right:15px;bottom:12px;z-index:1;color:#fff;font-size:10px;line-height:1.5;text-shadow:0 1px 5px rgba(0,0,0,.55)}
+.family-editorial-photo figcaption a{color:#fff;text-decoration:underline;text-underline-offset:2px;font-weight:700}
+.family-editorial-copy h2{font-size:clamp(31px,3.5vw,49px);line-height:1.16;color:#372534;letter-spacing:-.051em;margin:16px 0 17px}
+.family-editorial-copy h2 em{font-style:normal;color:#bc1c70}
+.family-editorial-copy p{color:#665462;font-size:15px;line-height:1.82;margin:0 0 22px;max-width:550px}
+.family-editorial-copy .text-link{color:#8e1d59;font-weight:850;text-decoration:none;font-size:14px}
+.family-editorial-copy .text-link:hover{text-decoration:underline}
+@media(max-width:760px){
+ .family-editorial-section{padding:42px 0 54px}
+ .family-editorial-grid{grid-template-columns:minmax(0,1fr);gap:28px}
+ .family-editorial-photo{height:270px;border-radius:16px}
+ .family-editorial-copy h2{font-size:clamp(30px,7.5vw,43px)}
+}
+@media(max-width:400px){.family-editorial-photo{height:230px}.family-editorial-photo figcaption{font-size:9px}}
