@@ -1,0 +1,83 @@
+/* Present-Service 3.1 — real licensed editorial photography.
+   Intentional restrained use: families illustrate audience contexts, NOT data subjects,
+   customers or endorsers. Local compressed WebP assets; no visitor-side CDN requests. */
+
+/* Hero: real family image + restrained editorial data overlay. */
+.hero .hero-grid{gap:clamp(26px,4vw,54px)}
+.hero-visual.family-hero-visual{height:570px;position:relative;min-width:0;width:100%;display:block;isolation:auto;flex:none;overflow:visible}
+.family-hero-photo{position:absolute;inset:14px 0 36px 18px;overflow:hidden;border:1px solid #efdae5;border-radius:26px;background:linear-gradient(140deg,#fbebf2,#e9c8d8);box-shadow:0 24px 70px rgba(95,26,70,.13)}
+.family-hero-photo:after{content:"";position:absolute;inset:58% 0 0;background:linear-gradient(0deg,rgba(45,20,35,.31),transparent);pointer-events:none}
+.family-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% center;display:block}
+.family-hero-info{position:absolute;left:-13px;bottom:65px;z-index:2;background:rgba(255,255,255,.97);border:1px solid #eed7e4;border-radius:16px;box-shadow:0 23px 56px rgba(74,17,51,.16);padding:21px 24px 20px;max-width:340px;box-sizing:border-box}
+.family-hero-info-kicker{display:flex;align-items:center;gap:7px;letter-spacing:.09em;color:#a01b62;font-size:10px;font-weight:850;margin:0 0 10px}
+.family-hero-info-kicker span{font-size:18px;letter-spacing:0}
+.family-hero-info>strong{font-size:clamp(21px,2.1vw,27px);color:#342232;display:block;line-height:1.19;letter-spacing:-.044em}
+.family-hero-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:17px}
+.family-hero-tags>span{display:inline-block;color:#7c2658;font-size:10px;font-weight:750;border-radius:999px;background:#fbeaf3;border:1px solid #edd1e1;padding:6px 8px}
+.family-hero-credit{position:absolute;right:15px;bottom:46px;color:#fff;font-size:9px;font-weight:650;line-height:1.35;background:rgba(42,25,35,.66);border-radius:5px;padding:5px 8px;max-width:260px;text-align:right}
+
+/* Illustrative photos belong to the segment card, not inside fake data tables. */
+.showcase-card .family-card-photo{display:block;position:relative;margin:18px 0 0;aspect-ratio:1.58;border-radius:12px;overflow:hidden;background:#f7edf3;border:1px solid #f0e1eb}
+.showcase-card .family-card-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center center}
+.showcase-card:nth-child(1) .family-card-photo img{object-position:center 36%}
+.showcase-card:nth-child(2) .family-card-photo img{object-position:center 43%}
+.showcase-card:nth-child(3) .family-card-photo img{object-position:center 42%}
+.family-card-photo figcaption{position:absolute;bottom:8px;right:8px;color:#fff;background:rgba(45,24,38,.72);padding:5px 7px;border-radius:5px;font-size:10px;font-weight:700;line-height:1.2}
+.showcase-card h3{margin-top:18px}
+.showcase-card .showcase-description{min-height:0}
+@media(min-width:1100px){.showcase-card{min-height:0}}
+@media(min-width:761px) and (max-width:1100px){.showcase-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.showcase-card{padding:19px}.showcase-card .family-card-photo{aspect-ratio:1.25}}
+
+/* Sampling is secondary, so the photo is a compact editorial detail. */
+.experience-mama-photo{width:154px;height:178px;overflow:hidden;margin:0;border:1px solid #e8cad9;border-radius:15px;background:#f5e7ed;position:relative;box-shadow:0 10px 30px rgba(77,31,56,.12);flex-shrink:0}
+.experience-mama-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 27%}
+.experience-mama-photo figcaption{position:absolute;right:5px;bottom:6px;background:rgba(44,23,37,.72);color:#fff;font-size:9px;line-height:1.2;border-radius:5px;padding:4px 5px}
+.experience-mama-inner{gap:28px}
+.experience-mama-inner h2{font-size:clamp(30px,3vw,41px)}
+
+/* Traceable provenance & accurate representation. */
+.family-photo-footer{font-size:12px;line-height:1.65;color:#bfb3bd;max-width:1210px;padding:12px 0 19px;border-top:1px solid rgba(255,255,255,.13)}
+.family-photo-footer p{font-size:11px;color:inherit;margin:0 0 8px}
+.family-photo-footer details summary{display:inline-block;cursor:pointer;text-decoration:underline;text-underline-offset:3px;color:#e5c9da;font-weight:700}
+.family-photo-footer details summary:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.family-photo-footer details p{margin:9px 0 0}
+.family-photo-footer a{color:#f4d9e8;text-decoration:underline}
+.family-photo-footer a:hover{color:#fff}
+@media(max-width:1100px){
+ .family-hero-info{left:0;max-width:310px;padding:17px 19px}
+ .family-hero-photo{inset:15px 0 35px 5px}
+}
+@media(max-width:900px){
+ .hero .hero-grid{gap:22px}
+ .hero-visual.family-hero-visual{height:490px}
+ .family-hero-photo{inset:12px 0 30px}
+ .family-hero-info{bottom:52px;left:8px;max-width:260px}
+ .family-hero-info>strong{font-size:22px}
+ .family-hero-credit{bottom:39px}
+ .experience-mama-photo{width:126px;height:148px}
+}
+@media(max-width:700px){
+ .hero-visual.family-hero-visual{height:408px!important;min-height:0!important;max-width:560px;margin:0 auto 27px!important;padding:0!important;display:block!important;transform:none!important}
+ .family-hero-photo{inset:0 0 28px 0;border-radius:22px}
+ .family-hero-info{left:11px;bottom:52px;max-width:min(267px,75%);padding:15px 17px}
+ .family-hero-info>strong{font-size:21px}
+ .family-hero-info-kicker{font-size:9px}
+ .family-hero-tags{margin-top:10px}
+ .family-hero-tags>span{font-size:9px}
+ .family-hero-credit{font-size:9px;right:6px;bottom:35px;max-width:214px}
+ .showcase-card .family-card-photo{aspect-ratio:1.8}
+ .experience-mama-photo{width:100%;max-width:390px;height:205px;box-sizing:border-box;border-radius:15px}
+ .experience-mama-photo img{object-position:center 32%}
+ .family-photo-footer{padding:18px 0 14px}
+}
+@media(max-width:390px){
+ .hero-visual.family-hero-visual{height:358px!important;margin-bottom:21px!important}
+ .family-hero-photo{inset:0 0 17px 0}
+ .family-hero-info{left:8px;bottom:43px;max-width:230px;padding:11px 12px}
+ .family-hero-info>strong{font-size:18px}
+ .family-hero-info-kicker{font-size:8px;margin-bottom:6px}
+ .family-hero-tags{gap:4px;margin-top:8px}
+ .family-hero-tags>span{font-size:8px;padding:4px 6px}
+ .family-hero-credit{right:5px;bottom:22px;max-width:200px;font-size:8px}
+ .showcase-card .family-card-photo{aspect-ratio:1.68}
+}
