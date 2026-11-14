@@ -4,7 +4,7 @@
 */
 const MAX_BODY_LENGTH = 12000;
 const FIELDS = {
-  brand: 120, channel: 80, stage: 80, childCount: 50,
+  brand: 120, channel: 80, cooperationModel: 120, requestedVolume: 50, stage: 80, childCount: 50,
   parentAge: 50, territory: 340, campaignDate: 20,
   budget: 80, goal: 1200, contactName: 120, contactEmail: 254
 };
@@ -98,19 +98,21 @@ export default {
       }
 
       const message = [
-        "NOWE ZAPYTANIE B2B — PRESENT-SERVICE",
+        "NOWE ZAPYTANIE O DANE — PRESENT-SERVICE",
         "",
         ...Object.entries({
           "Firma": fields.brand, "Kontakt": fields.contactName,
           "E-mail": fields.contactEmail, "Kanał": fields.channel,
+          "Planowany model użycia danych": fields.cooperationModel,
+          "Oczekiwana liczba kontaktów": fields.requestedVolume,
           "Wiek dziecka": fields.stage, "Liczba dzieci": fields.childCount,
           "Wiek matki": fields.parentAge, "Region": fields.territory,
           "Termin": fields.campaignDate, "Budżet": fields.budget,
           "Cel": fields.goal
         }).map(([name, value]) => name + ": " + (value || "do ustalenia")),
         "",
-        "Zgłoszenie przez formularz strony, po potwierdzeniu zapoznania się z informacją o danych.",
-        "Zweryfikuj legalność i dostępność wskazanych segmentów przed przygotowaniem oferty."
+        "Zapytanie o dane do kampanii firmy, po potwierdzeniu zapoznania się z informacją o danych.",
+        "Sprawdź dostępność, zakres i uprawnienia oraz możliwość przekazania lub wykorzystania danych przed ofertą."
       ].join("\n");
 
       const sent = await fetch("https://api.resend.com/emails", {
@@ -123,7 +125,7 @@ export default {
           from: env.RESEND_FROM_EMAIL,
           to: [env.RESEND_TO_EMAIL],
           reply_to: fields.contactEmail,
-          subject: "Nowe zapytanie Present-Service: " + fields.channel,
+          subject: "Zapytanie o dane Present-Service: " + fields.channel,
           text: message
         })
       });
