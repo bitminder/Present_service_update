@@ -162,7 +162,7 @@ await run("All service landing pages load with branding",async()=>{
 await run("WCAG 2.2 AA automated accessibility smoke test",async()=>{
   const context=await browser.newContext({viewport:{width:1440,height:900}});
   const allViolations=[];
-  for(const url of [base,base+"baza-danych-rodzin.html",base+"informacje-o-danych.html"]){
+  for(const url of [base,base+"baza-danych-rodzin.html",base+"segmentacja-danych.html",base+"zastosowania-danych.html",base+"informacje-o-danych.html"]){
     const {page}=await testPage(context,url);
     await page.addScriptTag({content:axe.source});
     const audit=await page.evaluate(async()=>await window.axe.run(document,{
