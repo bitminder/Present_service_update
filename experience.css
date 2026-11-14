@@ -73,3 +73,25 @@
 .showcase-select:focus-visible{outline:3px solid #c21875;outline-offset:4px}
 .wizard-demo-active{display:flex;align-items:flex-start;border-left:3px solid #ae236a;background:#fff1f8;color:#65364f;font-size:13px;font-weight:650;line-height:1.65;border-radius:0 8px 8px 0;padding:11px 13px;margin:0 0 20px}
 .wizard-demo-active[hidden]{display:none!important}
+
+/* Short editorial teasers reduce homepage repetition and keep data as the hero. */
+.experience-usecases-teaser{background:#fff;padding:65px 0}
+.experience-teaser-inner{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:46px;border-top:1px solid #ecd8e4;border-bottom:1px solid #ecd8e4;padding-top:48px;padding-bottom:46px}
+.experience-teaser-inner>div{max-width:850px}
+.experience-teaser-inner h2,.experience-mama-inner h2{font-size:clamp(33px,3.7vw,50px);line-height:1.14;letter-spacing:-.055em;color:#362433;margin:16px 0 15px}
+.experience-teaser-inner h2 em,.experience-mama-inner h2 em{font-style:normal;color:#c21875}
+.experience-teaser-inner p,.experience-mama-inner p{font-size:15px;line-height:1.78;color:#645261;margin:0 0 10px}
+.experience-teaser-inner small,.experience-mama-inner small{display:block;color:#695766;font-size:12px;line-height:1.65}
+.experience-teaser-inner>a{white-space:normal;max-width:240px;text-align:center}
+.experience-mamaklub-teaser{background:#fdf3f8;padding:68px 0}
+.experience-mama-inner{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:28px;align-items:center}
+.experience-mama-symbol{width:74px;height:74px;border-radius:18px;background:#fff;border:1px solid #e6c4d5;display:grid;place-items:center;color:#b21870;font-size:37px;box-shadow:0 12px 32px rgba(83,24,63,.08)}
+.experience-mama-inner>div:nth-child(2){max-width:760px}
+.experience-mama-inner h2{font-size:clamp(31px,3.5vw,43px)}
+.experience-mama-inner>a{text-align:center;white-space:normal;max-width:210px}
+@media(max-width:900px){.experience-mama-inner{grid-template-columns:auto minmax(0,1fr)}.experience-mama-inner>a{grid-column:2;justify-self:start}.experience-teaser-inner{gap:24px}}
+@media(max-width:700px){.experience-usecases-teaser{padding:38px 0}.experience-teaser-inner{grid-template-columns:minmax(0,1fr);gap:20px;padding:34px 0}.experience-teaser-inner>a{max-width:none;justify-self:start}.experience-mamaklub-teaser{padding:49px 0}.experience-mama-inner{grid-template-columns:minmax(0,1fr);gap:13px}.experience-mama-inner>a{grid-column:auto}.experience-mama-symbol{width:55px;height:55px;font-size:28px}
+.premium-hero-visual{flex-direction:column;gap:0;justify-content:center;padding-bottom:12px}
+.pv-floating-proof{position:relative;bottom:auto;right:auto;align-self:flex-start;margin:-8px auto 0 14px;max-width:min(260px,calc(100% - 40px));flex-shrink:0}
+}
+@media(max-width:400px){.pv-floating-proof{position:relative;bottom:auto;right:auto;margin:-3px auto 0 8px}.premium-hero-visual{min-height:0!important;padding-bottom:10px}}
