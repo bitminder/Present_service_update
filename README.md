@@ -1,3 +1,36 @@
+# Present-Service – data-first B2B website (V2.2)
+
+**Kernangebot:** Present-Service unterstützt Unternehmen bei der Auswahl und – abhängig vom Datensatz und den rechtlichen Voraussetzungen – bei der Bereitstellung oder vereinbarten Nutzung von Zielgruppendaten über Familien mit Kindern für deren **eigene** Marketingkampagnen. Das Unternehmen wird auf dieser Website **nicht** primär als Full-Service-Agentur positioniert.
+
+**Projektstatus:** GitHub-Pages-Vorschau, nicht die produktive Firmendomain. Die derzeitige Website unter present-service.pl wird durch dieses Repository nicht verändert.
+
+## Optimierungen in V2.2
+
+- Neues Hauptversprechen: „Baza danych rodzin z dziećmi. Dla Twojej kampanii.“
+- **Datenangebot zuerst**, Einsatzkanäle danach: Adressdaten für Direct Mail, Segmente für E-Mail und Mobile Marketing; Mamaklub als ergänzendes Angebot
+- Neue eigene Seiten: `segmentacja-danych.html` (Kriterien, Datenqualität, Nutzungsbedingungen) und `zastosowania-danych.html` (klar als fiktive Beispielszenarien markierte Anwendungsfälle)
+- Unterschiedliche, konkret auf Daten ausgerichtete Angebote auf allen bestehenden Dienstleistungsseiten, einschließlich FAQ und Prozess
+- Dreistufige Datenanfrage: Zielgruppe, gewünschter Nutzungs-/Kooperationsmodus, geschätzte Menge, Kampagnendetails, Kontakt
+- Datenmodell wird auch in den vorbereiteten optionalen Cloudflare-Worker übernommen, ohne Versanddienst oder Analytics standardmäßig zu aktivieren
+- Aktuell nicht bestätigte Reichweiten aus der bisherigen Firmenwebsite sind ausdrücklich als **historische Angebotswerte**, nicht als aktuelle verfügbare Bestände bezeichnet
+- Originales Firmenlogo und Magenta/Grau bleiben erhalten; keine erfundenen Referenzen, Kennzahlen, Zertifikate oder Ergebnisse
+
+## Geschäftliche und rechtliche Abgrenzung
+
+Die Website erklärt die Möglichkeit, Zielgruppendaten für die Kampagnen der anfragenden Unternehmen zu prüfen. **Nicht jeder Datensatz darf dem anfragenden Unternehmen übermittelt oder für jede Marketingform eingesetzt werden.** Vor konkreter Bereitstellung bzw. Nutzung müssen insbesondere Datenherkunft, Rollen der Parteien, Rechtsgrundlagen, Werbekontaktberechtigungen, sichere Übermittlung und Nutzungsbeschränkungen vereinbart werden. Die GitHub-Vorschau bietet weder eine Datensatzabfrage noch den Export personenbezogener Datensätze.
+
+Der Kampagnenplaner erstellt weiterhin nur einen E-Mail-Entwurf, sofern keine ausdrücklich freigegebene, geprüfte Backend-Integration konfiguriert ist. Datenschutzrechtstexte der Demo sind **keine** freigegebene Datenschutzrichtlinie für die produktive Website.
+
+## Quellen für spätere inhaltliche Freigaben
+
+Bevor Zahlen oder Kundenreferenzen veröffentlicht werden:
+1. Aktuelle, nachprüfbare Anzahl der für jeden Kanal **nutzbaren** Datensätze und Segmente
+2. Bestätigung, welche Datenarten und Attribute tatsächlich verfügbar und rechtmäßig nutzbar sind
+3. Bestätigung, welche Daten an Kunden übermittelt werden können und welche nur im vereinbarten Ausführungsmodell nutzbar sind
+4. Dokumentation zur Datenqualität, Aktualisierung, rechtlichen Grundlage, Informationspflichten und Zuständigkeiten
+5. Echte Kampagnenbeispiele, Nutzungsrechte für Material und Freigaben von Referenzkunden
+
+---
 # Present-Service 2.0 – strona B2B i generator briefu
 
 **Status:** gotowy podgląd GitHub Pages; **nie jest jeszcze systemem produkcyjnym**. Oryginalna witryna https://present-service.pl/ pozostaje niezmieniona.
