@@ -37,6 +37,8 @@ for(const width of widths){
     const {page,response,errors}=await testPage(context,base);
     assert(response && response.status()===200,"homepage HTTP status "+response?.status());
     assert(await page.locator("h1").count()===1,"expected exactly one h1");
+    assert((await page.locator("h1").innerText()).includes("Baza danych"),"main message must prioritize data provision");
+    assert(await page.locator("#dane").count()===1,"missing core audience-data section");
     assert(await page.locator("img.brand-official-logo").first().evaluate(img=>img.complete&&img.naturalWidth>0),"missing / broken company logo");
     assert((await page.locator('meta[name="robots"]').getAttribute("content"))?.includes("noindex"),"staging should be noindex");
     const dimensions=await page.evaluate(()=>({
@@ -73,7 +75,7 @@ await run("Mobile menu opens, closes and follows links",async()=>{
   await page.keyboard.press("Escape");
   assert(await button.getAttribute("aria-expanded")==="false","escape didn't close menu");
   await button.click();
-  await page.locator('#primary-nav a[href="#mamaklub"]').click();
+  await page.locator('#primary-nav a[href="#dane"]').click();
   assert(await button.getAttribute("aria-expanded")==="false","menu remained open after navigation");
   await context.close();
 });
