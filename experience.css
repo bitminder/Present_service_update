@@ -67,3 +67,9 @@
 @media(max-width:760px){.showcase-section,.quality-section{padding:70px 0 75px}.showcase-intro h2,.quality-copy h2{font-size:clamp(34px,7vw,48px)}.showcase-grid{grid-template-columns:minmax(0,1fr);gap:14px}.showcase-card{min-height:0}.showcase-description{min-height:0}.showcase-number{margin-top:18px}.showcase-bottom{flex-direction:column;align-items:flex-start;gap:12px}.showcase-link{white-space:normal}.quality-layout{grid-template-columns:minmax(0,1fr);gap:27px}.quality-sheet-wrap{padding:14px;max-width:530px;width:100%;box-sizing:border-box;margin:auto}}
 @media(max-width:400px){.showcase-card{padding:19px}.showcase-number{margin:16px -19px;padding:14px 19px}.showcase-notice{padding:15px}.quality-sheet-wrap{padding:7px}.quality-sheet{transform:none;padding:19px 16px}.quality-sheet-wrap:before{transform:none}.quality-sheet-top{align-items:start}.quality-sheet-logo em{font-size:9px}.quality-sheet-demo{font-size:8px}.quality-sheet-table>div{gap:8px}.quality-sheet-table dt,.quality-sheet-table dd{font-size:11px}.quality-actions{align-items:stretch}.quality-actions .btn{white-space:normal}}
 @media(prefers-reduced-motion:reduce){.showcase-card{transition:none}.showcase-card:hover{transform:none}}
+
+/* Keyboard and progressive-enhancement refinements */
+.showcase-select{text-decoration:none!important}
+.showcase-select:focus-visible{outline:3px solid #c21875;outline-offset:4px}
+.wizard-demo-active{display:flex;align-items:flex-start;border-left:3px solid #ae236a;background:#fff1f8;color:#65364f;font-size:13px;font-weight:650;line-height:1.65;border-radius:0 8px 8px 0;padding:11px 13px;margin:0 0 20px}
+.wizard-demo-active[hidden]{display:none!important}
