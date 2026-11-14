@@ -36,13 +36,13 @@
 .experience-mama-inner h2{font-size:clamp(30px,3vw,41px)}
 
 /* Traceable provenance & accurate representation. */
-.family-photo-footer{font-size:12px;line-height:1.65;color:#bfb3bd;max-width:1210px;padding:12px 0 19px;border-top:1px solid rgba(255,255,255,.13)}
+.family-photo-footer{font-size:12px;line-height:1.65;color:#4c3a47;max-width:1210px;padding:12px 0 19px;border-top:1px solid #e8d7e2}
 .family-photo-footer p{font-size:11px;color:inherit;margin:0 0 8px}
-.family-photo-footer details summary{display:inline-block;cursor:pointer;text-decoration:underline;text-underline-offset:3px;color:#e5c9da;font-weight:700}
-.family-photo-footer details summary:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.family-photo-footer details summary{display:inline-block;cursor:pointer;text-decoration:underline;text-underline-offset:3px;color:#7f1c4c;font-weight:700}
+.family-photo-footer details summary:focus-visible{outline:2px solid #8e1a58;outline-offset:3px}
 .family-photo-footer details p{margin:9px 0 0}
-.family-photo-footer a{color:#f4d9e8;text-decoration:underline}
-.family-photo-footer a:hover{color:#fff}
+.family-photo-footer a{color:#7f1c4c;text-decoration:underline}
+.family-photo-footer a:hover{color:#4b1236}
 @media(max-width:1100px){
  .family-hero-info{left:0;max-width:310px;padding:17px 19px}
  .family-hero-photo{inset:15px 0 35px 5px}
