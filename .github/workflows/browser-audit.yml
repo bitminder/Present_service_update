@@ -8,6 +8,10 @@ on:
       - data-first-2-2
   workflow_dispatch:
 
+concurrency:
+  group: browser-audit-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
