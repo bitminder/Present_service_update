@@ -10,7 +10,7 @@ Die Website nutzt **fünf lokal gespeicherte, optimierte Fotografien**, die ursp
 |---|---|---|
 | `assets/families/hero-parents-baby.webp` | Yana Prokopenok — https://www.pexels.com/photo/parents-playing-with-baby-11145071/ | Hero: Eltern mit Baby zu Hause |
 | `assets/families/segment-baby.webp` | Anna Shvets — https://www.pexels.com/photo/parents-playing-with-their-baby-11369370/ | Demonstrationskarte: Familien mit Säuglingen |
-| `assets/families/segment-preschool.webp` | olia danilevich — https://www.pexels.com/photo/a-happy-couple-sitting-on-a-couch-with-their-daughter-8524966/ | Demonstrationskarte: Familien mit älteren Kindern; Datenbank-Unterseite |
+| `assets/families/segment-preschool.webp` | Ketut Subiyanto — https://www.pexels.com/photo/photo-of-woman-sitting-on-couch-while-hugging-her-child-4473625/ | Demonstrationskarte: Vorschulkinder (Mutter und älteres Kind); Datenbank-Unterseite |
 | `assets/families/segment-toddler.webp` | Tran Nhu Tuan — https://www.pexels.com/photo/happy-ethnic-family-with-kid-on-sofa-7936747/ | Demonstrationskarte: junge Familien |
 | `assets/families/mamaklub-family.webp` | Dasha Halepova — https://www.pexels.com/photo/couple-sitting-on-couch-with-children-16852512/ | Ergänzendes Mamaklub-Angebot und Unterseite |
 
