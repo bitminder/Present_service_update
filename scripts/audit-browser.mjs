@@ -229,6 +229,14 @@ await run("Licensed illustrative family photos load from the same site",async()=
     assert(data.length>5000&&data.length<150000,file+" unexpectedly large or invalid: "+data.length);
   }
   assert(await page.evaluate(()=>document.documentElement.scrollWidth)<=392,"photos introduced mobile horizontal overflow");
+  for(let i=0;i<3;i++){
+    const card=page.locator(".showcase-card").nth(i);
+    const img=card.locator(".family-card-photo img");
+    await img.scrollIntoViewIfNeeded();
+    await img.evaluate(async image=>await image.decode());
+    await card.screenshot({path:"artifacts/visible-segment-card-"+(i+1)+".png",animations:"disabled"});
+  }
+
   await page.screenshot({path:"artifacts/family-photo-review-390.png",fullPage:true});
 
   assert(errors.length===0,"photo runtime errors: "+errors.join("; "));
