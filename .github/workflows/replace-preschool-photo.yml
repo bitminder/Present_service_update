@@ -1,0 +1,40 @@
+name: Replace preschool sample with age-appropriate family photo
+
+on:
+  push:
+    branches: [family-photography-3-1]
+    paths: [.github/workflows/replace-preschool-photo.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  replace:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Optimize matching preschool family photograph
+        run: |
+          python3 -m pip install --break-system-packages --quiet pillow
+          python3 - <<'PY'
+          from io import BytesIO
+          from PIL import Image,ImageOps
+          import urllib.request
+          url="https://images.pexels.com/photos/4473625/pexels-photo-4473625.jpeg?auto=compress&cs=tinysrgb&w=1300"
+          with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"}),timeout=40) as r:
+              data=r.read()
+          image=ImageOps.exif_transpose(Image.open(BytesIO(data))).convert("RGB")
+          if image.width>920:
+              image=image.resize((920,round(920*image.height/image.width)),Image.Resampling.LANCZOS)
+          dest="assets/families/segment-preschool.webp"
+          image.save(dest,"WEBP",quality=81,method=6)
+          print("REPLACED PRESCHOOL",image.size,len(data))
+          PY
+      - name: Commit photo on feature branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/families/segment-preschool.webp
+          git commit -m "assets: replace preschool segment with age-appropriate family photograph [photo-assets]"
+          git push origin HEAD:family-photography-3-1
