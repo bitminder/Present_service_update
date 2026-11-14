@@ -5,6 +5,7 @@ on:
     branches:
       - audit-v2-browser
       - premium-design-2-1
+      - data-first-2-2
   workflow_dispatch:
 
 permissions:
