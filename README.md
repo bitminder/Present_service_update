@@ -3,7 +3,7 @@
 **Gezielt integrierte, professionell fotografierte Familienmotive**: auf der Startseite im Hero, in drei fiktiven Segmentkarten und im Mamaklub-Teaser; zusätzlich kontextbezogen auf den Unterseiten `baza-danych-rodzin.html` und `mamaklub-sampling.html`.
 
 - Fünf komprimierte **lokale WebP-Dateien**, zusammen rund 320 KB, ohne externe Bild-CDN-Anfragen aus dem Browser
-- Echte Fotografien von **Yana Prokopenok, Anna Shvets, olia danilevich, Tran Nhu Tuan und Dasha Halepova**, auf Pexels publiziert
+- Echte Fotografien von **Yana Prokopenok, Anna Shvets, Ketut Subiyanto, Tran Nhu Tuan und Dasha Halepova**, auf Pexels publiziert
 - Fotos dienen **ausschließlich der Illustration**; keine Suggestion von Kundenbeziehungen oder realen Datensätzen, kein erfundenes Projekt
 - Quelle, Fotografen, Lizenz und zu prüfende Rechte an erkennbaren Personen dokumentiert in [FAMILIENFOTOS_LIZENZEN.md](FAMILIENFOTOS_LIZENZEN.md)
 - Responsives Layout, eindeutige Alternativtexte, Bildgrößen und optimierte Ladeprioritäten; Browser- und Accessibility-Checks als Freigabekriterium
