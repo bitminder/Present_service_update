@@ -1,0 +1,66 @@
+name: Prepare licensed illustrative family photographs
+
+on:
+  push:
+    branches:
+      - family-photography-3-1
+    paths:
+      - .github/workflows/family-photo-assets.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install image optimization library
+        run: python3 -m pip install --break-system-packages --quiet pillow
+      - name: Download selected Pexels images and create lightweight local WebP assets
+        run: |
+          python3 - <<'PY'
+          from io import BytesIO
+          from pathlib import Path
+          from PIL import Image, ImageOps
+          import urllib.request
+          examples = [
+              ("hero-parents-baby", 11145071, 1250),
+              ("segment-baby", 11369370, 920),
+              ("segment-preschool", 8524966, 920),
+              ("segment-toddler", 7936747, 920),
+              ("mamaklub-family", 16852512, 1040),
+          ]
+          out = Path("assets/families")
+          out.mkdir(parents=True, exist_ok=True)
+          for name, photo_id, max_width in examples:
+              url = f"https://images.pexels.com/photos/{photo_id}/pexels-photo-{photo_id}.jpeg?auto=compress&cs=tinysrgb&w=1450"
+              req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; PresentServiceImageIntegration/1.0)"})
+              with urllib.request.urlopen(req, timeout=40) as response:
+                  data = response.read()
+              if len(data) < 10000 or len(data) > 12_000_000:
+                  raise RuntimeError(f"Unexpected image size {name}: {len(data)}")
+              img = Image.open(BytesIO(data))
+              img = ImageOps.exif_transpose(img).convert("RGB")
+              if img.width > max_width:
+                  height = round(img.height * max_width / img.width)
+                  img = img.resize((max_width, height), Image.Resampling.LANCZOS)
+              target=out/f"{name}.webp"
+              img.save(target, "WEBP", quality=81, method=6)
+              if target.stat().st_size>600_000:
+                  raise RuntimeError(f"Unoptimized asset {name}: {target.stat().st_size}")
+              print(f"ASSET {name} {img.width}x{img.height} {target.stat().st_size} bytes")
+          PY
+      - name: Commit approved illustrative files to feature branch only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/families/*.webp
+          if git diff --cached --quiet; then
+            echo "Assets already current"
+          else
+            git commit -m "assets: add five compressed Pexels family photographs [photo-assets]"
+            git push origin HEAD:family-photography-3-1
+          fi
