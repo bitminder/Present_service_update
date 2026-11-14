@@ -105,12 +105,15 @@ await run("Advanced campaign plan creates correct brief",async()=>{
   await page.locator('[data-wizard-step="1"] [data-wizard-next]').click();
   assert(await page.locator('[data-wizard-step="2"]').isVisible(),"second wizard step should be visible");
   await page.locator("#brand-name").fill("Firma testowa XYZ");
+  await page.locator("#cooperation-model").selectOption({label:"Dane do kampanii prowadzonej przez naszą firmę"});
+  await page.locator("#requested-volume").selectOption({label:"10 000–50 000"});
   await page.locator("#campaign-date").fill("2027-01");
   await page.locator("#campaign-budget").selectOption({label:"5 000–15 000 PLN"});
   await page.locator("#campaign-goal").fill("Testowa kampania dla rodziców.");
   await page.locator('[data-wizard-step="2"] [data-wizard-next]').click();
   assert(await page.locator('[data-wizard-step="3"]').isVisible(),"third wizard step should be visible");
   assert((await page.locator("#wizard-summary").innerText()).includes("Mazowieckie"),"wizard summary is missing selected region");
+  assert((await page.locator("#wizard-summary").innerText()).includes("10 000–50 000"),"wizard summary is missing segment volume");
   await page.locator("#contact-name").fill("Jan Testowy");
   await page.locator("#contact-email").fill("jan@example.org");
   await page.locator("#privacy-confirm").check();
@@ -118,7 +121,7 @@ await run("Advanced campaign plan creates correct brief",async()=>{
   assert(await page.locator("#brief-result").isVisible(),"result missing");
   assert(!(await page.locator("#campaign-form").isVisible()),"form still visible");
   const brief=await page.locator("#brief-preview").inputValue();
-  for(const fragment of ["Firma testowa XYZ","Direct mail","0–6 miesięcy","2 dzieci","25–34 lata","Mazowieckie","Wielkopolskie","2027-01","5 000–15 000 PLN","Testowa kampania","Jan Testowy","jan@example.org"]) {
+  for(const fragment of ["Firma testowa XYZ","Direct mail","Dane do kampanii prowadzonej przez naszą firmę","10 000–50 000","0–6 miesięcy","2 dzieci","25–34 lata","Mazowieckie","Wielkopolskie","2027-01","5 000–15 000 PLN","Testowa kampania","Jan Testowy","jan@example.org"]) {
     assert(brief.includes(fragment),"brief missing "+fragment);
   }
   const href=await page.locator("#send-email").getAttribute("href");
@@ -140,7 +143,7 @@ await run("Service landing links preselect the channel",async()=>{
 
 await run("All service landing pages load with branding",async()=>{
   const context=await browser.newContext({viewport:{width:390,height:844}});
-  const pages=["baza-danych-rodzin.html","direct-mail.html","emailing.html","mobile-marketing.html","mamaklub-sampling.html","informacje-o-danych.html"];
+  const pages=["baza-danych-rodzin.html","direct-mail.html","emailing.html","mobile-marketing.html","mamaklub-sampling.html","segmentacja-danych.html","zastosowania-danych.html","informacje-o-danych.html"];
   for(const p of pages) {
     const {page,response,errors}=await testPage(context,base+p);
     assert(response.status()===200,p+" HTTP "+response.status());
