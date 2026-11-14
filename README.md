@@ -1,3 +1,23 @@
+# Present-Service 3.0 – Premium Data Experience (GitHub-Vorschau)
+
+**Primärer Geschäftszweck:** Unternehmen wählen Zielgruppendaten und Segmente zu Familien mit Kindern für ihre **eigenen Kampagnen**. Die Website verkauft keine direkt herunterladbaren personenbezogenen Datensätze und behauptet nicht, dass eine Datenausleitung ohne rechtliche Prüfung zulässig ist.
+
+## Neu in Version 3.0
+
+- **Interaktiver Musterkatalog:** drei vollständig fiktive Zielgruppensegmente mit klaren Demo-Kennzeichnungen, Beispielzahlen und Button zur lokalen Vorbelegung des Anfrageplaners
+- **Qualität / Datenblatt:** Kriterien zur Prüfung von Datenumfang, Aktualität, rechtlicher Nutzbarkeit und der Möglichkeit einer Weitergabe, mit sichtbar fiktiver Beispielkarte
+- **Muster-CSV:** `assets/specyfikacja-demo.csv` enthält **ausschließlich synthetische Segmentbeschreibungen**, keinerlei personenbezogene Datensätze
+- **Schnellere Startseite:** überflüssige Wiederholungen reduziert, Mamaklub weiter unten als ergänzende Leistung
+- **Conversion-UX:** konkretes Nutzenversprechen, fokussierte Kontaktaufforderungen, direkt verwendbare Demo-Briefs mit manueller Anpassung
+- **Responsiv:** manuelle Prüfung echter Browser-Screenshots, insbesondere Anpassung schwebender Hero-Elemente auf Smartphones
+- **Dokumentation:** [BEISPIELDATEN_AUSTAUSCHEN.md](BEISPIELDATEN_AUSTAUSCHEN.md) enthält exakt die Stellen, an denen fiktive Zahlen und Texte später durch überprüfte Informationen ersetzt werden müssen
+
+**Warnung:** Die Demo-Zahlen (18.400, 7.200, 54.000) sind frei erfunden. Sie stellen weder verfügbare Kontakte noch bestätigte Referenzen dar. Alle Beispielkarten sind auch auf der Website als fiktive Muster markiert. Die älteren Reichweitenangaben aus der bisherigen Unternehmenswebsite müssen ebenfalls vor einer produktiven Veröffentlichung bestätigt werden.
+
+**Produktion:** Die GitHub-Pages-Vorschau bleibt `noindex`. Keine Änderung an `present-service.pl`. Datenschutztext, echtes Lead-Backend, historische Reichweiten und Freigaben sind weiterhin unabhängig zu prüfen.
+
+---
+
 # Present-Service – data-first B2B website (V2.2)
 
 **Kernangebot:** Present-Service unterstützt Unternehmen bei der Auswahl und – abhängig vom Datensatz und den rechtlichen Voraussetzungen – bei der Bereitstellung oder vereinbarten Nutzung von Zielgruppendaten über Familien mit Kindern für deren **eigene** Marketingkampagnen. Das Unternehmen wird auf dieser Website **nicht** primär als Full-Service-Agentur positioniert.
