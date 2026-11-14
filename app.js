@@ -120,10 +120,12 @@
   function updateWizardSummary() {
     if (!wizardSummary) return;
     const fields = [
-      ["Kanał", channelField.value || "Do ustalenia"],
+      ["Kanał kampanii", channelField.value || "Do ustalenia"],
       ["Wiek dziecka", $("#family-stage").value],
       ["Liczba dzieci", $("#child-count").value],
       ["Region", campaignTerritory()],
+      ["Model wykorzystania", $("#cooperation-model").value],
+      ["Wielkość segmentu", $("#requested-volume").value],
       ["Firma", $("#brand-name").value.trim() || "Do ustalenia"],
       ["Termin", $("#campaign-date").value || "Do ustalenia"],
       ["Budżet", $("#campaign-budget").value]
@@ -225,13 +227,15 @@
     return [
       "Dzień dobry,",
       "",
-      "Proszę o przygotowanie informacji o możliwościach kampanii do rodzin z dziećmi w Polsce.",
+      "Proszę o weryfikację dostępności danych i segmentów rodzin do planowanej kampanii naszej firmy.",
       "",
-      "WSTĘPNY BRIEF KAMPANII",
+      "ZAPYTANIE O DANE DO KAMPANII",
       line("Firma / marka", data.brand),
       line("Osoba kontaktowa", data.contactName),
       line("Adres do odpowiedzi", data.contactEmail),
-      line("Kanał", data.channel),
+      line("Kanał planowanej kampanii", data.channel),
+      line("Model wykorzystania danych", data.cooperationModel),
+      line("Oczekiwana liczba kontaktów", data.requestedVolume),
       line("Etap życia / wiek dziecka", data.stage),
       line("Liczba dzieci", data.childCount),
       line("Wiek matki (opcjonalny)", data.parentAge),
@@ -240,7 +244,7 @@
       line("Budżet orientacyjny", data.budget),
       line("Cel / dodatkowe informacje", data.goal),
       "",
-      "Proszę o weryfikację dostępności grupy, zgodności kanału kontaktu z obowiązującymi przepisami i o przygotowanie indywidualnej oferty.",
+      "Proszę o potwierdzenie dostępności i zakresu danych, możliwego sposobu ich udostępnienia lub wykorzystania, niezbędnych uprawnień oraz warunków współpracy.",
       "",
       "Z poważaniem",
       data.contactName || ""
@@ -278,6 +282,8 @@
     const normalized = {
       brand: String(data.brand || "").trim(),
       channel: String(data.channel || "").trim(),
+      cooperationModel: String(data.cooperationModel || "Do ustalenia").trim(),
+      requestedVolume: String(data.requestedVolume || "Do ustalenia").trim(),
       stage: String(data.stage || "").trim(),
       childCount: String(data.childCount || "").trim(),
       parentAge: String(data.parentAge || "").trim(),
@@ -292,7 +298,7 @@
     currentPayload = normalized;
     currentBrief = prepareBrief(normalized, territory);
     preview.value = currentBrief;
-    const subject = "Zapytanie o kampanię" + (normalized.brand ? " – " + normalized.brand : "");
+    const subject = "Zapytanie o dane do kampanii" + (normalized.brand ? " – " + normalized.brand : "");
     emailLink.href = "mailto:marketing@present-service.pl?subject=" + encodeURIComponent(subject)
       + "&body=" + encodeURIComponent(currentBrief);
     form.hidden = true;
