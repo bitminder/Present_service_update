@@ -1,4 +1,4 @@
-name: 'Browser audit - premium design 2.1'
+name: 'Browser audit - data experience 3.0'
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
       - audit-v2-browser
       - premium-design-2-1
       - data-first-2-2
+      - data-experience-3-0
   workflow_dispatch:
 
 concurrency:
