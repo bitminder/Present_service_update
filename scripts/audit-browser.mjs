@@ -136,6 +136,44 @@ await run("Advanced campaign plan creates correct brief",async()=>{
   await context.close();
 });
 
+await run("Fictional audience examples fill the brief safely",async()=>{
+  const context=await browser.newContext({viewport:{width:390,height:844}});
+  const {page,errors}=await testPage(context,base);
+  assert(await page.locator("[data-demo-example]").count()===3,"expected three demo presets");
+  assert((await page.locator("#przykladowe-segmenty").innerText()).includes("Dane demonstracyjne"),"fictional figures must be disclosed near the cards");
+  await page.locator('[data-demo-example="1"]').click();
+  assert(await page.locator("#channel").inputValue()==="Direct mail","first sample channel not applied");
+  assert(await page.locator("#family-stage").inputValue()==="0–6 miesięcy","first sample stage not applied");
+  assert(await page.locator('#regions-field input[value="Mazowieckie"]').isChecked(),"first sample region not selected");
+  assert(await page.locator("#requested-volume").inputValue()==="10 000–50 000","first sample volume missing");
+  assert(await page.locator("#wizard-demo-active").isVisible(),"sample warning not shown");
+  assert(await page.locator("#contact-email").inputValue()==="","example must not invent contact email");
+  assert(!(await page.locator("#privacy-confirm").isChecked()),"example must never provide consent");
+  await page.locator('[data-demo-example="2"]').click();
+  assert(await page.locator("#channel").inputValue()==="E-mailing","second sample channel not applied");
+  assert(await page.locator('#regions-field input[value="Wielkopolskie"]').isChecked(),"second sample region not checked");
+  assert(!(await page.locator('#regions-field input[value="Mazowieckie"]').isChecked()),"prior sample region should be cleared");
+  await page.locator('[data-demo-example="3"]').click();
+  assert(await page.locator("#channel").inputValue()==="Mobile marketing","third sample channel not applied");
+  assert(await page.locator('#regions-field input[value="Małopolskie"]').isChecked(),"third sample Malopolskie missing");
+  assert(await page.locator('#regions-field input[value="Śląskie"]').isChecked(),"third sample Slaskie missing");
+  assert(errors.length===0,"sample handling triggered runtime errors: "+errors.join("; "));
+  await context.close();
+});
+
+await run("Downloadable example specification contains no personal records",async()=>{
+  const context=await browser.newContext();
+  const page=await context.newPage();
+  const response=await page.request.get(base+"assets/specyfikacja-demo.csv");
+  assert(response.status()===200,"demo CSV not accessible");
+  const csv=await response.text();
+  assert(csv.includes("FIKCYJNY PRZYKŁAD") && csv.includes("DEMO-003"),"demo CSV disclaimer missing");
+  assert(!csv.includes("@") && !/\\b(?:\\+48|[0-9]{9,})\\b/.test(csv),"CSV appears to contain individual contact records");
+  const rows=csv.trim().split("\n").map(row=>row.split(";").length);
+  assert(rows.every(n=>n===9),"CSV columns are inconsistent: "+rows);
+  await context.close();
+});
+
 await run("Service landing links preselect the channel",async()=>{
   const context=await browser.newContext({viewport:{width:1200,height:900}});
   const {page}=await testPage(context,base+"?kanal=E-mailing#brief");
@@ -162,7 +200,7 @@ await run("All service landing pages load with branding",async()=>{
 await run("WCAG 2.2 AA automated accessibility smoke test",async()=>{
   const context=await browser.newContext({viewport:{width:1440,height:900}});
   const allViolations=[];
-  for(const url of [base,base+"baza-danych-rodzin.html",base+"segmentacja-danych.html",base+"zastosowania-danych.html",base+"informacje-o-danych.html"]){
+  for(const url of [base,base+"baza-danych-rodzin.html",base+"direct-mail.html",base+"emailing.html",base+"mobile-marketing.html",base+"mamaklub-sampling.html",base+"segmentacja-danych.html",base+"zastosowania-danych.html",base+"informacje-o-danych.html"]){
     const {page}=await testPage(context,url);
     await page.addScriptTag({content:axe.source});
     const audit=await page.evaluate(async()=>await window.axe.run(document,{
