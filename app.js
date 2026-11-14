@@ -212,6 +212,42 @@
     });
   }
 
+  // The three examples contain illustrative values only; they never represent
+  // available customer records. Selecting one only pre-fills the LOCAL brief.
+  document.querySelectorAll("[data-demo-example]").forEach(link => {
+    link.addEventListener("click", event => {
+      event.preventDefault();
+      if (channelField && [...channelField.options].some(option => option.value === link.dataset.demoChannel)) {
+        channelField.value = link.dataset.demoChannel;
+      }
+      const stageField = $("#family-stage");
+      if (stageField && [...stageField.options].some(option => option.value === link.dataset.demoStage)) {
+        stageField.value = link.dataset.demoStage;
+      }
+      locationField.value = "Wybrane województwa";
+      refreshRegions();
+      const chosen = (link.dataset.demoRegions || "").split(",").map(v => v.trim());
+      regionInputs.forEach(input => { input.checked = chosen.includes(input.value); });
+      const volumeField = $("#requested-volume");
+      if (volumeField && [...volumeField.options].some(option => option.value === link.dataset.demoVolume)) {
+        volumeField.value = link.dataset.demoVolume;
+      }
+      const goalField = $("#campaign-goal");
+      if (goalField) goalField.value = link.dataset.demoGoal || "";
+      // Do not fill personal contact details or opt-in fields on the user's behalf.
+      const hint = $("#wizard-demo-active");
+      if (hint) hint.hidden = false;
+      const validationHint = regionField.querySelector(".v2-field-hint");
+      if (validationHint) validationHint.classList.remove("v2-error");
+      goToStep(1, false);
+      track("sample_segment_selected");
+      const heading = wizardPanels[0]?.querySelector("h4");
+      form.scrollIntoView({ block: "start", behavior: "smooth" });
+      // Brief remains editable; focus heading only after moving into the form.
+      heading?.focus({ preventScroll: true });
+    });
+  });
+
   form.addEventListener("focusin", () => {
     if (!form.dataset.started) {
       form.dataset.started = "true";
