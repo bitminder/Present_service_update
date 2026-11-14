@@ -197,6 +197,49 @@ await run("All service landing pages load with branding",async()=>{
   await context.close();
 });
 
+await run("Licensed illustrative family photos load from the same site",async()=>{
+  const context=await browser.newContext({viewport:{width:390,height:844}});
+  const {page,errors}=await testPage(context,base);
+  const sources=[
+    "hero-parents-baby.webp",
+    "segment-baby.webp",
+    "segment-preschool.webp",
+    "segment-toddler.webp",
+    "mamaklub-family.webp"
+  ];
+  const pics=page.locator('img[src^="./assets/families/"]');
+  assert(await pics.count()===5,"homepage should show exactly five local family photos");
+  assert((await page.locator(".family-photo-footer").innerText()).includes("Fotografie"),"missing illustrative-photography disclaimer");
+  for(const file of sources){
+    const image=page.locator('img[src$="'+file+'"]').first();
+    await image.scrollIntoViewIfNeeded();
+    await image.evaluate(async im=>{
+      if(!im.complete) await new Promise((resolve,reject)=>{
+        im.addEventListener("load",resolve,{once:true});
+        im.addEventListener("error",reject,{once:true});
+      });
+    });
+    assert(await image.evaluate(im=>im.complete&&im.naturalWidth>0&&im.naturalHeight>0),"failed local image "+file);
+    assert((await image.getAttribute("alt"))?.length>20,"image missing accessible alt "+file);
+    const response=await page.request.get(base+"assets/families/"+file);
+    assert(response.status()===200,file+" cannot be fetched locally");
+    const data=await response.body();
+    assert(data.length>5000&&data.length<150000,file+" unexpectedly large or invalid: "+data.length);
+  }
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth)<=392,"photos introduced mobile horizontal overflow");
+  assert(errors.length===0,"photo runtime errors: "+errors.join("; "));
+  for(const path of ["baza-danych-rodzin.html","mamaklub-sampling.html"]){
+    await page.goto(base+path,{waitUntil:"networkidle"});
+    const image=page.locator(".family-editorial-photo img");
+    assert(await image.count()===1,path+" is missing an editorial family image");
+    await image.scrollIntoViewIfNeeded();
+    assert(await image.evaluate(im=>im.complete&&im.naturalWidth>0),path+" editorial image failed");
+    assert((await page.locator(".family-editorial-photo figcaption").innerText()).includes("Zdjęcie poglądowe"),"photo should be marked illustrative");
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth)<=392,path+" photo caused horizontal overflow");
+  }
+  await context.close();
+});
+
 await run("WCAG 2.2 AA automated accessibility smoke test",async()=>{
   const context=await browser.newContext({viewport:{width:1440,height:900}});
   const allViolations=[];
