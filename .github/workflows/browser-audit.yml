@@ -1,4 +1,4 @@
-name: 'Browser audit - data experience 3.0'
+name: 'Browser audit - family photography 3.1'
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
       - premium-design-2-1
       - data-first-2-2
       - data-experience-3-0
+      - family-photography-3-1
   workflow_dispatch:
 
 concurrency:
