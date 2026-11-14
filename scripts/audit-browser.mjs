@@ -209,6 +209,8 @@ await run("Licensed illustrative family photos load from the same site",async()=
   ];
   const pics=page.locator('img[src^="./assets/families/"]');
   assert(await pics.count()===5,"homepage should show exactly five local family photos");
+  assert(await page.locator(".showcase-card .family-card-photo img").evaluateAll(images=>images.length===3&&images.every(im=>im.complete&&im.naturalWidth>0)),"all three small segment photographs should be available without scrolling");
+
   assert((await page.locator(".family-photo-footer").innerText()).includes("Fotografie"),"missing illustrative-photography disclaimer");
   for(const file of sources){
     const image=page.locator('img[src$="'+file+'"]').first();
@@ -227,6 +229,8 @@ await run("Licensed illustrative family photos load from the same site",async()=
     assert(data.length>5000&&data.length<150000,file+" unexpectedly large or invalid: "+data.length);
   }
   assert(await page.evaluate(()=>document.documentElement.scrollWidth)<=392,"photos introduced mobile horizontal overflow");
+  await page.screenshot({path:"artifacts/family-photo-review-390.png",fullPage:true});
+
   assert(errors.length===0,"photo runtime errors: "+errors.join("; "));
   for(const path of ["baza-danych-rodzin.html","mamaklub-sampling.html"]){
     await page.goto(base+path,{waitUntil:"networkidle"});
@@ -238,6 +242,11 @@ await run("Licensed illustrative family photos load from the same site",async()=
     assert(await page.evaluate(()=>document.documentElement.scrollWidth)<=392,path+" photo caused horizontal overflow");
   }
   await context.close();
+  const desktopContext=await browser.newContext({viewport:{width:1440,height:900}});
+  const {page:desktop}=await testPage(desktopContext,base);
+  assert(await desktop.locator(".showcase-card .family-card-photo img").evaluateAll(images=>images.every(im=>im.complete&&im.naturalWidth>0)),"desktop segment images should be ready");
+  await desktop.screenshot({path:"artifacts/family-photo-review-1440.png",fullPage:true});
+  await desktopContext.close();
 });
 
 await run("WCAG 2.2 AA automated accessibility smoke test",async()=>{
