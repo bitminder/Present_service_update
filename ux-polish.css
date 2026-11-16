@@ -19,14 +19,6 @@ a,button{transition:background-color .18s ease,color .18s ease,border-color .18s
 .hero .hero-proof{max-width:570px}
 .family-hero-photo img{object-fit:cover}
 .metrics-note{max-width:1060px}
-.ps-quickbar{background:#fff;border-bottom:1px solid #f0e2e9}
-.ps-quickbar-inner{display:grid;grid-template-columns:minmax(200px,1.3fr) repeat(3,minmax(0,1fr));gap:12px;align-items:stretch;padding-top:23px;padding-bottom:23px}
-.ps-quickbar-copy{display:flex;flex-direction:column;justify-content:center;gap:4px}
-.ps-quickbar-copy strong{font-size:17px;color:#30212d;line-height:1.25}
-.ps-quickbar-copy span{font-size:12px;color:#675662;line-height:1.5}
-.ps-quickbar a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 17px;border:1px solid #ead7e3;border-radius:12px;color:#7d1951;font-weight:760;font-size:13px;background:#fffafd;line-height:1.35}
-.ps-quickbar a:hover,.ps-quickbar a:focus-visible{background:#f9e9f1;border-color:#cc80a9;box-shadow:0 5px 16px rgba(107,30,73,.06)}
-.ps-quickbar a span:last-child{font-size:19px;flex:none}
 .heritage-section{padding-top:85px;padding-bottom:85px}
 .heritage-card,.programme-history-card{box-shadow:0 8px 24px rgba(72,32,58,.035)}
 .heritage-card h3{font-size:clamp(20px,1.85vw,25px)}
@@ -37,8 +29,8 @@ a,button{transition:background-color .18s ease,color .18s ease,border-color .18s
 .brief-section .brief-card{box-shadow:0 18px 50px rgba(93,28,66,.10)}
 .faq-list summary{cursor:pointer}
 .footer-column a:hover{text-decoration:underline;text-underline-offset:3px}
-@media(max-width:1180px){.ps-quickbar-inner{grid-template-columns:repeat(3,minmax(0,1fr))}.ps-quickbar-copy{grid-column:1/-1}.primary-nav{gap:13px}}
-@media(max-width:940px){.primary-nav a{white-space:normal}.site-header .header-inner{gap:16px}.ps-quickbar-inner{padding-top:18px;padding-bottom:18px}}
+@media(max-width:1180px){.primary-nav{gap:13px}}
+@media(max-width:940px){.primary-nav a{white-space:normal}.site-header .header-inner{gap:16px}}
 @media(max-width:700px){
  html,section[id]{scroll-margin-top:85px}
  .site-header .header-inner{gap:10px}
@@ -49,15 +41,67 @@ a,button{transition:background-color .18s ease,color .18s ease,border-color .18s
  .hero .hero-actions{gap:15px}
  .hero .hero-actions .btn{width:100%;justify-content:center}
  .hero .hero-proof{margin-top:21px}
- .ps-quickbar-inner{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
- .ps-quickbar-copy{grid-column:1/-1}
- .ps-quickbar a{padding:12px;font-size:12px;min-height:52px}
- .ps-quickbar a:last-child{grid-column:1/-1}
  .section{padding-top:76px;padding-bottom:76px}
  .heritage-section{padding-top:70px;padding-bottom:70px}
  .section-topline{margin-bottom:22px}
  .heritage-intro h2{font-size:clamp(30px,7vw,43px)}
  .footer-column a{padding-block:3px}
 }
-@media(max-width:400px){.hero h1{font-size:clamp(35px,9.5vw,44px)}.ps-quickbar a{font-size:11px}.hero .hero-actions .text-link{font-size:13px}}
+@media(max-width:400px){.hero h1{font-size:clamp(35px,9.5vw,44px)}.hero .hero-actions .text-link{font-size:13px}}
 @media(prefers-reduced-motion:reduce){a,button,.data-core-card,.solution-card,.showcase-card,.v2-trust-grid article,.heritage-card{transition:none!important}}
+
+/* Final visual rhythm and consistent component primitives. */
+:root{--ps-space-section:clamp(68px,7.2vw,96px);--ps-card-radius:18px}
+.section{padding-top:var(--ps-space-section);padding-bottom:var(--ps-space-section)}
+.section-topline{margin-bottom:clamp(18px,2.5vw,29px)}
+.section h2{font-size:clamp(32px,3.9vw,55px);line-height:1.13;letter-spacing:-.045em}
+.section h2 em,.detail-section h2 em{font-style:normal}
+.section .section-side-note{letter-spacing:.1em}
+.section p,.detail-section p{line-height:1.72}
+.section .container>p{max-width:78ch}
+.hero .hero-actions{gap:clamp(15px,2.3vw,27px)}
+.hero .hero-actions .text-link{min-height:44px}
+.hero .hero-proof{margin-top:24px}
+.data-core-section{padding-top:clamp(64px,6.5vw,88px)}
+.showcase-section,.quality-section{padding-top:clamp(72px,7vw,94px);padding-bottom:clamp(72px,7vw,94px)}
+.heritage-section{padding-top:clamp(72px,7vw,94px);padding-bottom:clamp(72px,7vw,94px)}
+.heritage-grid,.showcase-grid,.data-core-grid,.v2-trust-grid{gap:clamp(14px,1.5vw,20px)}
+.heritage-card,.showcase-card,.data-core-card,.v2-trust-grid article,.programme-history-card,.solution-card{border-radius:var(--ps-card-radius)}
+.heritage-card,.data-core-card,.v2-trust-grid article{min-width:0}
+.btn,.showcase-select{font-weight:750}
+.btn:active,.showcase-select:active{transform:translateY(0);box-shadow:none}
+.btn-coral:focus-visible,.btn-dark:focus-visible,.showcase-select:focus-visible{outline-offset:4px}
+.field input,.field textarea,.field select{border-radius:9px}
+.field input:focus-visible,.field textarea:focus-visible,.field select:focus-visible{box-shadow:0 0 0 3px rgba(194,24,117,.12)}
+.heritage-foot a{display:inline-flex;align-items:center;min-height:44px}
+.footer-main{row-gap:32px}
+.footer-column a{line-height:1.6}
+.footer-bottom{line-height:1.7}
+@media(min-width:941px){
+ .site-header .header-inner{height:80px}
+ .hero{padding-top:clamp(40px,5vw,65px)}
+ .hero-grid{min-height:clamp(530px,42vw,610px)}
+ .hero .hero-copy{padding-bottom:clamp(30px,5vw,68px)}
+}
+@media(max-width:940px){
+ .header-cta{white-space:nowrap}
+ .site-header .header-inner{min-width:0}
+}
+@media(max-width:700px){
+ :root{--ps-space-section:66px}
+ .section h2{font-size:clamp(29px,7.2vw,42px);line-height:1.16}
+ .hero .hero-actions .text-link{display:inline-flex;align-items:center;min-height:44px}
+ .heritage-section{padding-top:66px;padding-bottom:66px}
+ .hero .hero-proof{margin-top:19px}
+ .footer-main{row-gap:22px}
+ .programme-history-card,.heritage-card{padding:23px}
+}
+@media(max-width:400px){
+ .header-cta{font-size:11px;padding-inline:11px}
+ .site-header .brand-official-logo{max-width:170px}
+ .hero .hero-lead{line-height:1.6}
+ .hero .hero-actions .btn{white-space:normal}
+}
+@media(prefers-reduced-motion:reduce){
+ .btn,.showcase-select,.data-core-card,.solution-card,.showcase-card,.v2-trust-grid article,.heritage-card{transform:none!important}
+}
