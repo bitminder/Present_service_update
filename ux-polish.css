@@ -105,3 +105,18 @@ a,button{transition:background-color .18s ease,color .18s ease,border-color .18s
 @media(prefers-reduced-motion:reduce){
  .btn,.showcase-select,.data-core-card,.solution-card,.showcase-card,.v2-trust-grid article,.heritage-card{transform:none!important}
 }
+
+/* Segment availability: aggregate counts only, never personal records. */
+.availability-panel{margin:22px 0 14px;padding:23px;border-radius:16px;border:1px solid #dfbfd2;background:linear-gradient(135deg,#fff 0%,#fff5fa 100%);box-shadow:0 8px 24px rgba(83,27,65,.04);min-width:0}
+.availability-top{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}
+.availability-eyebrow{display:block;font-size:10px;font-weight:800;letter-spacing:.12em;color:#8d245f;margin-bottom:7px}
+.availability-panel h5{font-size:clamp(16px,1.5vw,20px);line-height:1.3;letter-spacing:-.025em;color:#382638;margin:0;font-weight:800}
+.availability-indicator{display:grid;place-items:center;width:35px;height:35px;flex:none;border-radius:11px;background:#f3d9e7;color:#a31965;font-size:25px}
+.availability-result{display:flex;flex-wrap:wrap;gap:9px;align-items:baseline;margin-top:18px;color:#4b3344}
+.availability-result strong{font-size:clamp(31px,3vw,42px);line-height:1.12;letter-spacing:-.055em;color:#a31562}
+.availability-result>span{font-size:14px;font-weight:750;line-height:1.45}
+.availability-panel p{font-size:12px;line-height:1.65;color:#61515f;margin:12px 0 16px}
+.availability-check{display:inline-flex;align-items:center;justify-content:center;gap:11px;min-height:42px;padding:10px 17px;border:1px solid #a31965;border-radius:9px;background:#a31965;color:white;font-size:13px;font-weight:750}
+.availability-check:not(:disabled):hover{background:#7f114d;border-color:#7f114d}
+.availability-check:disabled{background:#f4e8ef;border-color:#e6cdda;color:#755f6e;cursor:not-allowed;opacity:1}
+@media(max-width:700px){.availability-panel{margin-top:19px;padding:18px}.availability-check{width:100%}}
