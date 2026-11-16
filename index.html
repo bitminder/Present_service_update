@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="./family-photos.css">
   <link rel="stylesheet" href="./heritage.css">
   <script src="./site-config.js" defer></script>
+  <script src="./availability.js" defer></script>
   <script src="./app.js" defer></script>
 <link rel="stylesheet" href="./ux-polish.css">
 </head>
@@ -322,6 +323,15 @@
               <div class="field"><label for="location">Zasięg geograficzny</label><select id="location" name="location"><option>Cała Polska</option><option>Wybrane województwa</option><option>Wybrane miasta / regiony</option><option>Do ustalenia</option></select></div></div>
               <fieldset class="region-fieldset" id="regions-field" hidden><legend>Wybierz województwa</legend><div class="region-list"><label class="region-choice"><input type="checkbox" name="voivodeship" value="Dolnośląskie"><span>Dolnośląskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Kujawsko-pomorskie"><span>Kujawsko-pomorskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Lubelskie"><span>Lubelskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Lubuskie"><span>Lubuskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Łódzkie"><span>Łódzkie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Małopolskie"><span>Małopolskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Mazowieckie"><span>Mazowieckie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Opolskie"><span>Opolskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Podkarpackie"><span>Podkarpackie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Podlaskie"><span>Podlaskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Pomorskie"><span>Pomorskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Śląskie"><span>Śląskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Świętokrzyskie"><span>Świętokrzyskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Warmińsko-mazurskie"><span>Warmińsko-mazurskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Wielkopolskie"><span>Wielkopolskie</span></label><label class="region-choice"><input type="checkbox" name="voivodeship" value="Zachodniopomorskie"><span>Zachodniopomorskie</span></label></div><p class="v2-field-hint">Możesz zaznaczyć kilka województw. Dostępność segmentów zostanie potwierdzona indywidualnie.</p></fieldset>
               <div class="field" id="city-field" hidden><label for="cities">Miasta / regiony</label><input id="cities" name="cities" maxlength="220" placeholder="Np. Poznań, Warszawa, okolice Krakowa"></div>
+              <aside class="availability-panel" id="availability-panel" aria-labelledby="availability-heading">
+                <div class="availability-top"><div><span class="availability-eyebrow">DOSTĘPNOŚĆ DANYCH</span><h5 id="availability-heading">Ile rekordów pasuje do kryteriów?</h5></div><span class="availability-indicator" aria-hidden="true">◎</span></div>
+                <div class="availability-result" role="status" aria-live="polite" aria-atomic="true">
+                  <strong class="availability-number" id="availability-number" hidden></strong>
+                  <span id="availability-status">Wybierz kanał i lokalizację, aby sprawdzić liczebność.</span>
+                </div>
+                <p id="availability-detail">Liczbę dopasowanych rekordów można wyświetlić po połączeniu z aktualną, zabezpieczoną bazą danych. Bez połączenia nie pokazujemy fikcyjnych liczb.</p>
+                <button type="button" class="availability-check" id="availability-check" disabled>Sprawdź liczebność <span aria-hidden="true">↗</span></button>
+              </aside>
               <div class="premium-wizard-actions"><span class="premium-wizard-hint">01 / 03</span><button type="button" class="btn btn-coral" data-wizard-next>Przejdź dalej <span aria-hidden="true">↗</span></button></div>
             </section>
             <section class="wizard-panel" data-wizard-step="2" aria-labelledby="wizard-heading-2">
