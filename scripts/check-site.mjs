@@ -31,8 +31,8 @@ for (const file of pages) {
   if(!v2CSS) errors.push(file+": missing v2 stylesheet");
   if(!verifiedLogo) errors.push(file+": missing company logo");
   if(!html.includes('href="./ux-polish.css"')) errors.push(file+": missing final design stylesheet");
-  if(/present-service-logo-clean\\.svg/.test(html)) errors.push(file+": references superseded logo SVG");
-  if(/https?:\\/\\/(?:www\\.)?present-service\\.pl\\//.test(html)) errors.push(file+": should link internally rather than to legacy company site");
+  if(html.includes('present-service-logo-clean.svg')) errors.push(file+": references superseded logo SVG");
+  if(html.includes('https://www.present-service.pl/') || html.includes('https://present-service.pl/')) errors.push(file+": should link internally rather than to legacy company site");
   if(file==="index.html" && !html.includes('href="./o-firmie.html"')) errors.push(file+": missing company-page navigation");
   if(file==="index.html" && html.includes('class="ps-quickbar"')) errors.push(file+": duplicate quick links returned");
   if(!googleFonts) errors.push(file+": external Google Fonts not removed");
