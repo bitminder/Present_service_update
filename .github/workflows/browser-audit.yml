@@ -1,8 +1,9 @@
-name: 'Browser audit - refined logo 3.6'
+name: 'Browser audit - Present Service final QA'
 
 on:
   push:
     branches:
+      - main
       - audit-v2-browser
       - premium-design-2-1
       - data-first-2-2
@@ -54,6 +55,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: present-service-v2-browser-audit
+          name: present-service-final-browser-audit
           path: artifacts/
-          retention-days: 3
+          retention-days: 7
