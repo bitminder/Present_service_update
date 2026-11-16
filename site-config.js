@@ -3,6 +3,8 @@
    Analytics remains disabled until legal/privacy approval. */
 window.PRESENT_SERVICE_CONFIG = Object.freeze({
   leadEndpoint: "",
+  // HTTPS API returning aggregated counts only; no public access to individual records.
+  availabilityEndpoint: "",
   turnstileSiteKey: "",
   analyticsWebsiteId: ""
 });
