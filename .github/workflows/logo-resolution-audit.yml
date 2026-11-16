@@ -1,0 +1,28 @@
+name: Inspect current Present-Service PNG logo
+on:
+  push:
+    branches: [logo-resolution-audit-2026-11-16]
+    paths: [.github/workflows/logo-resolution-audit.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read real logo dimensions and color metadata
+        run: |
+          python3 - <<'PY'
+          import struct, pathlib
+          data=pathlib.Path("assets/present-service-logo.png").read_bytes()
+          assert data[:8]==b'\x89PNG\r\n\x1a\n', "Not PNG"
+          w,h,depth,color,comp,filt,inter=struct.unpack(">IIBBBBB",data[16:29])
+          print(f"LOGO FILE: assets/present-service-logo.png")
+          print(f"PNG SOURCE DIMENSIONS: {w} x {h} pixels")
+          print(f"FILE SIZE: {len(data)} bytes")
+          print(f"PNG BIT DEPTH: {depth}; COLOR TYPE: {color}; INTERLACE: {inter}")
+          for css_width in (212,190,176):
+            print(f"CSS DISPLAY WIDTH {css_width}px -> scale {css_width/w:.3f}x; source pix / CSS pix: {w/css_width:.2f}")
+            print(f"RETINA DPR 2: effective source pix / device pix: {w/(css_width*2):.2f}")
+            print(f"RETINA DPR 3: effective source pix / device pix: {w/(css_width*3):.2f}")
+          PY
