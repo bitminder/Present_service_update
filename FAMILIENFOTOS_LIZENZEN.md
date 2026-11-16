@@ -2,15 +2,15 @@
 
 Fünf optimierte, lokal gespeicherte Pexels-Fotografien veranschaulichen familiäre Lebensphasen. Für die Bildauswahl haben wir nach **nachvollziehbaren polnischen Aufnahmeorten und glaubwürdigen Stadt-/Vorstadt-Alltagssituationen** gesucht, nicht versucht, die Herkunft der Personen anhand ihres Aussehens zu bestimmen.
 
-Vier Aufnahmen haben laut Pexels einen dokumentierten Aufnahmeort in Polen; für das Hero-Familienfoto ist **kein polnischer Aufnahmeort belegt**. Die Bildwelt mischt einen Innenraum mit Straßen- und Parkszenen. Die Fotos illustrieren die Zielgruppe und stellen **keine Kunden, gespeicherten Kontakte oder Teilnehmer einer Present-Service-Kampagne** dar.
+Zwei Aufnahmen haben laut Pexels einen dokumentierten Aufnahmeort in Polen; für die beiden neuen Kartenbilder und das Hero-Foto ist **kein polnischer Aufnahmeort belegt**. Die Bildwelt mischt einen Innenraum mit Straßen- und Parkszenen. Die Fotos illustrieren die Zielgruppe und stellen **keine Kunden, gespeicherten Kontakte oder Teilnehmer einer Present-Service-Kampagne** dar.
 
 ## Fotografen und Quellnachweise
 
 | Datei | Foto / Fotograf | Aufnahmestandort laut Pexels | Einsatz |
 |---|---|---|---|
 | `assets/families/hero-parents-baby.webp` | Pavel Danilyuk – https://www.pexels.com/photo/low-angle-shot-of-a-family-playing-together-7220468/ | Nicht bestätigt | Junge Familie spielt zu Hause / Hero |
-| `assets/families/segment-baby.webp` | Marcin Jozwiak – https://www.pexels.com/photo/close-up-photo-of-a-baby-smiling-4424342/ | Poznań, Polen | Baby-Karte, ca. erstes Lebensjahr |
-| `assets/families/segment-preschool.webp` | Biova Nakou – https://www.pexels.com/photo/a-child-touching-father-s-face-1471843/ | Gdynia, Polen | Vater mit Tochter / Vorschulkind-Karte und Datenbankseite |
+| `assets/families/segment-baby.webp` | RDNE Stock project – https://www.pexels.com/photo/a-mother-and-father-taking-care-of-their-baby-6849278/ | Nicht verifiziert | Junge Eltern und Baby, Familienszene in Wohnung |
+| `assets/families/segment-preschool.webp` | Vitaly Gariev – https://www.pexels.com/photo/father-and-mother-helping-their-child-draw-picture-in-their-living-room-22690879/ | Nicht verifiziert | Familie mit Kind beim gemeinsamen Malen, Vorschulkind-Karte und Datenbankseite |
 | `assets/families/segment-toddler.webp` | Jacek Pobłocki – https://www.pexels.com/photo/back-view-of-a-woman-carrying-a-child-in-a-park-17309023/ | Lębork, Polen | Mutter mit Kleinkind im Park |
 | `assets/families/mamaklub-family.webp` | Marcin Jozwiak – https://www.pexels.com/photo/woman-pushing-stroller-3625705/ | Poznań, Polen | Mutter mit Kinderwagen im urbanen Alltag / Mamaklub |
 
