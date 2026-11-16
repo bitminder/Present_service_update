@@ -215,7 +215,7 @@ await run("Licensed illustrative family photos load from the same site",async()=
   const creditLinks=page.locator(".family-photo-footer details a[href*='pexels.com/photo/']");
   assert(await creditLinks.count()===5,"photo source attribution should include all five current photographs");
   const credits=await page.locator(".family-photo-footer details").textContent();
-  for(const person of ["Pavel Danilyuk","Marcin Jozwiak","Biova Nakou","Jacek Pobłocki"]){
+  for(const person of ["Pavel Danilyuk","RDNE Stock project","Vitaly Gariev","Jacek Pobłocki"]){
     assert(credits.includes(person),"missing current photographer credit "+person);
   }
 
