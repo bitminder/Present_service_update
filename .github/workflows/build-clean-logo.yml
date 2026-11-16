@@ -1,0 +1,56 @@
+name: Render clean original-style Present-Service logo
+on:
+  push:
+    branches: [logo-refined-lettering-3-6]
+    paths: [.github/workflows/build-clean-logo.yml]
+permissions:
+  contents: write
+jobs:
+  vectorize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install open-source outlines and image geometry dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-lato
+          python3 -m pip install --break-system-packages --quiet fonttools opencv-python-headless numpy cairosvg
+      - name: Build fully vector SVG from uploaded original design
+        run: |
+          python3 scripts/vectorize-logo.py
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          svg=Path('assets/present-service-logo.svg').read_text()
+          root=ET.fromstring(svg)
+          assert root.get('viewBox')=='0 0 212 33'
+          assert len(root.findall('{http://www.w3.org/2000/svg}path'))==3
+          assert not any(x in svg for x in ('<image','base64,','<text'))
+          assert 'Marketing Communication' in svg
+          print('SVG VALID:',len(svg),'bytes with three genuine outline paths')
+          PY
+      - name: Render desktop and retina previews
+        run: |
+          mkdir -p artifacts
+          python3 - <<'PY'
+          import cairosvg
+          from pathlib import Path
+          f=Path('assets/present-service-logo.svg')
+          for scale in [1,3,6]:
+              cairosvg.svg2png(url=str(f),write_to=f'artifacts/logo-svg-{scale}x.png',output_width=212*scale,output_height=33*scale)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: refined-logo-review
+          path: artifacts/*.png
+          retention-days: 5
+      - name: Commit crisp SVG to isolated development branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/present-service-logo.svg
+          if git diff --cached --quiet; then echo 'No vector changes'; else
+            git commit -m 'assets: replace aliased trace with clean original-style lettering and icon'
+            git push origin HEAD:logo-refined-lettering-3-6
+          fi
