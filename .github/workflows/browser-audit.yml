@@ -1,4 +1,4 @@
-name: 'Browser audit - two photo replacement 3.3'
+name: 'Browser audit - vector logo 3.5'
 
 on:
   push:
@@ -11,6 +11,7 @@ on:
       - family-editorial-poland-3-2
       - poland-two-card-images-3-3
       - mother-baby-card-3-4
+      - logo-vector-3-5
   workflow_dispatch:
 
 concurrency:
