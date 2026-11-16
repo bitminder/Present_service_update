@@ -197,6 +197,29 @@ await run("All service landing pages load with branding",async()=>{
   await context.close();
 });
 
+await run("Official vector logo renders crisply on desktop and mobile",async()=>{
+  const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:2});
+  const {page,errors}=await testPage(context,base);
+  const image=page.locator('header img.brand-official-logo');
+  assert(await image.getAttribute("src")==="./assets/present-service-logo.svg","Header does not use SVG vector logo");
+  assert(await page.locator('footer img.brand-official-logo').getAttribute("src")==="./assets/present-service-logo.svg","Footer does not use SVG vector logo");
+  assert(await image.evaluate(img=>img.complete&&img.naturalWidth===212&&img.naturalHeight===33),"Original SVG dimensions are not preserved");
+  const desktopWidth=await image.evaluate(img=>Math.round(img.getBoundingClientRect().width));
+  assert(desktopWidth===212,"Desktop logo width changed: "+desktopWidth);
+  const response=await page.request.get(base+"assets/present-service-logo.svg");
+  assert(response.status()===200,"Company SVG logo did not load");
+  const svg=await response.text();
+  assert(svg.includes('<path ') && svg.includes('#C21875') && svg.includes('#6C6766'),"SVG is not a two-color vector");
+  assert(!svg.includes('<image') && !svg.includes('data:image/') && !svg.includes('base64,'),"Logo SVG embeds raster content");
+  assert(!errors.length,"Logo caused runtime errors: "+errors.join("; "));
+  await page.screenshot({path:"artifacts/vector-logo-desktop-1440-dpr2.png",fullPage:false});
+  await page.setViewportSize({width:390,height:844});
+  const mobileWidth=await image.evaluate(img=>Math.round(img.getBoundingClientRect().width));
+  assert(mobileWidth===176,"Mobile logo width changed: "+mobileWidth);
+  await page.screenshot({path:"artifacts/vector-logo-mobile-390-dpr2.png",fullPage:false});
+  await context.close();
+});
+
 await run("Licensed illustrative family photos load from the same site",async()=>{
   const context=await browser.newContext({viewport:{width:390,height:844}});
   const {page,errors}=await testPage(context,base);
