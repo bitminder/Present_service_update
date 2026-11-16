@@ -9,7 +9,7 @@ Zwei Aufnahmen haben laut Pexels einen dokumentierten Aufnahmeort in Polen; für
 | Datei | Foto / Fotograf | Aufnahmestandort laut Pexels | Einsatz |
 |---|---|---|---|
 | `assets/families/hero-parents-baby.webp` | Pavel Danilyuk – https://www.pexels.com/photo/low-angle-shot-of-a-family-playing-together-7220468/ | Nicht bestätigt | Junge Familie spielt zu Hause / Hero |
-| `assets/families/segment-baby.webp` | RDNE Stock project – https://www.pexels.com/photo/a-mother-and-father-taking-care-of-their-baby-6849278/ | Nicht verifiziert | Junge Eltern und Baby, Familienszene in Wohnung |
+| `assets/families/segment-baby-mama.webp` | Helena Lopes – https://www.pexels.com/photo/mother-sitting-with-newborn-on-sofa-27176833/ | Nicht verifiziert | Mutter hält schlafendes Neugeborenes gut sichtbar auf dem Sofa |
 | `assets/families/segment-preschool.webp` | Vitaly Gariev – https://www.pexels.com/photo/father-and-mother-helping-their-child-draw-picture-in-their-living-room-22690879/ | Nicht verifiziert | Familie mit Kind beim gemeinsamen Malen, Vorschulkind-Karte und Datenbankseite |
 | `assets/families/segment-toddler.webp` | Jacek Pobłocki – https://www.pexels.com/photo/back-view-of-a-woman-carrying-a-child-in-a-park-17309023/ | Lębork, Polen | Mutter mit Kleinkind im Park |
 | `assets/families/mamaklub-family.webp` | Marcin Jozwiak – https://www.pexels.com/photo/woman-pushing-stroller-3625705/ | Poznań, Polen | Mutter mit Kinderwagen im urbanen Alltag / Mamaklub |
