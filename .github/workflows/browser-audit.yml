@@ -1,4 +1,4 @@
-name: 'Browser audit - Polish family imagery 3.2'
+name: 'Browser audit - two photo replacement 3.3'
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
       - data-experience-3-0
       - family-photography-3-1
       - family-editorial-poland-3-2
+      - poland-two-card-images-3-3
   workflow_dispatch:
 
 concurrency:
