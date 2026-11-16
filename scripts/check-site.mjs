@@ -21,7 +21,7 @@ for (const file of pages) {
   const language=/<html[^>]*lang=["']pl["']/i.test(html);
   const noindex=/<meta\s+name=["']robots["']\s+content=["']noindex,nofollow["']/i.test(html);
   const v2CSS=html.includes('href="./v2.css"');
-  const verifiedLogo=html.includes('src="./assets/present-service-logo.svg"');
+  const verifiedLogo=html.includes('src="./assets/present-service-logo-clean.svg"');
   const googleFonts=!html.includes("fonts.googleapis.com");
   if(!singleH1) errors.push(file+": expected one h1");
   if(!title) errors.push(file+": missing title");
