@@ -183,7 +183,7 @@ await run("Service landing links preselect the channel",async()=>{
 
 await run("All service landing pages load with branding",async()=>{
   const context=await browser.newContext({viewport:{width:390,height:844}});
-  const pages=["baza-danych-rodzin.html","direct-mail.html","emailing.html","mobile-marketing.html","mamaklub-sampling.html","segmentacja-danych.html","zastosowania-danych.html","informacje-o-danych.html"];
+  const pages=["baza-danych-rodzin.html","direct-mail.html","emailing.html","mobile-marketing.html","mamaklub-sampling.html","segmentacja-danych.html","zastosowania-danych.html","informacje-o-danych.html","o-firmie.html"];
   for(const p of pages) {
     const {page,response,errors}=await testPage(context,base+p);
     assert(response.status()===200,p+" HTTP "+response.status());
@@ -197,27 +197,28 @@ await run("All service landing pages load with branding",async()=>{
   await context.close();
 });
 
-await run("Official vector logo renders crisply on desktop and mobile",async()=>{
+await run("Original company PNG is preserved in header and footer",async()=>{
   const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:2});
   const {page,errors}=await testPage(context,base);
-  const image=page.locator('header img.brand-official-logo');
-  assert(await image.getAttribute("src")==="./assets/present-service-logo-clean.svg","Header does not use SVG vector logo");
-  assert(await page.locator('footer img.brand-official-logo').getAttribute("src")==="./assets/present-service-logo-clean.svg","Footer does not use SVG vector logo");
-  assert(await image.evaluate(img=>img.complete&&img.naturalWidth===212&&img.naturalHeight===33),"Original SVG dimensions are not preserved");
-  const desktopWidth=await image.evaluate(img=>Math.round(img.getBoundingClientRect().width));
-  assert(desktopWidth===212,"Desktop logo width changed: "+desktopWidth);
-  const response=await page.request.get(base+"assets/present-service-logo-clean.svg");
-  assert(response.status()===200,"Company SVG logo did not load");
-  const svg=await response.text();
-  assert(svg.includes('<path ') && svg.includes('#C21875') && svg.includes('#6C6867'),"SVG is not a two-color vector");
-  assert(svg.includes("Marketing Communication") && svg.match(/<path /g)?.length===3,"Logo must be three true vector paths");
-  assert(!svg.includes('<image') && !svg.includes('data:image/') && !svg.includes('base64,'),"Logo SVG embeds raster content");
-  assert(!errors.length,"Logo caused runtime errors: "+errors.join("; "));
-  await page.screenshot({path:"artifacts/vector-logo-desktop-1440-dpr2.png",fullPage:false});
+  const logo=page.locator('header img.brand-official-logo');
+  const src=await logo.getAttribute("src");
+  assert(src?.startsWith("./assets/present-service-logo-original.png"),"Header is not using original uploaded PNG");
+  const footerSrc=await page.locator("footer img.brand-official-logo").getAttribute("src");
+  assert(footerSrc?.startsWith("./assets/present-service-logo-original.png"),"Footer is not using original uploaded PNG");
+  assert(await logo.evaluate(img=>img.complete&&img.naturalWidth===212&&img.naturalHeight===33),"Original logo intrinsic dimensions changed or image did not load");
+  const desktopWidth=await logo.evaluate(img=>Math.round(img.getBoundingClientRect().width));
+  assert(desktopWidth===212,"Desktop logo rendered above native pixel resolution: "+desktopWidth);
+  const response=await page.request.get(base+"assets/present-service-logo-original.png");
+  assert(response.status()===200,"Original company PNG unavailable");
+  const raw=await response.body();
+  assert(raw.length>1000&&raw.length<25000,"Unexpected original company PNG size: "+raw.length);
+  assert(raw.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])),"Original logo is not PNG");
+  assert(!errors.length,"Company logo caused network/runtime errors: "+errors.join("; "));
+  await page.screenshot({path:"artifacts/original-logo-desktop.png",fullPage:false});
   await page.setViewportSize({width:390,height:844});
-  const mobileWidth=await image.evaluate(img=>Math.round(img.getBoundingClientRect().width));
-  assert(mobileWidth===176,"Mobile logo width changed: "+mobileWidth);
-  await page.screenshot({path:"artifacts/vector-logo-mobile-390-dpr2.png",fullPage:false});
+  const mobileWidth=await logo.evaluate(img=>Math.round(img.getBoundingClientRect().width));
+  assert(mobileWidth<=212,"Mobile logo is upscaled beyond original: "+mobileWidth);
+  await page.screenshot({path:"artifacts/original-logo-mobile.png",fullPage:false});
   await context.close();
 });
 
@@ -291,7 +292,7 @@ await run("Licensed illustrative family photos load from the same site",async()=
 await run("WCAG 2.2 AA automated accessibility smoke test",async()=>{
   const context=await browser.newContext({viewport:{width:1440,height:900}});
   const allViolations=[];
-  for(const url of [base,base+"baza-danych-rodzin.html",base+"direct-mail.html",base+"emailing.html",base+"mobile-marketing.html",base+"mamaklub-sampling.html",base+"segmentacja-danych.html",base+"zastosowania-danych.html",base+"informacje-o-danych.html"]){
+  for(const url of [base,base+"baza-danych-rodzin.html",base+"direct-mail.html",base+"emailing.html",base+"mobile-marketing.html",base+"mamaklub-sampling.html",base+"segmentacja-danych.html",base+"zastosowania-danych.html",base+"informacje-o-danych.html",base+"o-firmie.html"]){
     const {page}=await testPage(context,url);
     await page.addScriptTag({content:axe.source});
     const audit=await page.evaluate(async()=>await window.axe.run(document,{
