@@ -1,0 +1,53 @@
+name: Preview mother and baby photo candidates
+on:
+  push:
+    branches: [mother-baby-card-3-4]
+    paths: [.github/workflows/mother-baby-image-preview.yml]
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build true-to-layout photo contact sheet
+        run: |
+          python3 -m pip install --break-system-packages --quiet pillow
+          python3 - <<'PY'
+          from PIL import Image,ImageOps,ImageDraw,ImageFont
+          from io import BytesIO
+          from pathlib import Path
+          import urllib.request
+          photos=[
+             ("27176833","Helena Lopes — mother & newborn on sofa"),
+             ("7282281","Sarah Chai — mother with baby on sofa"),
+             ("6957490","Helena Lopes — mother with baby on couch"),
+             ("27177604","Helena Lopes — tender mother and baby")
+          ]
+          out=Path("artifacts")
+          out.mkdir(exist_ok=True)
+          width,height=900,570
+          sheet=Image.new("RGB",(width*2, (height+48)*2),"white")
+          draw=ImageDraw.Draw(sheet)
+          for n,(id,label) in enumerate(photos):
+            url=f"https://images.pexels.com/photos/{id}/pexels-photo-{id}.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            request=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+            with urllib.request.urlopen(request,timeout=40) as response: data=response.read()
+            if len(data)<20000: raise RuntimeError(f"Bad image {id}")
+            img=ImageOps.exif_transpose(Image.open(BytesIO(data))).convert("RGB")
+            img=ImageOps.fit(img,(width,height),method=Image.Resampling.LANCZOS,centering=(.5,.5))
+            x=(n%2)*width
+            y=(n//2)*(height+48)
+            sheet.paste(img,(x,y))
+            draw.text((x+15,y+height+12),f"{id}  {label}",fill="black")
+            img.save(out/f"candidate-{id}-crop.jpg",quality=87)
+            print(f"CANDIDATE {id}: crop={width}x{height}")
+          sheet.save(out/"four-mother-baby-candidates.jpg",quality=87)
+          PY
+      - name: Store visual samples
+        uses: actions/upload-artifact@v4
+        with:
+          name: mother-baby-candidate-comparison
+          path: artifacts/
+          retention-days: 7
