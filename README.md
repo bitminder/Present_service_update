@@ -1,3 +1,20 @@
+# Present-Service 3.6 – Sauber neu aufgebautes Markenlogo
+
+Das von der Firma hochgeladene Original-Logo (`logo.png`) liegt nur in **212 × 33 Pixel** vor. Der bisherige SVG-Pixel-Trace war deshalb bei Text und diagonalen Kanten sichtbar unruhig. Jetzt sind das achtstrahlige Symbol und die beiden Textzeilen **als echte glatte SVG-Pfade** aufgebaut, ohne Bitmap und ohne ein zur Laufzeit benötigtes Font.
+
+- Neue Datei: **`assets/present-service-logo-clean.svg`** in Header und Footer auf allen neun Seiten, mit frischem Dateinamen zur Vermeidung alter Bild-Caches
+- An Original orientiert: identischer Text „PRESENT SERVICE“ / „Marketing Communication“, Magenta **#C21875**, Grau **#6C6867**, gleiche Gesamtproportion 212:33
+- Das Logo-Symbol wurde aus der Form der vom Nutzer hochgeladenen Originaldatei neu geglättet
+- Die winzige Pixel-Schrift wurde **nicht** erneut nachgezeichnet, sondern mit sauberem Lato-OFL-Font als Pfade neu erstellt; die Typografie ist deshalb **sehr ähnlich, aber nicht mathematisch exakt identisch** mit einem unbekannten offiziellen Font
+- Keine externen Schriftdateien, keine SVG-`<text>`-Abhängigkeiten und keine eingebetteten Rasterdaten
+- Der reproduzierbare Code liegt in **`scripts/vectorize-logo.py`** und benötigt nur Open-Source-Abhängigkeiten
+- Responsive Breiten unverändert (Desktop 212 px; kleinere Geräte 190 bzw. 176 px)
+- Die ursprüngliche PNG-Datei bleibt als Vergleich und Backup erhalten. Ein offizielles EPS/SVG/AI des Markeninhabers wäre für perfekte Schrift- und Symboltreue weiterhin besser.
+
+**Geltungsbereich:** ausschließlich GitHub-Pages-Vorschau, nicht `present-service.pl`.
+
+---
+
 # Present-Service 3.5 – Scharfes Markenlogo als SVG
 
 Das Logo in **Header und Footer aller neun Seiten** wird jetzt über `assets/present-service-logo.svg` ausgeliefert. Dieses SVG enthält zwei echte Vektorpfade (Magenta `#C21875`, Grau `#6C6766`), keine eingebetteten Rasterbilder und keine abhängigen Webfonts. Die ursprüngliche Größe und Proportion `212 × 33` bleiben erhalten; die responsiven CSS-Breiten sind weiterhin 212 px (Desktop), 190 px (Tablet/Smartphone) und 176 px (kleines Smartphone).
