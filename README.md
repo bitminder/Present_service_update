@@ -1,3 +1,15 @@
+# Present-Service 3.5 – Scharfes Markenlogo als SVG
+
+Das Logo in **Header und Footer aller neun Seiten** wird jetzt über `assets/present-service-logo.svg` ausgeliefert. Dieses SVG enthält zwei echte Vektorpfade (Magenta `#C21875`, Grau `#6C6766`), keine eingebetteten Rasterbilder und keine abhängigen Webfonts. Die ursprüngliche Größe und Proportion `212 × 33` bleiben erhalten; die responsiven CSS-Breiten sind weiterhin 212 px (Desktop), 190 px (Tablet/Smartphone) und 176 px (kleines Smartphone).
+
+**Wichtig zur Originaltreue:** Die SVG-Datei ist eine automatische Vektornachzeichnung der vorhandenen, nur 212 × 33 Pixel großen PNG-Originaldatei. Das beseitigt die Raster-Hochskalierung und bleibt bei hochauflösenden Displays als Vektorgrafik scharf. Details, die im kleinen Original gar nicht vorhanden waren, kann die Nachzeichnung jedoch nicht rekonstruieren. Ein vom Unternehmen geliefertes offizielles SVG/EPS/AI-Masterlogo wäre für höchste Markentreue nochmals vorzuziehen.
+
+Die originale `assets/present-service-logo.png` bleibt als Vergleich/Backup unverändert. Der Vektorisierungsvorgang ist mit `scripts/vectorize-logo.py` dokumentiert. Tests prüfen SVG-Einbindung, Größe, Erreichbarkeit, fehlende Rastereinbettung sowie das Seitenlayout auf Desktop und Smartphone.
+
+**Nur GitHub-Pages-Vorschau:** Keine Änderung der Produktivdomain `present-service.pl`.
+
+---
+
 # Present-Service 3.2 – Familienbildwelt für Polen
 
 **Erneuerung der Website-Bildwelt:** Statt international generisch wirkenden Motiven werden nun alltagsnahe Innen-, Stadt- und Parkszenen verwendet. **Zwei von fünf** Fotos haben laut Pexels einen dokumentierten Aufnahmeort in **Poznań bzw. Lębork**. Für Hero, Baby- und Vorschulkind-Foto ist kein polnischer Aufnahmeort belegt. Dies ist eine ortsbezogene, keine ethnische Zuordnung.
