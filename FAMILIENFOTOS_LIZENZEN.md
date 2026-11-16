@@ -1,39 +1,31 @@
-# Present-Service 3.1 – Bildquellen, Lizenzen und Einsatzzweck
+# Present-Service 3.2 – Familienbilder für den polnischen Markt
 
-Die Website nutzt **fünf lokal gespeicherte, optimierte Fotografien**, die ursprünglich auf Pexels veröffentlicht wurden. Sie dienen ausschließlich der **Illustration typischer Lebenssituationen von Familien**.
+Fünf optimierte, lokal gespeicherte Pexels-Fotografien veranschaulichen familiäre Lebensphasen. Für die Bildauswahl haben wir nach **nachvollziehbaren polnischen Aufnahmeorten und glaubwürdigen Stadt-/Vorstadt-Alltagssituationen** gesucht, nicht versucht, die Herkunft der Personen anhand ihres Aussehens zu bestimmen.
 
-**Wichtig:** Abgebildete Personen werden **nicht** als Kunden von Present-Service, Mitglieder konkreter Datenbanksegmente, Empfänger einer Kampagne oder Fürsprecher des Angebots dargestellt. Keine der Fotografien ist ein Beleg für eine aktive Kampagne oder deren Reichweite. Das ist auch auf der Website vermerkt.
+Vier Aufnahmen haben laut Pexels einen dokumentierten Aufnahmeort in Polen; für das Hero-Familienfoto ist **kein polnischer Aufnahmeort belegt**. Die Bildwelt mischt einen Innenraum mit Straßen- und Parkszenen. Die Fotos illustrieren die Zielgruppe und stellen **keine Kunden, gespeicherten Kontakte oder Teilnehmer einer Present-Service-Kampagne** dar.
 
-## Quellen und Nutzung
+## Fotografen und Quellnachweise
 
-| Datei im Projekt | Urheber / Fotoquelle | Verwendung |
-|---|---|---|
-| `assets/families/hero-parents-baby.webp` | Yana Prokopenok — https://www.pexels.com/photo/parents-playing-with-baby-11145071/ | Hero: Eltern mit Baby zu Hause |
-| `assets/families/segment-baby.webp` | Anna Shvets — https://www.pexels.com/photo/parents-playing-with-their-baby-11369370/ | Demonstrationskarte: Familien mit Säuglingen |
-| `assets/families/segment-preschool.webp` | Ketut Subiyanto — https://www.pexels.com/photo/photo-of-woman-sitting-on-couch-while-hugging-her-child-4473625/ | Demonstrationskarte: Vorschulkinder (Mutter und älteres Kind); Datenbank-Unterseite |
-| `assets/families/segment-toddler.webp` | Tran Nhu Tuan — https://www.pexels.com/photo/happy-ethnic-family-with-kid-on-sofa-7936747/ | Demonstrationskarte: junge Familien |
-| `assets/families/mamaklub-family.webp` | Dasha Halepova — https://www.pexels.com/photo/couple-sitting-on-couch-with-children-16852512/ | Ergänzendes Mamaklub-Angebot und Unterseite |
+| Datei | Foto / Fotograf | Aufnahmestandort laut Pexels | Einsatz |
+|---|---|---|---|
+| `assets/families/hero-parents-baby.webp` | Pavel Danilyuk – https://www.pexels.com/photo/low-angle-shot-of-a-family-playing-together-7220468/ | Nicht bestätigt | Junge Familie spielt zu Hause / Hero |
+| `assets/families/segment-baby.webp` | Marcin Jozwiak – https://www.pexels.com/photo/close-up-photo-of-a-baby-smiling-4424342/ | Poznań, Polen | Baby-Karte, ca. erstes Lebensjahr |
+| `assets/families/segment-preschool.webp` | Biova Nakou – https://www.pexels.com/photo/a-child-touching-father-s-face-1471843/ | Gdynia, Polen | Vater mit Tochter / Vorschulkind-Karte und Datenbankseite |
+| `assets/families/segment-toddler.webp` | Jacek Pobłocki – https://www.pexels.com/photo/back-view-of-a-woman-carrying-a-child-in-a-park-17309023/ | Lębork, Polen | Mutter mit Kleinkind im Park |
+| `assets/families/mamaklub-family.webp` | Marcin Jozwiak – https://www.pexels.com/photo/woman-pushing-stroller-3625705/ | Poznań, Polen | Mutter mit Kinderwagen im urbanen Alltag / Mamaklub |
 
-## Rechtsgrundlagen und Vorsicht
+## Rechte und Kontext
 
-Pexels License: https://www.pexels.com/legal-pages/license
+Lizenz: https://www.pexels.com/legal-pages/license
 
-Pexels erklärt, dass Fotos kostenlos für kommerzielle Webseiten genutzt werden dürfen und keine Pflicht zur Namensnennung besteht. Pexels fordert zugleich, **keine Zustimmung oder Produktunterstützung durch die abgebildeten Personen zu suggerieren**. Die Pexels-Nutzungsbedingungen weisen darauf hin, dass Rechte an erkennbaren Personen besondere Sorgfalt erfordern können.
+Pexels gestattet grundsätzlich kostenlose kommerzielle Nutzung von Pexels-Fotos, verbietet aber unter anderem, eine Unterstützung oder Teilnahme der abgebildeten Menschen an einer Marke/einem Angebot zu suggerieren. Die konkrete Werbenutzung von Fotos erkennbarer Personen kann eine zusätzliche Prüfung der Persönlichkeits-/Model-Release-Rechte benötigen. Dies ist keine rechtliche Freigabe zur Produktivnutzung.
 
-Die Bilder werden hier nur zur allgemeinen Illustration von Zielgruppen / familiären Lebensphasen in einem sachlichen Kontext eingesetzt. Für eine endgültige Firmenveröffentlichung sollten Markeninhaber oder Rechtsberatung nochmals prüfen, ob die konkrete werbliche Nutzung zusätzliche Einwilligungen benötigt. Alternativ die Fotos durch professionell lizenziertes Bildmaterial mit dokumentierten Model-Releases ersetzen.
+Die Bilder erscheinen daher mit Hinweis auf ihren illustrativen Charakter und vollständigen Quellenangaben. Auf der Website werden weiterhin keine realen personenbezogenen Datensätze, vermeintlichen Kundenreferenzen oder ungesicherten Datenbestände behauptet.
 
 ## Technische Verarbeitung
 
-Die Bilder wurden in einem **isolierten GitHub-Actions-Workflow** aus den oben genannten, namentlich ausgewählten Pexels-Fotoseiten bezogenen Bilddateien erstellt. Sie wurden auf maximal 920–1250 Pixel Breite skaliert und ins moderne WebP-Format umgewandelt, um unnötig große Downloads zu vermeiden.
+Die Bilder wurden per temporärem GitHub-Actions-Workflow heruntergeladen, in WebP umgewandelt und lokal im Repository unter `assets/families` gespeichert. Die Fotos wurden auf höchstens 920 bis 1280 Pixel Breite skaliert, mit Dateigrößen von ungefähr 49 bis 94 KB. Es gibt beim normalen Seitenabruf keine Bildanfragen an Pexels.
 
-Die Dateien werden auf derselben Domain wie die Website ausgeliefert (`assets/families`). Es werden keine externen Bild-CDN-Requests aus dem Browser ausgelöst. Im HTML sind Bildgrößen, `decoding="async"` und aussagekräftige Alternativtexte gesetzt. Die drei kompakten Beispielbilder werden mit niedriger Priorität früh geladen, damit sie beim Scrollen sofort verfügbar sind; weiter unten platzierte Bilder verwenden `loading="lazy"`.
+Sichtbare Stellen: Startseiten-Hero, drei Beispielsegmente, Mamaklub-Teaser und die beiden Unterseiten `baza-danych-rodzin.html` sowie `mamaklub-sampling.html`. Responsiver Beschnitt: `family-photos.css`.
 
-## Bildaustausch
-
-Du kannst später alle fünf Fotos durch Firmenmaterial ersetzen, das inhaltlich besser passt und für das ihr vollständige Nutzungsrechte nachweisen könnt. Verwende dieselben Dateinamen oder aktualisiere die Pfade in:
-- `index.html`
-- `baza-danych-rodzin.html`
-- `mamaklub-sampling.html`
-- `family-photos.css` für Bildausschnitt / `object-position`
-
-Keine **erkennbaren Personen** als vermeintliche Datensätze oder Kunden portraitieren; echte Firmenkampagnen und Kundenlogos nur mit deren Freigabe zeigen. Quellen, Autorennamen und Bildhinweise bei Austausch entsprechend aktualisieren.
+Bei einem späteren Austausch durch eigene Unternehmensfotos: Bilddateien ersetzen, HTML-Alternativtexte und Urheberlinks anpassen, Rechte an erkennbaren Personen prüfen und gegebenenfalls `object-position` neu kalibrieren.
