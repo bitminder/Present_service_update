@@ -1,0 +1,63 @@
+/* Present-Service UX polish — 2026-11-16. Retains original logo and palette. */
+:root{--ps-ux-ink:#342633;--ps-ux-muted:#5d505b;--ps-ux-pink:#c21875;--ps-ux-line:#eadce5}
+html{scroll-padding-top:106px}
+body{overflow-wrap:break-word;text-rendering:optimizeLegibility}
+section[id],footer[id]{scroll-margin-top:106px}
+a,button{transition:background-color .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease}
+.site-header{box-shadow:0 7px 25px rgba(57,28,49,.035)}
+.site-header .header-inner{gap:clamp(14px,2vw,32px)}
+.site-header .brand{min-width:0}
+.brand-official-logo{image-rendering:auto;flex:none}
+.primary-nav{gap:clamp(12px,1.65vw,25px)}
+.primary-nav a{font-weight:700;white-space:nowrap}
+.primary-nav a:hover{text-decoration:underline;text-decoration-color:#c21875;text-underline-offset:6px;text-decoration-thickness:2px}
+.header-cta{box-shadow:0 7px 18px rgba(52,32,50,.10)}
+.hero{isolation:isolate}
+.hero .hero-copy{min-width:0}
+.hero .hero-lead{line-height:1.7}
+.hero .hero-actions .btn{min-height:51px}
+.hero .hero-proof{max-width:570px}
+.family-hero-photo img{object-fit:cover}
+.metrics-note{max-width:1060px}
+.ps-quickbar{background:#fff;border-bottom:1px solid #f0e2e9}
+.ps-quickbar-inner{display:grid;grid-template-columns:minmax(200px,1.3fr) repeat(3,minmax(0,1fr));gap:12px;align-items:stretch;padding-top:23px;padding-bottom:23px}
+.ps-quickbar-copy{display:flex;flex-direction:column;justify-content:center;gap:4px}
+.ps-quickbar-copy strong{font-size:17px;color:#30212d;line-height:1.25}
+.ps-quickbar-copy span{font-size:12px;color:#675662;line-height:1.5}
+.ps-quickbar a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 17px;border:1px solid #ead7e3;border-radius:12px;color:#7d1951;font-weight:760;font-size:13px;background:#fffafd;line-height:1.35}
+.ps-quickbar a:hover,.ps-quickbar a:focus-visible{background:#f9e9f1;border-color:#cc80a9;box-shadow:0 5px 16px rgba(107,30,73,.06)}
+.ps-quickbar a span:last-child{font-size:19px;flex:none}
+.heritage-section{padding-top:85px;padding-bottom:85px}
+.heritage-card,.programme-history-card{box-shadow:0 8px 24px rgba(72,32,58,.035)}
+.heritage-card h3{font-size:clamp(20px,1.85vw,25px)}
+.section h2,.detail-section h2{overflow-wrap:normal}
+.data-core-card,.solution-card,.showcase-card,.v2-trust-grid article,.heritage-card{transition:box-shadow .18s ease,border-color .18s ease}
+.data-core-card:hover,.solution-card:hover,.v2-trust-grid article:hover,.heritage-card:hover{box-shadow:0 14px 38px rgba(82,29,66,.085)}
+.wizard-panel label,.field label{color:#3b2837}
+.brief-section .brief-card{box-shadow:0 18px 50px rgba(93,28,66,.10)}
+.faq-list summary{cursor:pointer}
+.footer-column a:hover{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:1180px){.ps-quickbar-inner{grid-template-columns:repeat(3,minmax(0,1fr))}.ps-quickbar-copy{grid-column:1/-1}.primary-nav{gap:13px}}
+@media(max-width:940px){.primary-nav a{white-space:normal}.site-header .header-inner{gap:16px}.ps-quickbar-inner{padding-top:18px;padding-bottom:18px}}
+@media(max-width:700px){
+ html,section[id]{scroll-margin-top:85px}
+ .site-header .header-inner{gap:10px}
+ .hero{padding-top:34px}
+ .hero .eyebrow{margin-bottom:17px;font-size:11px;line-height:1.45}
+ .hero h1{font-size:clamp(38px,9vw,57px);line-height:1.075;letter-spacing:-.055em;margin-bottom:20px}
+ .hero .hero-lead{font-size:15px;line-height:1.65}
+ .hero .hero-actions{gap:15px}
+ .hero .hero-actions .btn{width:100%;justify-content:center}
+ .hero .hero-proof{margin-top:21px}
+ .ps-quickbar-inner{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .ps-quickbar-copy{grid-column:1/-1}
+ .ps-quickbar a{padding:12px;font-size:12px;min-height:52px}
+ .ps-quickbar a:last-child{grid-column:1/-1}
+ .section{padding-top:76px;padding-bottom:76px}
+ .heritage-section{padding-top:70px;padding-bottom:70px}
+ .section-topline{margin-bottom:22px}
+ .heritage-intro h2{font-size:clamp(30px,7vw,43px)}
+ .footer-column a{padding-block:3px}
+}
+@media(max-width:400px){.hero h1{font-size:clamp(35px,9.5vw,44px)}.ps-quickbar a{font-size:11px}.hero .hero-actions .text-link{font-size:13px}}
+@media(prefers-reduced-motion:reduce){a,button,.data-core-card,.solution-card,.showcase-card,.v2-trust-grid article,.heritage-card{transition:none!important}}
