@@ -212,6 +212,13 @@ await run("Licensed illustrative family photos load from the same site",async()=
   assert(await page.locator(".showcase-card .family-card-photo img").evaluateAll(images=>images.length===3&&images.every(im=>im.complete&&im.naturalWidth>0)),"all three small segment photographs should be available without scrolling");
 
   assert((await page.locator(".family-photo-footer").innerText()).includes("Fotografie"),"missing illustrative-photography disclaimer");
+  const creditLinks=page.locator(".family-photo-footer details a[href*='pexels.com/photo/']");
+  assert(await creditLinks.count()===5,"photo source attribution should include all five current photographs");
+  const credits=await page.locator(".family-photo-footer").innerText();
+  for(const person of ["Pavel Danilyuk","Marcin Jozwiak","Biova Nakou","Jacek Pobłocki"]){
+    assert(credits.includes(person),"missing current photographer credit "+person);
+  }
+
   for(const file of sources){
     const image=page.locator('img[src$="'+file+'"]').first();
     await image.scrollIntoViewIfNeeded();
