@@ -1,9 +1,9 @@
 # Present-Service 3.2 – Familienbildwelt für Polen
 
-**Erneuerung der Website-Bildwelt:** Statt international generisch wirkenden Motiven werden nun alltagsnahe Innen-, Stadt- und Parkszenen verwendet. **Vier von fünf** Fotos wurden laut Pexels tatsächlich in **Poznań, Gdynia bzw. Lębork** aufgenommen; für das Hero-Foto von Pavel Danilyuk ist kein polnischer Aufnahmeort bestätigt. Dies ist eine ortsbezogene, keine ethnische Zuordnung.
+**Erneuerung der Website-Bildwelt:** Statt international generisch wirkenden Motiven werden nun alltagsnahe Innen-, Stadt- und Parkszenen verwendet. **Zwei von fünf** Fotos haben laut Pexels einen dokumentierten Aufnahmeort in **Poznań bzw. Lębork**. Für Hero, Baby- und Vorschulkind-Foto ist kein polnischer Aufnahmeort belegt. Dies ist eine ortsbezogene, keine ethnische Zuordnung.
 
 - **Hero:** natürliche Familienszene im Wohnraum
-- **Daten-Segmentkarten:** Baby (Poznań), Vorschulkind (Gdynia) und Kleinkind (Lębork)
+- **Daten-Segmentkarten:** Eltern mit Baby im Wohnalltag, Familie beim Malen mit Vorschulkind und Mutter mit Kleinkind im Park (Lębork)
 - **Mamaklub:** Mutter mit Kinderwagen in Poznań, passend zum städtisch-vorstädtischen Alltag
 - **Unterseiten:** angepasste Fotografien, Alt-Texte und Quellenlinks
 - **Technik:** dieselben fünf lokalen WebP-Pfade; keine Bildrequests an Dritte, ursprüngliches Layout und Datenanfrage bleiben erhalten
