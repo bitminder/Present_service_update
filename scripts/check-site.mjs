@@ -52,6 +52,13 @@ for (const file of pages) {
   }
   checks.push({file,links:attrs.length,singleH1,title,description,language,noindex,v2CSS,verifiedLogo,googleFonts});
 }
+const availabilityJs=read("availability.js");
+const availabilityConfig=read("site-config.js");
+const homePage=read("index.html");
+if(!homePage.includes('id="availability-panel"') || !homePage.includes('id="availability-number"') || !homePage.includes('id="availability-check"'))errors.push("index.html: missing aggregate availability display");
+if(!homePage.includes('src="./availability.js"'))errors.push("index.html: missing aggregate availability script");
+if(!availabilityJs.includes('data.type !== "aggregate"') || !availabilityJs.includes('Number.isSafeInteger(data.count)'))errors.push("availability.js: aggregate-only response validation missing");
+if(!availabilityConfig.includes('availabilityEndpoint: ""'))errors.push("site-config.js: aggregate availability should remain disabled until backend verified");
 const js=read("app.js");
 if(!js.includes('track("brief_completed")'))errors.push("app.js: missing anonymous brief event");
 if(!js.includes("new FormData(form)"))errors.push("app.js: missing campaign form processing");
