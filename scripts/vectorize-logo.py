@@ -17,7 +17,7 @@ import cv2
 import numpy as np
 
 ROOT=Path(__file__).resolve().parent.parent
-TARGET=ROOT/"assets"/"present-service-logo.svg"
+TARGET=ROOT/"assets"/"present-service-logo-clean.svg"
 USER_UPLOADED_MARK_ALPHA_B85="c-oy)%Z<b!40Q>VKm}0>*p)c1<}k;R_LB3SD8VIA0wqv_OP~ZwpaV}JkN}A^%DzM7n1}K62cUvvF@zUzftg*gke4fhWquYW`|;3`!N?qQXwS@Oh}w4+-e48XSZwS<Q1S9^g+5VvBB&t?90+bqa~TLY62ka|?9bI?JA#{r974pIc0y1~j8z3C_~Olk!u9z??%CzIW+kNW4zu;3BBBJD;#5#>ZsS<H)bNWGY#jC*rtUupY_31-nge~&;nJzoMMczlQ^EL~$`-PUB31;pk8srC564ofm+LA?Kg*|Hh!5S=aC08!(?mVt)=cV)sW#nSI81x7-AXYKEs67HsXF2Guib<rriVLt0}CqE+W"
 mark=np.frombuffer(decompress(b85decode(USER_UPLOADED_MARK_ALPHA_B85)),dtype=np.uint8).reshape((32,33))
 
